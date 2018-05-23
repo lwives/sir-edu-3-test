@@ -162,7 +162,7 @@ class Sight extends React.Component {
                             {filesCarousel(files.list, actions)}
                         </Slider> :
                         <Alert bsStyle="warning">
-                            <strong>Aviso:</strong> Nenhum arquivo cadastrado
+                            <strong>Aviso:</strong> Nenhum arquivo cadastrado2
                         </Alert>
                     }
                 </div>

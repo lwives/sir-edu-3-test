@@ -2,10 +2,11 @@
 import CoreLayout from '../layouts/CoreLayout'
 import Home from './Home'
 import LoginRoute from './Login'
-import StudentsRoute from  './Students'
+import StudentsRoute from './Students'
 import RegisterStudentRoute from './RegisterStudent'
 import StudentMenu from './StudentMenu'
 import UserRoute from './User'
+import SchoolRoute from './School'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -19,7 +20,8 @@ export const createRoutes = (store) => ({
     StudentsRoute,
     RegisterStudentRoute,
     StudentMenu,
-    UserRoute
+    UserRoute,
+    SchoolRoute
   ]
 })
 

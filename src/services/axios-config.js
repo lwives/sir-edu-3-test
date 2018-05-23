@@ -8,8 +8,8 @@ const axios = axiosApi.create({
 
 axios.interceptors.request.use(function (config) {
     // TODO get token if exists
-    config.headers = { 
-      Authorization: 'Bearer ' + localStorage.getItem('authToken') 
+    config.headers = {
+      Authorization: 'Bearer ' + localStorage.getItem('authToken')
     };
     return config;
   }, function (error) {

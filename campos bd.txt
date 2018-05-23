@@ -1,0 +1,79 @@
+
+Aluno
+    Foto    blob
+x    Nome
+    Nome da Mãe
+    Nome do Pai
+    Resposável
+    Parentesco Responsavél
+x    Endereço
+x    Telefone
+    Data Nascimento
+
+x-    Escola Atual
+x    Matrícula
+x-    Turma/Grupo Regular
+x    Turno
+x    Ano/Série
+
+Aluno -> Atendimento Educacional Especializado - AEE
+-    Professor AEE
+-    Orientador Educacional
+    Cordenenação Pedagógica
+    Data Encaminhamento ao AEE
+    Motivo Encaminhamento ao AEE
+
+Aluno -> Necessidades Educacionais Especiais
+******** Pode aumentar o número de NEE?
+    CID
+    - Cada necessidade ( Dislexia, TDA-H,  Deficiência Física )
+    Outras Necessidades Educacionais Especiais
+
+Aluno -> Necessidades Educacionais Especiais
+    Histórico
+    Necessidades Educacionais Especiais
+
+Aluno -> Aprovação e termos de uso
+    Documento de aprovação dos pais
+    Aceite dos termos de uso
+
+Escola
+    Nome
+    CEP
+    Endereço
+    Bairro
+    Cidade
+    Estado
+    País
+    Tipo
+    Modalidade 
+******(pode aumentar o número de modalidades?)
+        - Infantil
+        - Ens. Fundamental
+        - Ens. Médio
+        - EJA
+        - Técnico
+        - Superior
+
+Usuário 
+    Tipo de pessoa (Física, Jurídica)
+    CPF/CNPJ
+    Nome
+    Email
+    Senha
+    Celular
+    Telefone
+
+Usuário -> Endereço
+    CEP
+    Rua
+    NUmero
+    Complemento
+    Bairro
+    Cidade
+    Estado
+    País
+
+Usuário -> Aceite
+    Aceite do termos de uso
+

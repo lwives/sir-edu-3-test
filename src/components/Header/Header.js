@@ -11,35 +11,36 @@ export const Header = (props) => (
       <div className='container-fluid'>
         <div className='navbar-header'>
           <div className='navbar-brand'>
-            <Link to="/"><img id='header-logo' src={logo}/></Link>
+            <Link to="/"><img id='header-logo' src={logo} /></Link>
           </div>
         </div>
         <div className='navbar-inner'>
           <ul className='nav navbar-nav'>
             <li><Link to="/">Página inicial</Link></li>
             {
-              !props.auth.isAuthenticated ? 
-              [ <li><a>Quem somos</a></li>,
-                <li><a>Serviços</a></li>,
-                <li><a>Contato</a></li>] :
-              [
-                <li><Link to='/alunos'>Alunos</Link></li>,
-                <li><Link to='/cadastro-aluno'>Cadastrar aluno</Link></li>
-              ]
+              (!props.auth.isAuthenticated) ?
+                [
+                  <li><Link to='/quem-somos'>Quem somos</Link></li>,
+                  <li><Link to='/servicos'>Serviços</Link></li>,
+                  <li><Link to='/contato'>Contato</Link></li>
+                ] : [
+                  <li><Link to='/alunos'>Alunos</Link></li>,
+                  <li><Link to='/escolas'>Escolas</Link></li>,
+                  <li><Link to='/grupos'>Grupos</Link></li>
+                ]
             }
           </ul>
           <ul className='nav navbar-nav navbar-right'>
             {
-              !props.auth.isAuthenticated ?
-              <li><Link to='/login'><span className='glyphicon glyphicon-log-in' /> Entrar</Link></li> :
-              [
-                <li><a><span className='glyphicon glyphicon-user'/> Bem-vindo, {props.auth.user.name}</a></li>,
-                <li>
-                  <a onClick={() => { props.logout(); }}>
-                    <span className='glyphicon glyphicon-log-out' /> Sair
-                  </a>
-                </li>
-              ]
+              (!props.auth.isAuthenticated) ?
+                [
+                  <li><Link to='/login'><span className='glyphicon glyphicon-log-in' /> Entrar</Link></li>
+                ] : [
+                  <li><Link to='/usuario/'><span className='glyphicon glyphicon-user' /> Bem-vindo, {props.auth.user.name}</Link></li>,
+                  <li><a onClick={() => { props.logout(); }}>
+                      <span className='glyphicon glyphicon-log-out' /> Sair
+                  </a></li>
+                ]
             }
           </ul>
         </div></div>
@@ -48,11 +49,11 @@ export const Header = (props) => (
 )
 
 const mapDispatchToProps = {
-    logout
+  logout
 }
 
 const mapStateToProps = (state) => ({
-    auth: state.auth
+  auth: state.auth
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)
