@@ -1,7 +1,8 @@
-import StudentRegisterContainer from './containers/RegisterStudentContainer'
+import StudentRegisterContainer from './containers/StudentRegisterContainer'
 
 // Sync route definition
 export default {
-    path:'aluno/cadastrar',
+    path:'aluno/:id/:modo',
+    pathWithoutParam:'aluno/',
     component : StudentRegisterContainer
 }

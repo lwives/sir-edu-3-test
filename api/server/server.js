@@ -21,7 +21,7 @@ var config = require('../config/config'); // get our config file
 var routes = require('../controllers/controllers');
 
 mongoose.connect(config.database, (err) => {
-	if (err) throw err;
+  if (err) throw err;
 });
 
 /* App Middlewares */
@@ -37,7 +37,8 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(morgan('dev'));
 
 // TODO refresh token
-const jwtOptions = { secret: config.secret, ignoreExpiration: true, 
+const jwtOptions = { secret: config.secret, 
+  ignoreExpiration: true, 
   getToken: function fromHeaderOrQuerystring (req) {
       if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
           return req.headers.authorization.split(' ')[1];
@@ -45,11 +46,11 @@ const jwtOptions = { secret: config.secret, ignoreExpiration: true,
         return req.query.token;
       }
       return null;
-   } 
+   }
 };
 
 // App routes
-app.use('/api', jwt(jwtOptions).unless({path: [ '/api/authenticate' , '/api/register',  /\/api\/files*/]}), routes);
+app.use('/api', jwt(jwtOptions).unless({path: ['/api/authenticate', '/api/register',  /\/api\/files*/]}), routes);
 app.use('/uploads', express.static(rootDir + '/uploads'));
 
 // ------------------------------------

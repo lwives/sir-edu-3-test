@@ -3,9 +3,13 @@ import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowCol
   from 'material-ui/Table'
 import { Avatar } from 'material-ui' // TextField
 import { Link } from 'react-router'
+
+import utilFunctions from '../../../../constants/utilFunctions'
 import defaultAvatar from 'public/default-avatar.png'
 import './StudentList.scss'
 import { Alert } from 'react-bootstrap'
+import StudentRegister from '../../StudentRegister';
+import StudentMenu from '../../StudentMenu';
 
 const getFilteredStudents = (students, filterText) => {
   return students.filter(student => {
@@ -18,8 +22,15 @@ const getFilteredStudents = (students, filterText) => {
 }
 
 export default class StudentListTable extends React.Component {
+  static propTypes = {
+    filterStudents: React.PropTypes.func.isRequired,
+    getStudentsList: React.PropTypes.func,
+    students: React.PropTypes.object,
+    filterText: React.PropTypes.string,
+    setSelectedStudent: React.PropTypes.func
+  }
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.searchStudent = this.searchStudent.bind(this)
   }
@@ -41,6 +52,11 @@ export default class StudentListTable extends React.Component {
   render() {
     const { students, filterText, setSelectedStudent } = this.props
     const filteredStudents = getFilteredStudents(students.list, filterText || '')
+    const visibleColumn = [ {name: 'Foto'}, 
+                            {name: 'Nome'}, 
+                            {name: 'Escola'}, 
+                            {name: 'Turma'}, 
+                            {name: 'Ações'} ]
 
     return (
       <div className="container student-list">
@@ -48,64 +64,67 @@ export default class StudentListTable extends React.Component {
           <div className="search-student">
             <form onSubmit={this.searchStudent}>
               <div className="input-group">
-                <input type="text" ref={(input) => { this.textInput = input }} className="form-control input-lg" placeholder="Procurar aluno" />
+                <input
+                  type="text"
+                  ref={(input) => { this.textInput = input }}
+                  className="form-control input-lg"
+                  placeholder="Procurar aluno" />
                 <div className="input-group-btn">
                   <button className="btn btn-primary input-lg" type="submit">
-                    <i className="glyphicon glyphicon-search"></i>
+                    <i className="glyphicon glyphicon-search" />
                   </button>
                 </div>
                 <div className="btn btn-warning btn-lg">
-                  <Link to='/cadastro-aluno'>Cadastrar aluno</Link>
+                  <Link to={utilFunctions.urlWithoutParam(StudentRegister.path)}>Cadastrar aluno</Link>
                 </div>
               </div>
             </form>
           </div>
         </div>
         <div className="col-md-10 col-md-offset-1">
+          <div className="container">
+            <h1>Alunos</h1>
+          </div>
           <Table selectable={false}>
             <TableHeader
               displaySelectAll={false}
               adjustForCheckbox={false} >
               <TableRow>
-                <TableHeaderColumn colSpan="5" style={{ textAlign: 'center' }}>
-                  <h1>Alunos</h1>
-                </TableHeaderColumn>
-              </TableRow>
-              <TableRow>
-                <TableHeaderColumn>Foto</TableHeaderColumn>
-                <TableHeaderColumn>Nome</TableHeaderColumn>
-                <TableHeaderColumn>Escola</TableHeaderColumn>
-                <TableHeaderColumn>Turma</TableHeaderColumn>
-                <TableHeaderColumn>Ações</TableHeaderColumn>
+                {
+                  visibleColumn.map((column = {name:''}, index) => {
+                    return <TableHeaderColumn>{column.name}</TableHeaderColumn>
+                  })
+                }
               </TableRow>
             </TableHeader>
             <TableBody
-              showRowHover={true}
+              showRowHover
               displayRowCheckbox={false}
-              deselectOnClickaway={true}>
+              deselectOnClickaway>
               {filteredStudents.map((student, index) => (
                 <TableRow key={index}>
                   <TableRowColumn>
                     {
-                      student.avatar 
+                      student.avatar
                         ? <Avatar src={student.avatar.path} className="student-avatar pull-left" size={45} />
                         : <Avatar src={defaultAvatar} className="student-avatar pull-left" size={45} />
                     }
                   </TableRowColumn>
                   <TableRowColumn>
-                    <Link onClick={() => { setSelectedStudent(student) }} to={'/aluno/' + student._id}>{student.name}</Link>
+                    <Link
+                      onClick={() => { setSelectedStudent(student) }}
+                      to={StudentMenu.pathWithoutParam + student._id}>{student.name}</Link>
                   </TableRowColumn>
-                  <TableRowColumn>{/* student.school || '' */}</TableRowColumn>
+                  <TableRowColumn>{ student.school || '' }</TableRowColumn>
                   <TableRowColumn>{/* student.classNumber || '' */}</TableRowColumn>
                   <TableRowColumn>
-                    <span className="edit-student">
+                    <Link to={StudentRegister.pathWithoutParam + student._id + '/editar'} className="edit-student">
                       <i className="fa fa-pencil-square-o fa-lg"
-                        aria-hidden="true"></i> Editar
-                    </span>
-                    <span className="remove-student">
-                      <i className="fa fa-user-times fa-lg"
-                        ></i> Excluir
-                    </span></TableRowColumn>
+                        aria-hidden="true" /> Editar
+                    </Link>
+                    <Link to={StudentRegister.pathWithoutParam + student._id + '/excluir'} className="remove-student">
+                      <i className="fa fa-user-times fa-lg" /> Excluir
+                    </Link></TableRowColumn>
                 </TableRow>
               ))}
             </TableBody>

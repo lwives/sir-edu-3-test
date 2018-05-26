@@ -5,6 +5,10 @@ import { browserHistory } from 'react-router'
 import './StudentFiles.scss'
 
 class StudentFiles extends React.Component {
+    static propTypes = {
+        id : React.PropTypes.string
+    }
+
     constructor(props) {
         super(props);
 

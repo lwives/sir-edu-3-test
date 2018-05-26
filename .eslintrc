@@ -20,11 +20,18 @@
   },
   "rules": {
     "key-spacing"          : 0,
-    "indent"               : ["error", 4],
+    "indent"               : ["off", 4],
     "jsx-quotes"           : [2, "prefer-double"],
-    "max-len"              : [2, 120, 2],
+    "max-len"              : [2, 520, 2],
     "object-curly-spacing" : [0, "always"],
-    "space-before-function-paren" : "off"
+    "space-before-function-paren" : "off",
+    "semi"                 : "off",
+    "no-multi-spaces"      : "off",
+    "spaced-comment"       : "off",
+    "no-trailing-spaces"   : "off",
+    "react/prop-types"     : "warn",
+    "react/jsx-indent"     : "off",
+    "react/jsx-indent-props" : "off"
     
   }
 }
