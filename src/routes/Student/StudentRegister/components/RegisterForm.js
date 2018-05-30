@@ -1,28 +1,17 @@
-import React from 'react'
-import { TextField, DatePicker, Checkbox, RaisedButton } from 'material-ui' //SelectField, MenuItem, 
+import React, {PropTypes} from 'react'
+import { DatePicker, Checkbox, RaisedButton } from 'material-ui' //RaisedButton, SelectField, MenuItem, TextField, Button, 
 import Dropzone from 'components/Dropzone'
 import MultipleCheckboxes from './MultipleCheckboxes'
 import TermOfUse from './TermOfUse'
-
-const specialNeeds = [{ name: 'Altas Habilidades/Superdotado' },
-{ name: 'Deficiência Visual/Cegueira' },
-{ name: 'Deficiência Física' },
-{ name: 'Dislexia' },
-{ name: 'Deficiência Múltipla' },
-{ name: 'Síndrome de Ritt' },
-{ name: 'Transtorno do Espectro Autista' },
-{ name: 'Baixa Visão' },
-{ name: 'Deficiência Auditiva/Surdez' },
-{ name: 'Deficiência Intelectual' },
-{ name: 'Transtorno de Oposição e desafio(TOD)' },
-{ name: 'Síndrome de Down' },
-{ name: 'Surdocegueira' },
-{ name: 'Síndrome do X frágil' },
-{ name: 'Transtornos psicóticos agudos e transitórios' },
-{ name: 'Transtorno de conduta' }
-];
+import TextFieldDefault from '../../../../components/TextFieldDefault'
+import { specialNeeds } from '../../../../constants/necessidadesEspeciais'
 
 export default class RegisterForm extends React.Component {
+    static propTypes = {
+        step : PropTypes.any,
+        handleSubmit: PropTypes.func
+    }
+
     constructor(props) {
         super(props);
         this.state = {};
@@ -32,6 +21,8 @@ export default class RegisterForm extends React.Component {
         this.handleCheckboxGroup = this.handleCheckboxGroup.bind(this);
         this.showTermOfUse = this.showTermOfUse.bind(this);
         this.openTermOfUse = false;
+
+        //const specialNeeds = specialNeeds
     }
 
     onImageDrop(field, file) {
@@ -100,51 +91,38 @@ export default class RegisterForm extends React.Component {
                             </span>
                         </div>
                         <div className="col-md-6">
-                            <TextFieldStandard value={this.state.name} type="text" name={'Nome'} onChange={this.handleChange} />
-                            <TextFieldStandard value={this.state.registration} type="number" name={'Matrícula'} onChange={this.handleChange} />
-                            <TextFieldStandard value={this.state.className} type="number" name={'Turma'} onChange={this.handleChange} />
-                            <TextFieldStandard value={this.state.shift} type="text" name={'Turno'} onChange={this.handleChange} />
-                            <TextFieldStandard value={this.state.series} type="text" name={'Ano/Série'} onChange={this.handleChange} />
+                            <TextFieldDefault value={this.state.name} name={'Nome'} onChange={this.handleChange} />
+                            <TextFieldDefault value={this.state.registration} type="number" name={'Matrícula'} onChange={this.handleChange} />
+                            <TextFieldDefault value={this.state.className} type="number" name={'Turma'} onChange={this.handleChange} />
+                            <TextFieldDefault value={this.state.shift} name={'Turno'} onChange={this.handleChange} />
+                            <TextFieldDefault value={this.state.series} name={'Ano/Série'} onChange={this.handleChange} />
                             <DatePicker className="col-md-6" fullWidth DateTimeFormat={Intl.DateTimeFormat} locale="pt-br" value={this.state.birthdate || {}} name="birthdate" onChange={(evt, value) => { this.handleChange(evt, 'birthdate', value) }} floatingLabelText="Data Nascimento:" />
-                            <TextFieldStandard value={this.state.motherName} type="text" name={'Nome da Mãe'} onChange={this.handleChange} />
-                            {/* <TextField className="col-md-6" fullWidth value={this.state.name || ''} type="text" name="name" onChange={this.handleChange} floatingLabelText="Nome:" />
-                            <TextField className="col-md-6" fullWidth value={this.state.registration || ''} type="number" name="registration" onChange={this.handleChange} floatingLabelText="Matrícula:" />
-                            <TextField className="col-md-6" fullWidth value={this.state.classNumber || ''} type="number" name="classNumber" onChange={this.handleChange} floatingLabelText="Turma:" />
-                            <TextField className="col-md-6" fullWidth value={this.state.shift || ''} type="text" name="shift" onChange={this.handleChange} floatingLabelText="Turno:" />
-                            <TextField className="col-md-6" fullWidth value={this.state.series || ''} type="text" name="series" onChange={this.handleChange} floatingLabelText="Ano/Série:" />
-                            <TextField className="col-md-6" fullWidth value={this.state.motherName || ''} type="text" name="motherName" onChange={this.handleChange} floatingLabelText="Nome da Mãe:" /> */}
+                            <TextFieldDefault value={this.state.motherName} name={'Nome da Mãe'} onChange={this.handleChange} />
                         </div>
                         <div className="col-md-6">
-                            <TextFieldStandard type="text"  name={'Parentesco'} onChange={this.handleChange} value={this.state.relationship} />
-                            <TextFieldStandard type="phone" name={'Telefone'} onChange={this.handleChange} value={this.state.phoneNumber} />
-                            <TextFieldStandard type="text"  name={'Endereço'} onChange={this.handleChange} value={this.state.adress} />
-                            <TextFieldStandard type="text"  name={'CID'} onChange={this.handleChange} value={this.state.cid} />
-                            <TextFieldStandard type="text"  name={'Escola'} onChange={this.handleChange} value={this.state.school} />
-                            <TextFieldStandard type="text"  name={'Nome da Pai'} onChange={this.handleChange} value={this.state.fatherName} />
-                            <TextFieldStandard type="text"  name={'Responsável'} onChange={this.handleChange} value={this.state.responsible} />
-                            {/* <TextField className="col-md-6" fullWidth value={this.state.relationship || ''} type="text" name="relationship" onChange={this.handleChange} floatingLabelText="Parentesco:" />
-                            <TextField className="col-md-6" fullWidth value={this.state.phoneNumber || ''} type="number" name="phoneNumber" onChange={this.handleChange} floatingLabelText="Telefone:" />
-                            <TextField className="col-md-6" fullWidth value={this.state.adress || ''} type="text" name="adress" onChange={this.handleChange} floatingLabelText="Endereço:" />
-                            <TextField className="col-md-6" fullWidth value={this.state.cid || ''} type="text" name="cid" onChange={this.handleChange} floatingLabelText="CID:" />
-                            <TextField className="col-md-6" fullWidth name="school" value={this.state.school || ''} type="text" onChange={this.handleChange} floatingLabelText="Escola:" />
-                            <TextField className="col-md-6" fullWidth value={this.state.fatherName || ''} type="text" name="fatherName" onChange={this.handleChange} floatingLabelText="Nome da Pai:" />
-                            <TextField className="col-md-6" fullWidth value={this.state.responsible || ''} type="text" name="responsible" onChange={this.handleChange} floatingLabelText="Responsável:" /> */}
+                            <TextFieldDefault onChange={this.handleChange} value={this.state.relationship} name="Parentesco" />
+                            <TextFieldDefault onChange={this.handleChange} value={this.state.phoneNumber} name="Telefone" type="phone" />
+                            <TextFieldDefault onChange={this.handleChange} value={this.state.adress} name="Endereço" />
+                            <TextFieldDefault onChange={this.handleChange} value={this.state.cid} name="CID" />
+                            <TextFieldDefault onChange={this.handleChange} value={this.state.school} name="Escola" />
+                            <TextFieldDefault onChange={this.handleChange} value={this.state.fatherName} name="Nome da Pai" />
+                            <TextFieldDefault onChange={this.handleChange} value={this.state.responsible} name="Responsável" />
                         </div>
                     </div>
                 }
                 {this.props.step === 1 &&
                     <div className="col-md-12">
-                        <TextField fullWidth value={this.state.professorNEE || ''} type="text" name="professorNEE" onChange={this.handleChange} floatingLabelText="Professor NEE:" />
-                        <TextField fullWidth value={this.state.orientation || ''} type="text" name="orientation" onChange={this.handleChange} floatingLabelText="Orientação Educacional:" />
-                        <TextField fullWidth value={this.state.coordination || ''} type="text" name="coordination" onChange={this.handleChange} floatingLabelText="Coordenação Pedagógica:" />
+                        <TextFieldDefault onChange={this.handleChange} value={this.state.professorNEE} name={'Professor NEE'} />
+                        <TextFieldDefault onChange={this.handleChange} value={this.state.orientation} name={'Orientação Educacional'} />
+                        <TextFieldDefault onChange={this.handleChange} value={this.state.coordination} name={'Coordenação Pedagógica'} />
                         <DatePicker fullWidth DateTimeFormat={Intl.DateTimeFormat} locale="pt-br" value={this.state.routingDate || {}} name="routingDate" onChange={(evt, value) => { this.handleChange(evt, 'routingDate', value) }} floatingLabelText="Data de encaminhamento a AEE/SIR:" />
-                        <TextField fullWidth multiLine value={this.state.routingReason || ''} type="text" name="routingReason" onChange={this.handleChange} floatingLabelText="Motivo do encaminhamento:" />
+                        <TextFieldDefault onChange={this.handleChange} value={this.state.routingReason} name={'Motivo do encaminhamento'} multiLine />
                     </div>
                 }
                 {this.props.step === 2 &&
                     <div>
                         <MultipleCheckboxes specialNeeds={specialNeeds} values={this.state.specialNeeds || []} handleCheckboxGroup={this.handleCheckboxGroup} />
-                        <TextField fullWidth value={this.state.otherSpecialNeeds || ''} type="text" name="otherSpecialNeeds" onChange={this.handleChange} floatingLabelText="Outras necessidades especiais:" />
+                        <TextFieldDefault onChange={this.handleChange} value={this.state.otherSpecialNeeds} name={'Outras necessidades especiais'} />
                     </div>
                 }
                 {this.props.step === 3 &&
@@ -167,7 +145,7 @@ export default class RegisterForm extends React.Component {
                                 onCheck={this.handleCheckbox}
                             />
                             <TermOfUse />
-                            <RaisedButton label="Cadastrar" primary type="submit" />
+                            <RaisedButton color="primary" type="submit" label="Cadastrar" />
                         </div>
                     </div>
                 }
@@ -176,17 +154,5 @@ export default class RegisterForm extends React.Component {
                 </div>
             </form>
         );
-    }
-}
-
-class TextFieldStandard extends React.Component {
-
-    render () {
-        var name = (this.props.name).replace(' ', '-').toLowerCase()
-        var LabelText = this.props.name + ': '
-
-        return (
-            <TextField className="col-md-6" fullWidth value={this.props.value || ''} type={this.props.type} name={name} onChange={this.handleChange} floatingLabelText={LabelText} />
-        )
     }
 }

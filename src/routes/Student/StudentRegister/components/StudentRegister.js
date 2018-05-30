@@ -18,14 +18,18 @@ export default class StudentRegister extends React.Component {
             stepIndex: 0
         }
         this.handleSubmit = this.handleSubmit.bind(this)
-        console.log('Id: ' + this.props.params.id)
-        console.log('modo: ' + this.props.params.modo)
+        console.log('Id: ' + props.params.id)
+        console.log('modo: ' + props.params.modo)
 
         this.tabs = [
           {name: 'Preencha os dados do aluno'}, 
           {name: 'Atividades Extraclasse'}, 
           {name: 'Necessidades Educacionais Especiais'}, 
           {name: 'Finalizar'} ]
+    }
+
+    setStepIndex = (newState) => {
+      this.setState({stepIndex: newState})
     }
     
     handleSubmit(form) {
@@ -55,7 +59,7 @@ export default class StudentRegister extends React.Component {
           <div className="container register-student">
             <div className="col-md-12">
               <h1 className="text-center">Cadastro de Aluno</h1>
-              <RegisterStepper tabs={this.tabs} stepIndex={stepIndex} /> 
+              <RegisterStepper tabs={this.tabs} step={stepIndex} setStepIndex={this.setStepIndex} /> 
 
               <div style={contentStyle}>
                 <div className="register-student-form col-md-12">
@@ -73,7 +77,7 @@ export default class StudentRegister extends React.Component {
                     <RaisedButton
                       label="Próximo"
                       disabled={stepIndex === 3}
-                      primary={1}
+                      primary
                       onTouchTap={this.handleNext}
                     />
                   </div>

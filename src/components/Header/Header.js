@@ -5,6 +5,14 @@ import logo from './assets/sir-edu_logo.png'
 import { connect } from 'react-redux'
 import { logout } from 'store/login'
 
+import Home from '../../routes/Home'
+import UserRegister from '../../routes/User/UserRegister'
+import Login from '../../routes/Login'
+import Paginas from '../../pages'
+import StudentListTable from '../../routes/Student/StundentList/'
+import SchoolList from '../../routes/School/SchoolList'
+import GroupList from '../../routes/Group/GroupList'
+
 export const Header = (props) => (
   <header>
     <nav className="navbar navbar-default">
@@ -16,17 +24,17 @@ export const Header = (props) => (
         </div>
         <div className="navbar-inner">
           <ul className="nav navbar-nav">
-            <li><Link to="/">Página inicial</Link></li>
+            <li key="inicial"><Link to={Home.pathWithoutPath}>Página inicial</Link></li>
             {
               (!props.auth.isAuthenticated) 
                 ? [
-                  <li><Link to="/quem-somos">Quem somos</Link></li>,
-                  <li><Link to="/servicos">Serviços</Link></li>,
-                  <li><Link to="/contato">Contato</Link></li>
+                  <li key="quem-somos"><Link to={Paginas.quemSomos.pathWithoutParam}>Quem somos</Link></li>,
+                  <li key="servicos"><Link to={Paginas.servico.pathWithoutParam}>Serviços</Link></li>,
+                  <li key="contato"><Link to={Paginas.contato.pathWithoutParam}>Contato</Link></li>
                 ] : [
-                  <li><Link to="/alunos">Alunos</Link></li>,
-                  <li><Link to="/escolas">Escolas</Link></li>,
-                  <li><Link to="/grupos">Grupos</Link></li>
+                  <li key="alunos"><Link to={StudentListTable.pathWithoutParam}>Alunos</Link></li>,
+                  <li key="escolas"><Link to={SchoolList.pathWithoutParam}>Escolas</Link></li>,
+                  <li key="grupos"><Link to={GroupList.pathWithoutParam}>Grupos</Link></li>
                 ]
             }
           </ul>
@@ -34,10 +42,10 @@ export const Header = (props) => (
             {
               (!props.auth.isAuthenticated) 
                 ? [
-                  <li><Link to="/login"><span className="glyphicon glyphicon-log-in" /> Entrar</Link></li>
+                  <li key="login"><Link to={Login.pathWithoutParam}><span className="glyphicon glyphicon-log-in" /> Entrar</Link></li>
                 ] : [
-                  <li><Link to="/usuario/"><span className="glyphicon glyphicon-user" /> Bem-vindo, {props.auth.user.name}</Link></li>,
-                  <li><a onClick={() => { props.logout(); }}>
+                  <li key="usuario"><Link to={UserRegister.pathWithoutParam}><span className="glyphicon glyphicon-user" /> Bem-vindo, {props.auth.user.name}</Link></li>,
+                  <li key="logout"><a onClick={() => { props.logout(); }}>
                     <span className="glyphicon glyphicon-log-out" /> Sair
                   </a></li>
                 ]

@@ -1,6 +1,7 @@
 import UserContainer from './containers/UserContainer'
 
 export default {
-    path: 'cadastro-usuario',
+    path: 'usuario',
+    pathWithoutParam: 'usuario',
     component: UserContainer
 }

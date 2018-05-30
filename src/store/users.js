@@ -1,4 +1,4 @@
-import router from 'helpers/router-helper'
+//import router from 'helpers/router-helper'
 import userService from 'services/users-service'
 
 // ------------------------------------
@@ -46,12 +46,12 @@ function success(type) {
   }
 }
 
-function close_modal() {
+function closemodal() {
     return {
         type: CLOSE_MODAL,
         payload: {
           isFetching: false,
-          showModal: false,
+          showModal: false
         }
     }
 }
@@ -64,12 +64,13 @@ export function registerUser(user) {
                 dispatch(success(REGISTER_USER_SUCCESS));
             }).catch((error) => {
                 dispatch(failure(REGISTER_USER_FAILURE));
+                console.log(error);
             })
   } 
 }
 
 export function closeModal() {
-    return dispatch => { dispatch(close_modal()) };
+    return dispatch => { dispatch(closemodal()) };
 }
 
 // ------------------------------------

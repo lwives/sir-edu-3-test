@@ -8,8 +8,9 @@ import utilFunctions from '../../../../constants/utilFunctions'
 import defaultAvatar from 'public/default-avatar.png'
 import './StudentList.scss'
 import { Alert } from 'react-bootstrap'
-import StudentRegister from '../../StudentRegister';
-import StudentMenu from '../../StudentMenu';
+import StudentRegister from '../../StudentRegister'
+import StudentMenu from '../../StudentMenu'
+import HeaderDefault from '../../../../components/HeaderDefault'
 
 const getFilteredStudents = (students, filterText) => {
   return students.filter(student => {
@@ -82,9 +83,7 @@ export default class StudentListTable extends React.Component {
           </div>
         </div>
         <div className="col-md-10 col-md-offset-1">
-          <div className="container">
-            <h1>Alunos</h1>
-          </div>
+          <HeaderDefault type="h1" texto="Meus Alunos" />
           <Table selectable={false}>
             <TableHeader
               displaySelectAll={false}
@@ -92,7 +91,7 @@ export default class StudentListTable extends React.Component {
               <TableRow>
                 {
                   visibleColumn.map((column = {name:''}, index) => {
-                    return <TableHeaderColumn>{column.name}</TableHeaderColumn>
+                    return <TableHeaderColumn key={index}>{column.name}</TableHeaderColumn>
                   })
                 }
               </TableRow>
@@ -133,7 +132,7 @@ export default class StudentListTable extends React.Component {
             !students.list.length &&
             <Alert bsStyle="warning">
               <strong>Aviso:</strong> Nenhum aluno cadastrado.
-          </Alert>
+            </Alert>
           }
         </div>
       </div>)
