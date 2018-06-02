@@ -1,91 +1,82 @@
-import React, {PropTypes} from 'react'
+import React, { PropTypes } from 'react'
 import RegisterForm from './RegisterForm'
-import RaisedButton from 'material-ui/RaisedButton'
-import FlatButton from 'material-ui/FlatButton'
 import './StudentRegister.scss'
 import RegisterStepper from '../../../../components/RegisterStepper'
+import RegisterLayout from '../../../../layouts/RegisterLayout'
+import StepperPagination from '../../../../components/StepperPagination'
 
 export default class StudentRegister extends React.Component {
-    static propTypes = {
-        saveStudent : PropTypes.func.isRequired
-        // id: PropTypes.string,
-        // modo: PropTypes.string
+  static propTypes = {
+    saveStudent: PropTypes.func.isRequired
+    // id: PropTypes.string,
+    // modo: PropTypes.string
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      stepIndex: 0
+    }
+    this.handleSubmit = this.handleSubmit.bind(this)
+    console.log('Id: ' + props.params.id)
+    console.log('modo: ' + props.params.modo)
+
+    this.tabs = [
+      { name: 'Preencha os dados do aluno' },
+      { name: 'Atividades Extraclasse' },
+      { name: 'Necessidades Educacionais Especiais' },
+      { name: 'Finalizar' }]
+  }
+
+  handleSetStepindex = (newState) => {
+    this.setState({ stepIndex: newState })
+  }
+
+  handleSubmit(form) {
+    console.log('enviando form', form)
+    this.props.saveStudent(form)
+  }
+
+  handleNext = () => {
+    const { stepIndex } = this.state
+    if (stepIndex < 3) {
+      this.setState({ stepIndex: stepIndex + 1 })
+    }
+  };
+
+  handlePrev = () => {
+    const { stepIndex } = this.state
+    if (stepIndex > 0) {
+      this.setState({ stepIndex: stepIndex - 1 })
+    }
+  };
+
+  render() {
+    const { stepIndex } = this.state
+    const contentStyle = { margin: '0 16px' }
+
+    const data = {
+      step: stepIndex,
+      tabs: this.tabs,
+      setStepIndex: this.handleSetStepindex,
+      handleSubmit: this.handleSubmit,
+      handleNext: this.handleNext,
+      handlePrev: this.handlePrev
     }
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            stepIndex: 0
-        }
-        this.handleSubmit = this.handleSubmit.bind(this)
-        console.log('Id: ' + props.params.id)
-        console.log('modo: ' + props.params.modo)
+    return (
+      <RegisterLayout titulo="Cadastro de Aluno">
 
-        this.tabs = [
-          {name: 'Preencha os dados do aluno'}, 
-          {name: 'Atividades Extraclasse'}, 
-          {name: 'Necessidades Educacionais Especiais'}, 
-          {name: 'Finalizar'} ]
-    }
+          <RegisterStepper {...data} />
 
-    setStepIndex = (newState) => {
-      this.setState({stepIndex: newState})
-    }
-    
-    handleSubmit(form) {
-        console.log('enviando form', form)
-        this.props.saveStudent(form)
-    }
-
-    handleNext = () => {
-        const {stepIndex} = this.state
-        if (stepIndex < 3) {
-            this.setState({stepIndex: stepIndex + 1})
-        }
-    };
-
-    handlePrev = () => {
-        const {stepIndex} = this.state
-        if (stepIndex > 0) {
-            this.setState({stepIndex: stepIndex - 1})
-        }
-    };
-
-    render() {
-        const { stepIndex } = this.state
-        const contentStyle = {margin: '0 16px'}
-
-        return (
-          <div className="container register-student">
-            <div className="col-md-12">
-              <h1 className="text-center">Cadastro de Aluno</h1>
-              <RegisterStepper tabs={this.tabs} step={stepIndex} setStepIndex={this.setStepIndex} /> 
-
-              <div style={contentStyle}>
-                <div className="register-student-form col-md-12">
-                  <RegisterForm step={stepIndex} handleSubmit={this.handleSubmit} />
-                </div>
-
-                <div className="col-md-12 text-center">
-                  <div className="stepper-pagination">
-                    <FlatButton
-                      label="Voltar"
-                      disabled={stepIndex === 0}
-                      onTouchTap={this.handlePrev}
-                      style={{marginRight: 12}}
-                    />
-                    <RaisedButton
-                      label="Próximo"
-                      disabled={stepIndex === 3}
-                      primary
-                      onTouchTap={this.handleNext}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div style={contentStyle} className="register-form">
+            <RegisterForm {...data} />
           </div>
-        )
-    }
-}
 
+          <div className="text-center">
+            <StepperPagination {...data} />
+          </div>
+      </RegisterLayout>
+    )
+  }
+}

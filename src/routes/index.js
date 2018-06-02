@@ -2,11 +2,12 @@
 import CoreLayout from '../layouts/CoreLayout'
 import Home from './Home'
 import LoginRoute from './Login'
-import StudentsRoute from './Student/StundentList'
+import StudentRoute from './Student/StundentList'
 import StudentRegisterRoute from './Student/StudentRegister'
 import StudentMenu from './Student/StudentMenu'
 import UserRegisterRoute from './User/UserRegister'
-import SchoollRoute from './School/SchoolList'
+import SchoolRoute from './School/SchoolList'
+import SchoolRegisterRoute from './School/SchoolRegister'
 import GroupRoute from './Group/GroupList'
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -18,11 +19,12 @@ export const createRoutes = (store) => ({
   indexRoute  : Home,
   childRoutes : [
     LoginRoute,
-    StudentsRoute,
+    StudentRoute,
     StudentRegisterRoute,
     StudentMenu,
     UserRegisterRoute,
-    SchoollRoute,
+    SchoolRoute,
+    SchoolRegisterRoute,
     GroupRoute
   ]
 })

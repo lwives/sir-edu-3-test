@@ -7,7 +7,8 @@ export default class TextFieldDefault extends React.Component {
         value: PropTypes.string,
         type: PropTypes.string,
         handleChange: PropTypes.func,
-        multiLine: PropTypes.bool
+        multiLine: PropTypes.bool,
+        className: PropTypes.string
     }
 
     render () {
@@ -16,10 +17,10 @@ export default class TextFieldDefault extends React.Component {
         
         const type = (this.props.type !== undefined) ? this.props.type : 'text'
         const isMultiLine = this.props.multiLine  //(this.props.multiLine === undefined) ? true : false
+        const className = this.props.className // "col-md-6"
         
-        // className="col-md-6" 
         return (
-            <TextField multiLine={isMultiLine} fullWidth value={this.props.value || ''} type={type} name={name} onChange={this.props.handleChange} floatingLabelText={LabelText} />
+            <TextField className={className} multiLine={isMultiLine} fullWidth value={this.props.value || ''} type={type} name={name} onChange={this.props.handleChange} floatingLabelText={LabelText} />
         )
     }
 }

@@ -77,7 +77,7 @@ export default class RegisterForm extends React.Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 {this.props.step === 0 &&
-                    <div>
+                    <div className="col-md-12">
                         <div className="col-md-12">
                             <label>Imagem do aluno:</label>
                             <span className="text-center">
@@ -120,7 +120,7 @@ export default class RegisterForm extends React.Component {
                     </div>
                 }
                 {this.props.step === 2 &&
-                    <div>
+                    <div className="col-md-12">
                         <MultipleCheckboxes specialNeeds={specialNeeds} values={this.state.specialNeeds || []} handleCheckboxGroup={this.handleCheckboxGroup} />
                         <TextFieldDefault onChange={this.handleChange} value={this.state.otherSpecialNeeds} name={'Outras necessidades especiais'} />
                     </div>
@@ -153,6 +153,6 @@ export default class RegisterForm extends React.Component {
                     <input className="hidden" type="submit" />
                 </div>
             </form>
-        );
+        )
     }
 }
