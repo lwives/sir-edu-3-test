@@ -20,7 +20,7 @@ export default class TextFieldDefault extends React.Component {
         const className = this.props.className // "col-md-6"
         
         return (
-            <TextField className={className} multiLine={isMultiLine} fullWidth value={this.props.value || ''} type={type} name={name} onChange={this.props.handleChange} floatingLabelText={LabelText} />
+            <TextField className={className} multiLine={isMultiLine} fullWidth value={this.props.value || ''} type={type} name={name} floatingLabelText={LabelText} />
         )
     }
 }

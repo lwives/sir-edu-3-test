@@ -9,9 +9,11 @@ export const ListLayout = ({ children, titulo, handleFilter }) => {
         <div className="container student-list">
             <div className="col-md-10 col-md-offset-1">
                 <FilterSearch handleFilter={handleFilter} />
+
                 <div className="col-md-12">
                     <HeaderDefault texto={titulo} type="h1" />
                 </div>
+
                 <div className="col-md-12">
                     {children}
                 </div>
@@ -22,7 +24,8 @@ export const ListLayout = ({ children, titulo, handleFilter }) => {
 
 ListLayout.propTypes = {
     titulo: React.PropTypes.string.isRequired,
-    children: React.PropTypes.element.isRequired
+    children: React.PropTypes.element.isRequired,
+    handleFilter: React.PropTypes.func
 }
 
 export default ListLayout

@@ -9,7 +9,7 @@ import Home from '../../routes/Home'
 import UserRegister from '../../routes/User/UserRegister'
 import Login from '../../routes/Login'
 import Paginas from '../../pages'
-import StudentListTable from '../../routes/Student/StundentList/'
+import StundentList from '../../routes/Student/StundentList/'
 import SchoolList from '../../routes/School/SchoolList'
 import GroupList from '../../routes/Group/GroupList'
 
@@ -32,7 +32,7 @@ export const Header = (props) => (
                   <li key="servicos"><Link to={Paginas.servico.pathWithoutParam}>Serviços</Link></li>,
                   <li key="contato"><Link to={Paginas.contato.pathWithoutParam}>Contato</Link></li>
                 ] : [
-                  <li key="alunos"><Link to={StudentListTable.pathWithoutParam}>Alunos</Link></li>,
+                  <li key="alunos"><Link to={StundentList.pathWithoutParam}>Alunos</Link></li>,
                   <li key="escolas"><Link to={SchoolList.pathWithoutParam}>Escolas</Link></li>,
                   <li key="grupos"><Link to={GroupList.pathWithoutParam}>Grupos</Link></li>
                 ]

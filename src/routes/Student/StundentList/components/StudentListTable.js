@@ -9,7 +9,6 @@ import './StudentList.scss'
 import { Alert } from 'react-bootstrap'
 import StudentRegister from '../../StudentRegister'
 import StudentMenu from '../../StudentMenu'
-import HeaderDefault from '../../../../components/HeaderDefault'
 import ListLayout from '../../../../layouts/ListLayout';
 
 const getFilteredStudents = (students, filterText) => {
@@ -53,11 +52,12 @@ export default class StudentListTable extends React.Component {
   render() {
     const { students, filterText, setSelectedStudent } = this.props
     const filteredStudents = getFilteredStudents(students.list, filterText || '')
-    const visibleColumn = [{ name: 'Foto' },
-    { name: 'Nome' },
-    { name: 'Escola' },
-    { name: 'Turma' },
-    { name: 'Ações' }]
+    const visibleColumn = [
+      { name: 'Foto' },
+      { name: 'Nome' },
+      { name: 'Escola' },
+      { name: 'Turma' },
+      { name: 'Ações' }]
 
     return (
       <ListLayout className="container student-list" titulo="Meus Alunos" handleFilter={this.searchStudent}>

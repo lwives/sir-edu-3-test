@@ -66,6 +66,7 @@ export default class StudentRegister extends React.Component {
 
     return (
       <RegisterLayout titulo="Cadastro de Aluno">
+        <div>
 
           <RegisterStepper {...data} />
 
@@ -76,6 +77,8 @@ export default class StudentRegister extends React.Component {
           <div className="text-center">
             <StepperPagination {...data} />
           </div>
+          
+        </div>
       </RegisterLayout>
     )
   }

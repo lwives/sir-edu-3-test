@@ -4,6 +4,9 @@ import './FilterSearch.scss'
 import StudentRegister from '../../routes/Student/StudentRegister'
 
 export default class FilterSearch extends React.Component {
+    static propTypes = {
+        handleFilter: React.PropTypes.func
+    }
 
     render() {
         return (
