@@ -1,11 +1,13 @@
 .DS_STORE
 *.log
 
-node_modules
+/run_mongo.bat
 
-dist
-coverage
+/node_modules
 
-.idea/
+/dist
+/coverage
 
-data
+/.idea/
+
+/data
