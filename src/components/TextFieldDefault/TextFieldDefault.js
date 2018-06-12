@@ -6,13 +6,16 @@ export default class TextFieldDefault extends React.Component {
         name: PropTypes.string,
         value: PropTypes.string,
         type: PropTypes.string,
-        handleChange: PropTypes.func,
+        handleOnChange: PropTypes.func,
         multiLine: PropTypes.bool,
         className: PropTypes.string
     }
 
     render () {
-        var name = (this.props.name).replace(' ', '-').toLowerCase()
+        var name = (this.props.name).replace(' ', '_').toLowerCase()
+        name = name.toLowerCase()
+        console.log(name);
+        
         var LabelText = this.props.name + ': '
         
         const type = (this.props.type !== undefined) ? this.props.type : 'text'
@@ -20,7 +23,11 @@ export default class TextFieldDefault extends React.Component {
         const className = this.props.className // "col-md-6"
         
         return (
-            <TextField className={className} multiLine={isMultiLine} fullWidth value={this.props.value || ''} type={type} name={name} floatingLabelText={LabelText} />
+            <TextField className={className} 
+                multiLine={isMultiLine} fullWidth 
+                value={this.props.value || ''} onChange={this.props.handleOnChange}
+                type={type} name={name} 
+                floatingLabelText={LabelText} />
         )
     }
 }

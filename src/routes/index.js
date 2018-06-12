@@ -9,6 +9,7 @@ import UserRegisterRoute from './User/UserRegister'
 import SchoolRoute from './School/SchoolList'
 import SchoolRegisterRoute from './School/SchoolRegister'
 import GroupRoute from './Group/GroupList'
+import TestRoute from './testRegister'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -25,7 +26,8 @@ export const createRoutes = (store) => ({
     UserRegisterRoute,
     SchoolRoute,
     SchoolRegisterRoute,
-    GroupRoute
+    GroupRoute,
+    TestRoute
   ]
 })
 
