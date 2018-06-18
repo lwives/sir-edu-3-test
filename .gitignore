@@ -1,8 +1,6 @@
 .DS_STORE
 *.log
 
-/run_mongo.bat
-
 /node_modules
 
 /dist
@@ -10,4 +8,5 @@
 
 /.idea/
 
+/uploads
 /data
