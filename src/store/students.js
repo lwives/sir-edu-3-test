@@ -4,32 +4,38 @@ import router from 'helpers/router-helper';
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const SAVE_STUDENT_REQUEST = 'SAVE_STUDENT_REQUEST'
-export const SAVE_STUDENT_SUCCESS = 'SAVE_STUDENT_RECEIVE'
-export const SAVE_STUDENT_FAILURE = 'SAVE_STUDENT_FAILURE'
-export const GET_STUDENTS_LIST_REQUEST = 'GET_STUDENTS_LIST_REQUEST'
-export const GET_STUDENTS_LIST_SUCCESS = 'GET_STUDENTS_LIST_SUCCESS'
-export const GET_STUDENTS_LIST_FAILURE = 'GET_STUDENTS_LIST_FAILURE'
+const SAVE_STUDENT_REQUEST = 'SAVE_STUDENT_REQUEST'
+const SAVE_STUDENT_SUCCESS = 'SAVE_STUDENT_RECEIVE'
+const SAVE_STUDENT_FAILURE = 'SAVE_STUDENT_FAILURE'
+const GET_STUDENTS_LIST_REQUEST = 'GET_STUDENTS_LIST_REQUEST'
+const GET_STUDENTS_LIST_SUCCESS = 'GET_STUDENTS_LIST_SUCCESS'
+const GET_STUDENTS_LIST_FAILURE = 'GET_STUDENTS_LIST_FAILURE'
 const FILTER_STUDENTS = 'FILTER_STUDENTS'
 const SET_SELECTED_STUDENT = 'SET_SELECTED_STUDENT'
+const GET_STUDENT_RESQUEST = 'GET_STUDENT_RESQUEST'
+const GET_STUDENT_SUCESS = 'GET_STUDENT_SUCESS'
+const GET_STUDENT_FAILURE = 'GET_STUDENT_FAILURE'
+
 // ------------------------------------
 // Actions
 // ------------------------------------
 export function request(type) {
+  console.log('request');
   return {
-    type:  type,
+    type: type,
     payload: {
-        isFetching: true,
+      isFetching: true
     }
   }
 }
 
-export function success(type, student) {
+export function success(type, key, content) {
+  console.log('sucess');
   return {
     type: type,
     payload: {
-        isFetching: false,
-        student
+      isFetching: false,
+      [key]: content
     }
   }
 }
@@ -38,7 +44,8 @@ function failure(type, message) {
   return {
     type: type,
     payload: {
-        isFetching: false,
+      isFetching: false,
+      message
     }
   }
 }
@@ -47,63 +54,59 @@ export function saveStudent(student) {
   return dispatch => {
     dispatch(request(SAVE_STUDENT_REQUEST));
     return studentService.saveStudent(student).then((res) => {
-        dispatch(success(SAVE_STUDENT_SUCCESS, res.data));
-        router.goToStudentsPage();
-    }).catch((error) => {
-        dispatch(failure(SAVE_STUDENT_FAILURE));
+      dispatch(success(SAVE_STUDENT_SUCCESS, 'student', res.data));
+      
+      router.goToStudentsPage();
+    }).catch((err) => {
+      dispatch(failure(SAVE_STUDENT_FAILURE))
+      console.log(err);
     })
-  } 
-}
-
-export function getStudentListRequest() {
-  return {
-    type:  GET_STUDENTS_LIST_REQUEST,
-    payload: {
-        isFetching: true,
-    }
-  }
-}
-
-export function getStudentListSuccess(list) {
-  return {
-    type:  GET_STUDENTS_LIST_SUCCESS,
-    payload: {
-        isFetching: false,
-        list
-    }
   }
 }
 
 export function getStudentsList() {
     return dispatch => {
-        dispatch(getStudentListRequest())
+        dispatch(request(GET_STUDENTS_LIST_REQUEST))
         return studentService.getStudents().then((res) => {
-          dispatch(getStudentListSuccess(res.data));
+          dispatch(success(GET_STUDENTS_LIST_SUCCESS, 'list', res.data));
         })
         .catch((err) => {
           dispatch(failure(GET_STUDENTS_LIST_FAILURE))
+          console.log(err);
         });
     }
 }
 
 export function filterStudents(filterText) {
-    return {
-      type:  FILTER_STUDENTS,
-      payload: {
-          filterText
-      }
+  return {
+    type: FILTER_STUDENTS,
+    payload: {
+      filterText
     }
+  }
 }
 
 export function setSelectedStudent(student) {
-    return {
-      type:  SET_SELECTED_STUDENT,
-      payload: {
-          student
-      }
+  return {
+    type: SET_SELECTED_STUDENT,
+    payload: {
+      student
     }
+  }
 }
 
+export function getStudent(idShow) {
+  return dispatch => {
+    dispatch(request(GET_STUDENT_RESQUEST))
+    return studentService.getStudent(idShow).then((res) => {
+      dispatch(success(GET_STUDENT_SUCESS, 'student', res.data));
+    })
+      .catch((err) => {
+        dispatch(failure(GET_STUDENT_FAILURE, ''))
+        console.log(err);
+      });
+  }
+}
 
 export const actions = {
   SAVE_STUDENT_REQUEST,
@@ -115,27 +118,31 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [SAVE_STUDENT_REQUEST] : (state, action) => ({ ...state, ...action.payload }),
-  [SAVE_STUDENT_SUCCESS] : (state, action) => ({ ...state, isFetching: false, list: [...state.list, action.payload.student] }),
-  [SAVE_STUDENT_FAILURE] : (state, action) => ({ ...state, ...action.payload }),
-  [GET_STUDENTS_LIST_REQUEST] : (state, action) => state,
-  [GET_STUDENTS_LIST_SUCCESS] : (state, action) => ({ ...state, ...action.payload }),
-  [GET_STUDENTS_LIST_FAILURE] : (state, action) => state,
-  [FILTER_STUDENTS] : (state, action) => ({ ...state, ...action.payload }),
-  [SET_SELECTED_STUDENT] : (state, action) => ({ ...state, selectedStudent: action.payload.student })
+  [SAVE_STUDENT_REQUEST]: (state, action) => ({ ...state, ...action.payload }),
+  [SAVE_STUDENT_SUCCESS]: (state, action) => ({ ...state, isFetching: false, list: [...state.list, action.payload.student] }),
+  [SAVE_STUDENT_FAILURE]: (state, action) => ({ ...state, ...action.payload }),
+  [GET_STUDENTS_LIST_REQUEST]: (state, action) => state,
+  [GET_STUDENTS_LIST_SUCCESS]: (state, action) => ({ ...state, ...action.payload }),
+  [GET_STUDENTS_LIST_FAILURE]: (state, action) => state,
+  [FILTER_STUDENTS]: (state, action) => ({ ...state, ...action.payload }),
+  [SET_SELECTED_STUDENT]: (state, action) => ({ ...state, selectedStudent: action.payload.student }),
+  [GET_STUDENT_RESQUEST]: (state, action) => ({ ...state, ...action.payload }),
+  [GET_STUDENT_SUCESS]: (state, action) => ({ ...state, ...action.payload }),
+  [GET_STUDENT_FAILURE]: (state, action) => ({ ...state, ...action.payload })
 }
 
 const initialState = {
   isFetching: false,
-  list: [], 
+  list: [],
   filterText: '',
-  selectedStudent: {}
+  selectedStudent: {}, 
+  student: {}
 }
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-export default function studentsReducer (state = initialState, action) {
+export default function studentsReducer(state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state

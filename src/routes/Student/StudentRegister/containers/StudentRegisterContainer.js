@@ -1,9 +1,10 @@
 import { connect } from 'react-redux'
-import { saveStudent } from 'store/students'
+import { saveStudent, getStudent } from 'store/students'
 import StudentRegister from '../components/StudentRegister'
 
 const mapDispatchToProps = {
-    saveStudent
+    saveStudent,
+    getStudent
 }
 
 const mapStateToProps = (state) => ({

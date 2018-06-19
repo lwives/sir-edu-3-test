@@ -2,7 +2,7 @@ import HomeView from './components/HomeView'
 
 // Sync route definition
 export default {
-  path: '/',
+  // path: '/',
   pathWithoutPath: '/',
-  component : HomeView
+  component: HomeView
 }

@@ -3,11 +3,11 @@ import logo from 'public/sir-edu_logo.png'
 import './HomeView.scss'
 
 export const HomeView = () => (
-  <div class="sir-home text-center">
+  <div className="sir-home text-center">
     <img
       className='logo'
       src={logo} />
-      <h4 class="title">Sistema Integrado de Recursos - Educacional</h4>
+      <h4 className="title">Sistema Integrado de Recursos - Educacional</h4>
   </div>
 )
 
