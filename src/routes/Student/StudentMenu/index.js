@@ -4,7 +4,7 @@ import SightRoute from '../../Sight'
 
 export default {
     path: 'aluno/show/:id',
-    pathWithoutParam: 'aluno/show/',
+    pathWithoutParam: '/aluno/show/',
     component: StudentMenuContainer,
     childRoutes : [StudentFiles, SightRoute]
 }

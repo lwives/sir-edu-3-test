@@ -2,12 +2,12 @@
 import CoreLayout from '../layouts/CoreLayout'
 import Home from './Home'
 import LoginRoute from './Login'
-import StudentRoute from './Student/StundentList'
-import StudentRegisterRoute from './Student/StudentRegister'
+import StudentList from './Student/StudentList'
+import StudentRegister from './Student/StudentRegister'
 import StudentMenu from './Student/StudentMenu'
-import UserRegisterRoute from './User/UserRegister'
+import UserRegister from './User/UserRegister'
 import SchoolRoute from './School/SchoolList'
-import SchoolRegisterRoute from './School/SchoolRegister'
+import SchoolRegister from './School/SchoolRegister'
 import GroupRoute from './Group/GroupList'
 import TestRoute from './testRegister'
 
@@ -20,12 +20,12 @@ export const createRoutes = (store) => ({
   indexRoute  : Home,
   childRoutes : [
     LoginRoute,
-    StudentRoute,
-    StudentRegisterRoute,
+    StudentList,
+    StudentRegister,
     StudentMenu,
-    UserRegisterRoute,
+    UserRegister,
     SchoolRoute,
-    SchoolRegisterRoute,
+    SchoolRegister,
     GroupRoute,
     TestRoute
   ]
