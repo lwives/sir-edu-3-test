@@ -79,7 +79,6 @@ export default class SchoolRegister extends React.Component {
       <RegisterLayout titulo="Cadastro de Escola" {...this.data}>
         <div className="row register-form">
           <RegisterForm {...this.props.schools} {...this.data} />
-          {/* step={this.data.step}  */}
         </div>
       </RegisterLayout>
     )
