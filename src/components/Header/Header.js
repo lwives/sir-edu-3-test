@@ -9,7 +9,7 @@ import Home from '../../routes/Home'
 import UserRegister from '../../routes/User/UserRegister'
 import Login from '../../routes/Login'
 import Paginas from '../../pages'
-import StundentList from '../../routes/Student/StundentList/'
+import StundentList from '../../routes/Student/StudentList/'
 import SchoolList from '../../routes/School/SchoolList'
 import GroupList from '../../routes/Group/GroupList'
 

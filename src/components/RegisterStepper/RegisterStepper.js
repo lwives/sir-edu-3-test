@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react'
+import React, { PropTypes } from 'react'
 import { Stepper, Step, StepButton } from 'material-ui/Stepper'
 
 class RegisterStepper extends React.Component {
@@ -16,13 +16,14 @@ class RegisterStepper extends React.Component {
         return (
             <Stepper linear={false} activeStep={step} >
                 {
-                    tabs.map((tab = { name: '' }, index) => {
-                        return (<Step key={tab.name}>
-                            <StepButton onClick={() => setStepIndex(index)}>
-                             {/* {() => false}>  */}
-                                {tab.name}
-                            </StepButton>
-                        </Step>)
+                    tabs && tabs.map((tab = { name: '' }, index) => {
+                        return (
+                            <Step key={tab.name}>
+                                <StepButton onClick={() => setStepIndex(index)}>
+                                    {tab.name}
+                                </StepButton>
+                            </Step>
+                        )
                     })
                 }
             </Stepper>

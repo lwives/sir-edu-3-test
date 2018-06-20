@@ -1,7 +1,7 @@
 import UserContainer from './containers/UserContainer'
 
 export default {
-    path: 'usuario',
-    pathWithoutParam: 'usuario',
+    path: 'usuario/:id/:modo',
+    pathWithoutParam: '/usuario',
     component: UserContainer
 }
