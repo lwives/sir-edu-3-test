@@ -7,22 +7,22 @@ import StepperPagination from '../../components/StepperPagination'
 
 export const RegisterLayout = ({ children, titulo, ...data }) => {
   return (
-  <div className="container container-register">
-    <div className="col-md-12">
+    <div className="container container-register">
       <HeaderDefault texto={titulo} type="h1" />
+      <div className="row">
+        <div className="col">
+          <RegisterStepper {...data} />
+          {children}
+          <StepperPagination {...data} />
+        </div>
+      </div>
     </div>
-    <div className="col-md-12">
-      <RegisterStepper {...data} />
-      {children}
-      <StepperPagination {...data} />
-    </div>
-  </div>
   )
 }
 
 RegisterLayout.propTypes = {
   titulo: React.PropTypes.string.isRequired,
-  children : React.PropTypes.element.isRequired
+  children: React.PropTypes.element.isRequired
 }
 
 export default RegisterLayout

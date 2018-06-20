@@ -31,8 +31,7 @@ export default class StudentRegister extends React.Component {
     this.tabs = [
       { name: 'Preencha os dados do aluno' },
       { name: 'Atividades Extraclasse' },
-      { name: 'Necessidades Educacionais Especiais' },
-      { name: 'Finalizar' }]
+      { name: 'Necessidades Educacionais Especiais' }]
 
     this.data = {
       tabs: this.tabs,
@@ -53,7 +52,7 @@ export default class StudentRegister extends React.Component {
   }
 
   handleSubmit = (form) => {
-    console.log('enviando form', form)
+    // console.log('enviando form', form)
     this.props.saveStudent(form)
   }
 
@@ -89,7 +88,7 @@ export default class StudentRegister extends React.Component {
     
     return (
       <RegisterLayout titulo="Cadastro de Aluno" {...this.data}>
-        <div className="register-form">
+        <div className="row register-form">
           <RegisterForm {...this.props.students} {...this.data} />
           {/* step={this.data.step}  */}
         </div>
