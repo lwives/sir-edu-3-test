@@ -69,6 +69,26 @@ class RegisterUser extends React.Component {
                     <p>{user.message}</p>
                 </Dialog>
                 <div className="row">
+
+                {/* 
+                Tipo pessoa
+                cpf cnpj
+                NOme Completo
+                emial
+                senha
+                repetir
+                celular 
+                telefone
+                cep
+                rua
+                numero
+                completo
+                bairro
+                cidade
+                estado
+                país
+                concorda
+                */}
                     <div className="col-md-12">
                         <div className="col-md-6">
                         <TextField fullWidth value={this.state.user.name || ''} type="text" floatingLabelText="Nome"

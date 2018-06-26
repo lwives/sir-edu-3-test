@@ -2,6 +2,7 @@ import React from 'react';
 import './LoginView.scss';
 import LoadingSpinner from 'components/LoadingSpinner';
 import { Link } from 'react-router'
+import UserRegister from '../../User/UserRegister'
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -55,7 +56,7 @@ export default class Login extends React.Component {
                   <button type="submit" name="go" class="btn btn-block btn-success">Entrar</button>
                 </section>
                 <div>
-                  <Link to="/cadastro-usuario">Criar uma conta</Link>
+                  <Link to={UserRegister.pathWithoutParam}>Criar uma conta</Link>
                 </div>
               </form>
             </section>
