@@ -4,8 +4,8 @@
   "description": "SIS-EDU - Sistema integrado de recursos educacionais para a gestão do acompanhamento de alunos com necessidades especiais.",
   "main": "index.js",
   "engines": {
-    "node": ">=4.5.0",
-    "npm": "^3.0.0"
+    "node": "8.11.x",
+    "npm": "5.6.x"
   },
   "scripts": {
     "clean": "rimraf dist",
