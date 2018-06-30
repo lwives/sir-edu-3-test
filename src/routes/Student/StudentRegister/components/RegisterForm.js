@@ -16,11 +16,11 @@ export default class RegisterForm extends React.Component {
         this.state = {}
         this.openTermOfUse = false;
         this.isInitialState = true;
-        defalutValue()
         this.register = {}
+        this.defaultValue()
     }
 
-    defalutValue = () => {
+    defaultValue = () => {
         this.register.city = 'Porto Alegre'
         this.register.state = 'Rio Grande do Sul'
     }

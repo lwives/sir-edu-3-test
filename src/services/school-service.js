@@ -1,22 +1,19 @@
+import serviceDefault from './serviceDefault'
 import axios from './axios-config'
 import Route from '../../api/constants/api-routes'
 
-export default class SchoolService {
-    static register(school) {
-        return axios.post('register', {
-            ...school
-        });
-    }
-
+export default class SchoolService extends serviceDefault {
     static getSchools() {
-        return axios.get(Route.School)
+        console.log('Service Schools List');
+        
+        return axios.get('/schools')
     }
-
+//Route.School
     static saveSchool(school) {
         let newSchool = new FormData();
 
         Object.keys(school).forEach((key) => {
-            if (School[key].constructor !== Array) {
+            if (school[key].constructor !== Array) {
                 newSchool.append(key, school[key])
             } else {
                 newSchool.append(key, school[key].toString())
@@ -27,7 +24,8 @@ export default class SchoolService {
     }
 
     static getSchool(id) {
-        return axios.get(Route.School + '/' + id)
+        console.log('getSchool', id);
+        
+        return axios.get('/schools' + '/' + id)
     }
 }
-//'students/'

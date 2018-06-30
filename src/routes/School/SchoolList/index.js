@@ -1,7 +1,7 @@
-import SchoolRegisterContainer from './containers/SchoolRegisterContainer'
+import SchoolContainer from './containers/SchoolContainer'
 
 export default {
     path: 'escolas',
-    pathWithoutPath: '/escolas',
-    component: SchoolRegisterContainer
+    pathWithoutParam: '/escolas',
+    component: SchoolContainer
 }

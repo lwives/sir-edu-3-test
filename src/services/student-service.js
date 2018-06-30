@@ -1,8 +1,10 @@
 import axios from './axios-config'
 import Route from '../../api/constants/api-routes'
 
- export default class studentService {
+export default class studentService {
     static getStudents() {
+        console.log('Service Students List');
+        
         return axios.get(Route.Student)
     }
 
@@ -16,7 +18,7 @@ import Route from '../../api/constants/api-routes'
                 newStudent.append(key, student[key].toString())
             }
         })
-        
+
         return axios.post(Route.Student, newStudent)
     }
 

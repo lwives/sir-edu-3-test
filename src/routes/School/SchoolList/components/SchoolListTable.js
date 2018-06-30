@@ -8,31 +8,21 @@ import './List.scss'
 import { Alert } from 'react-bootstrap'
 
 import SchoolRegister from '../../SchoolRegister'
-//import StudentMenu from '../../StudentMenu'
-import ListLayout from '../../../../layouts/ListLayout';
+import ListLayout from '../../../../layouts/ListLayout'
+import { getFiltered } from '../../../../helpers/list-helpers'
 
-const getFilteredStudents = (students, filterText) => {
-  return students.filter(student => {
-    if (student.name) {
-      const name = student.name.toLowerCase()
-      const filter = filterText.toLowerCase()
-      return name.includes(filter)
-    }
-  })
-}
-
-export default class StudentListTable extends React.Component {
+export default class SchoolListTable extends React.Component {
   static propTypes = {
-    filterStudents: React.PropTypes.func.isRequired,
-    getStudentsList: React.PropTypes.func,
-    students: React.PropTypes.object,
+    filterSchools: React.PropTypes.func.isRequired,
+    getSchoolsList: React.PropTypes.func,
+    schools: React.PropTypes.object,
     filterText: React.PropTypes.string,
-    setSelectedStudent: React.PropTypes.func
+    setSelectedSchool: React.PropTypes.func
   }
 
   constructor(props) {
     super(props)
-    this.searchStudent = this.searchStudent.bind(this)
+    this.searchSchool = this.searchSchool.bind(this)
     this.visibleColumn = [
       { name: 'Foto' },
       { name: 'Nome' },
@@ -41,78 +31,79 @@ export default class StudentListTable extends React.Component {
       { name: 'Ações' }]
   }
 
-  searchStudent(e) {
+  searchSchool(e) {
     e.preventDefault()
-    const { filterStudents } = this.props
-    filterStudents(this.textInput.value)
+    const { filterSchools } = this.props
+    filterSchools(this.textInput.value)
   }
 
   componentDidMount() {
-    const { getStudentsList, students } = this.props
+    const { getSchoolsList, schools } = this.props
 
-    if (!students.list.length) {
-      getStudentsList()
+    if (!schools.list.length) {
+      getSchoolsList()
     }
   }
 
   render() {
-    const { students, filterText, setSelectedStudent } = this.props
-    const filteredStudents = getFilteredStudents(students.list, filterText || '')
+    const { schools, filterText, setSelectedSchool } = this.props
+    const filteredSchools = getFiltered(schools.list, filterText || '')
     
     return (
-      <ListLayout className="container student-list" titulo="Meus Alunos" handleFilter={this.searchStudent}>
-        <div>
-          <Table selectable={false}>
-            <TableHeader
-              displaySelectAll={false}
-              adjustForCheckbox={false} >
-              <TableRow>
-                {
-                  this.visibleColumn.map((column = { name: '' }, index) => {
-                    return <TableHeaderColumn key={index}>{column.name}</TableHeaderColumn>
-                  })
-                }
-              </TableRow>
-            </TableHeader>
-            <TableBody
-              showRowHover
-              displayRowCheckbox={false}
-              deselectOnClickaway>
-              {filteredStudents.map((student, index) => (
-                <TableRow key={index}>
-                  <TableRowColumn>
-                    {
-                      student.avatar
-                        ? <Avatar src={student.avatar.path} className="student-avatar pull-left" size={45} />
-                        : <Avatar src={defaultAvatar} className="student-avatar pull-left" size={45} />
-                    }
-                  </TableRowColumn>
-                  <TableRowColumn>
-                    <Link onClick={() => { setSelectedStudent(student) }}
-                      to={SchoolRegister.pathWithoutParam + student._id}>{student.name}</Link>
-                  </TableRowColumn>
-                  <TableRowColumn>{student.school || ''}</TableRowColumn>
-                  <TableRowColumn>{/* student.classNumber || '' */}</TableRowColumn>
-                  <TableRowColumn>
-                    <Link to={SchoolRegister.pathWithoutParam + student._id + '/editar'} className="edit-student">
-                      <i className="fa fa-pencil-square-o fa-lg"
-                        aria-hidden="true" /> Editar
-                    </Link>
-                    <Link to={SchoolRegister.pathWithoutParam + student._id + '/excluir'} className="remove-student">
-                      <i className="fa fa-user-times fa-lg" /> Excluir
-                    </Link></TableRowColumn>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-          {
-            !students.list.length &&
-            <Alert bsStyle="warning">
-              <strong>Aviso:</strong> Nenhum aluno cadastrado.
-            </Alert>
-          }
-        </div>
-      </ListLayout>
+      <div />
+      // <ListLayout className="container school-list" titulo="Meus Alunos" handleFilter={this.searchSchool}>
+      //   <div>
+      //     <Table selectable={false}>
+      //       <TableHeader
+      //         displaySelectAll={false}
+      //         adjustForCheckbox={false} >
+      //         <TableRow>
+      //           {
+      //             this.visibleColumn.map((column = { name: '' }, index) => {
+      //               return <TableHeaderColumn key={index}>{column.name}</TableHeaderColumn>
+      //             })
+      //           }
+      //         </TableRow>
+      //       </TableHeader>
+      //       <TableBody
+      //         showRowHover
+      //         displayRowCheckbox={false}
+      //         deselectOnClickaway>
+      //         {filteredSchools.map((school, index) => (
+      //           <TableRow key={index}>
+      //             <TableRowColumn>
+      //               {
+      //                 school.avatar
+      //                   ? <Avatar src={school.avatar.path} className="school-avatar pull-left" size={45} />
+      //                   : <Avatar src={defaultAvatar} className="school-avatar pull-left" size={45} />
+      //               }
+      //             </TableRowColumn>
+      //             <TableRowColumn>
+      //               <Link onClick={() => { setSelectedSchool(school) }}
+      //                 to={SchoolRegister.pathWithoutParam + school._id}>{school.name}</Link>
+      //             </TableRowColumn>
+      //             <TableRowColumn>{school.school || ''}</TableRowColumn>
+      //             <TableRowColumn>{/* school.classNumber || '' */}</TableRowColumn>
+      //             <TableRowColumn>
+      //               <Link to={SchoolRegister.pathWithoutParam + school._id + '/editar'} className="edit-school">
+      //                 <i className="fa fa-pencil-square-o fa-lg"
+      //                   aria-hidden="true" /> Editar
+      //               </Link>
+      //               <Link to={SchoolRegister.pathWithoutParam + school._id + '/excluir'} className="remove-school">
+      //                 <i className="fa fa-user-times fa-lg" /> Excluir
+      //               </Link></TableRowColumn>
+      //           </TableRow>
+      //         ))}
+      //       </TableBody>
+      //     </Table>
+      //     {
+      //       !schools.list.length &&
+      //       <Alert bsStyle="warning">
+      //         <strong>Aviso:</strong> Nenhum aluno cadastrado.
+      //       </Alert>
+      //     }
+      //   </div>
+      // </ListLayout>
     )
   }
 }

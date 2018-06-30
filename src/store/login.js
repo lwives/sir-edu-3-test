@@ -24,7 +24,7 @@ export function requestLogin() {
 }
 
 export function receiveLogin(data) {
-  console.log(data)
+  console.log('receiveLogin', data)
   return {
     type: LOGIN_SUCCESS,
     payload: {

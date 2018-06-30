@@ -1,16 +1,17 @@
 import { connect } from 'react-redux'
-//import { saveSchools } from 'store/schools'
+
 import SchoolListTable from '../components/SchoolListTable'
+import { getSchoolsList, filterSchools, setSelectedSchool } from 'store/schools'
 
 const mapDispatchToProps = {
-    // getStudentsList,
-    // filterStudents,
-    // setSelectedStudent
+    getSchoolsList,
+    filterSchools,
+    setSelectedSchool
 }
 
 const mapStateToProps = (state) => ({
-    // schools: state.schools,
-    // filterText: state.schools.filterText
+    schools: state.schools,
+    filterText: state.schools.filterText
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SchoolListTable)

@@ -12,6 +12,10 @@ export const GET_SCHOOLS_LIST_SUCCESS = 'GET_SCHOOLS_LIST_SUCCESS'
 export const GET_SCHOOLS_LIST_FAILURE = 'GET_SCHOOLS_LIST_FAILURE'
 const FILTER_SCHOOLS = 'FILTER_SCHOOLS'
 const SET_SELECTED_SCHOOL = 'SET_SELECTED_SCHOOL'
+const GET_SCHOOL_RESQUEST = 'GET_SCHOOL_RESQUEST'
+const GET_SCHOOL_SUCESS = 'GET_SCHOOL_SUCESS'
+const GET_SCHOOL_FAILURE = 'GET_SCHOOL_FAILURE'
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -19,17 +23,17 @@ export function request(type) {
   return {
     type:  type,
     payload: {
-        isFetching: true,
+        isFetching: true
     }
   }
 }
 
-export function success(type, school) {
+export function success(type, key, content) {
   return {
     type: type,
     payload: {
         isFetching: false,
-        school
+        [key]: content
     }
   }
 }
@@ -39,6 +43,7 @@ function failure(type, message) {
     type: type,
     payload: {
         isFetching: false,
+        message
     }
   }
 }
@@ -46,42 +51,45 @@ function failure(type, message) {
 export function saveSchool(school) {
   return dispatch => {
     dispatch(request(SAVE_SCHOOL_REQUEST));
-    return SchoolService.saveSchool(school).then((res) => {
-        dispatch(success(SAVE_SCHOOL_SUCCESS, res.data));
+    return schoolService.saveSchool(school).then((res) => {
+        dispatch(success(SAVE_SCHOOL_SUCCESS, 'school', res.data));
+
         router.goToSchoolsPage();
     }).catch((error) => {
         dispatch(failure(SAVE_SCHOOL_FAILURE));
+        console.log(error);
     })
   } 
 }
 
-export function getSchoolListRequest() {
-  return {
-    type:  GET_SCHOOLS_LIST_REQUEST,
-    payload: {
-        isFetching: true,
-    }
-  }
-}
+// export function getSchoolListRequest() {
+//   return {
+//     type:  GET_SCHOOLS_LIST_REQUEST,
+//     payload: {
+//         isFetching: true,
+//     }
+//   }
+// }
 
-export function getSchoolListSuccess(list) {
-  return {
-    type:  GET_SCHOOLS_LIST_SUCCESS,
-    payload: {
-        isFetching: false,
-        list
-    }
-  }
-}
+// export function getSchoolListSuccess(list) {
+//   return {
+//     type:  GET_SCHOOLS_LIST_SUCCESS,
+//     payload: {
+//         isFetching: false,
+//         list
+//     }
+//   }
+// }
 
 export function getSchoolsList() {
     return dispatch => {
-        dispatch(getSchoolListRequest())
-        return SchoolService.getSchools().then((res) => {
-          dispatch(getSchoolListSuccess(res.data));
+        dispatch(request(GET_SCHOOLS_LIST_REQUEST))
+        return schoolService.getSchools().then((res) => {
+          dispatch(success(GET_SCHOOLS_LIST_SUCCESS, 'list', res.data));
         })
-        .catch((err) => {
+        .catch((error) => {
           dispatch(failure(GET_SCHOOLS_LIST_FAILURE))
+          console.log(error);
         });
     }
 }
@@ -104,6 +112,18 @@ export function setSelectedSchool(school) {
     }
 }
 
+export function getSchool(idShow) {
+  return dispatch => {
+    dispatch(request(GET_SCHOOL_RESQUEST))
+    return schoolService.getStudent(idShow).then((res) => {
+      dispatch(success(GET_SCHOOL_SUCESS, 'school', res.data));
+    })
+      .catch((err) => {
+        dispatch(failure(GET_SCHOOL_FAILURE, ''))
+        console.log(err);
+      });
+  }
+}
 
 export const actions = {
   SAVE_SCHOOL_REQUEST,
@@ -122,14 +142,18 @@ const ACTION_HANDLERS = {
   [GET_SCHOOLS_LIST_SUCCESS] : (state, action) => ({ ...state, ...action.payload }),
   [GET_SCHOOLS_LIST_FAILURE] : (state, action) => state,
   [FILTER_SCHOOLS] : (state, action) => ({ ...state, ...action.payload }),
-  [SET_SELECTED_SCHOOL] : (state, action) => ({ ...state, selectedSchool: action.payload.school })
+  [SET_SELECTED_SCHOOL] : (state, action) => ({ ...state, selectedSchool: action.payload.school }),
+  [GET_SCHOOL_RESQUEST]: (state, action) => ({ ...state, ...action.payload }),
+  [GET_SCHOOL_SUCESS]: (state, action) => ({ ...state, ...action.payload }),
+  [GET_SCHOOL_FAILURE]: (state, action) => ({ ...state, ...action.payload })
 }
 
 const initialState = {
   isFetching: false,
   list: [], 
   filterText: '',
-  selectedSchool: {}
+  selectedSchool: {},
+  school: {}
 }
 
 // ------------------------------------

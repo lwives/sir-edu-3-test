@@ -1,91 +1,70 @@
 import React, { PropTypes } from 'react'
-import { TextField } from 'material-ui' //RaisedButton, SelectField, MenuItem, TextField, Button, 
-// import { specialNeeds } from '../../../../constants/necessidadesEspeciais'
+import { TextField } from 'material-ui'
 import { handleChange } from '../../../../helpers/register-helper'
 
 export default class RegisterForm extends React.Component {
-    static propTypes = {
-        step: PropTypes.number.isRequired,
-        handleSubmit: PropTypes.func.isRequired,
-        school: PropTypes.object
+  static propTypes = {
+    step: PropTypes.number.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    school: PropTypes.object
+  }
+
+  register = {}
+
+  constructor(props) {
+    super(props);
+    this.state = {}
+    this.openTermOfUse = false;
+    this.isInitialState = true;
+
+    this.handleChange = handleChange
+  }
+
+  handleSubmit = (evt) => {
+    evt.preventDefault()
+
+    this.setState(...this.register)
+    // console.log('handleSubmit')
+    // console.log(this.register)
+    // console.log(this.state)
+    this.props.handleSubmit(this.register);
+  }
+
+  render() {
+    if (!this.register.name) {
+      this.register = { ...this.props.school }
     }
-
-    schoolTemporario = {}
-
-    constructor(props) {
-        super(props);
-        this.state = {}
-        this.openTermOfUse = false;
-        this.isInitialState = true;
-    }
-
-    onImageDrop = (field, file) => {
-        this.addSchoolTemporario(field, file)
-    }
-
-    // handleChange = (event, id, valueParam) => {
-    //     let name = '';
-    //     let value = null;
-
-    //     if (event) {
-    //         name = event.target.name;
-    //         value = event.target.value;
-    //     } else {
-    //         name = id;
-    //         value = valueParam;
-    //     }
-    //     this.addSchoolTemporario(name, value)
-    //     this.forceUpdate()
-    // }
-
-    handleSubmit = (evt) => {
-        evt.preventDefault()
-
-        this.setState(...this.schoolTemporario)
-        // console.log('handleSubmit')
-        // console.log(this.schoolTemporario)
-        // console.log(this.state)
-        this.props.handleSubmit(this.schoolTemporario);
-    }
-
-    addSchoolTemporario = (key, content) => {
-        this.schoolTemporario = {
-            ...this.schoolTemporario,
-            [key]: content
+    
+    return (
+      <form onSubmit={this.handleSubmit}>
+        {this.props.step === 0 &&
+          <div className="row">
+            <div className="col-md-12">
+              <TextField fullWidth value={this.register.name || ''} type="text" name="name" onChange={this.handleChange} floatingLabelText="Nome:" required />
+            </div><div className="col-md-6">
+              {/* <TextField fullWidth value={this.register.name || ''} type="number" name="mapLocation" onChange={this.handleChange} floatingLabelText="Nome:" required />
+            </div><div className="col-md-6"> */}
+              <TextField fullWidth value={this.register.adress || ''} type="text" name="adress" onChange={this.handleChange} floatingLabelText="Endereço:" />
+            </div><div className="col-md-6">
+              <TextField fullWidth value={this.register.adressNum || ''} type="text" name="adressNum" onChange={this.handleChange} floatingLabelText="Número:" required />
+            </div><div className="col-md-6">
+              <TextField fullWidth value={this.register.district || ''} type="text" name="district" onChange={this.handleChange} floatingLabelText="Bairro:" required />
+            </div><div className="col-md-6">
+              <TextField fullWidth value={this.register.city || ''} type="text" name="city" onChange={this.handleChange} floatingLabelText="Cidade:" required />
+            </div><div className="col-md-6">
+              <TextField fullWidth value={this.register.state || ''} type="text" name="state" onChange={this.handleChange} floatingLabelText="Estado:" required />
+            {/* </div><div className="col-md-6">
+              <TextField fullWidth value={this.register.country || ''} type="text" name="country" onChange={this.handleChange} floatingLabelText="País:" required /> */}
+            </div><div className="col-md-6">
+              <TextField fullWidth value={this.register.phone || ''} type="text" name="phone" onChange={this.handleChange} floatingLabelText="Telefone:" />
+            </div><div className="col-md-6">
+              <TextField fullWidth value={this.register.email || ''} type="text" name="email" onChange={this.handleChange} floatingLabelText="E-mail:" />
+            </div><div className="col-md-6">
+              <TextField fullWidth value={this.register.principal || ''} type="text" name="principal" onChange={this.handleChange} floatingLabelText="Diretor:" />
+            </div>
+          </div>
         }
-    }
-
-    render() {
-        if (!this.schoolTemporario.name) {
-            // this.schoolTemporario = { ...this.props.school }
-            // if (!this.schoolTemporario.city) {
-            //     this.schoolTemporario.city = 'Porto Alegre'
-            // }
-            // if (!this.schoolTemporario.state) {
-            //     this.schoolTemporario.state = 'Rio Grande do Sul'
-            // }
-        }
-
-        return (
-            <form onSubmit={this.handleSubmit}>
-                {this.props.step === 0 &&
-                    <div className="row">
-                        <div className="col-md-12">
-                            <TextField fullWidth value={this.schoolTemporario.name || ''} type="text" name="name" onChange={this.handleChange} floatingLabelText="Nome:" required />
-                        </div><div className="col-md-6">
-                            <TextField fullWidth value={this.schoolTemporario.adress || ''} type="text" name="adress" onChange={this.handleChange} floatingLabelText="Endereço:" />
-                        </div><div className="col-md-6">
-                            <TextField fullWidth value={this.schoolTemporario.phone || ''} type="text" name="phone" onChange={this.handleChange} floatingLabelText="Telefone:" />
-                        </div><div className="col-md-6">
-                            <TextField fullWidth value={this.schoolTemporario.director || ''} type="text" name="director" onChange={this.handleChange} floatingLabelText="Diretor:" />
-                        </div><div className="col-md-6">
-                            <TextField fullWidth value={this.schoolTemporario.vicedirector || ''} type="text" name="vicedirector" onChange={this.handleChange} floatingLabelText="Vice-diretor:" />
-                        </div>
-                        
-
-                    </div>
-                }
-            </form>
-        )
-    }
+      </form>
+    )
+  }
 }

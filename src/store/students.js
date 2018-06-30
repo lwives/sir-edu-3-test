@@ -20,7 +20,6 @@ const GET_STUDENT_FAILURE = 'GET_STUDENT_FAILURE'
 // Actions
 // ------------------------------------
 export function request(type) {
-  console.log('request');
   return {
     type: type,
     payload: {
@@ -30,7 +29,6 @@ export function request(type) {
 }
 
 export function success(type, key, content) {
-  console.log('sucess');
   return {
     type: type,
     payload: {
@@ -57,9 +55,9 @@ export function saveStudent(student) {
       dispatch(success(SAVE_STUDENT_SUCCESS, 'student', res.data));
       
       router.goToStudentsPage();
-    }).catch((err) => {
+    }).catch((error) => {
       dispatch(failure(SAVE_STUDENT_FAILURE))
-      console.log(err);
+      console.log(error);
     })
   }
 }
@@ -70,9 +68,9 @@ export function getStudentsList() {
         return studentService.getStudents().then((res) => {
           dispatch(success(GET_STUDENTS_LIST_SUCCESS, 'list', res.data));
         })
-        .catch((err) => {
+        .catch((error) => {
           dispatch(failure(GET_STUDENTS_LIST_FAILURE))
-          console.log(err);
+          console.log(error);
         });
     }
 }

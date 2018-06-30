@@ -13,3 +13,16 @@ export const handleChange = (event, id, valueParam) => {
     this.addStudentTemporario(name, value)
     this.forceUpdate()
 }
+
+// export const handleNext = (data) => {
+//     if (data.step < data.tabs.length) {
+//         this.setState({ stepIndex: stepIndex + 1 })
+//     }
+// }
+
+// export const handlePrev = () => {
+//     const { stepIndex } = this.state
+//     if (stepIndex > 0) {
+//         this.setState({ stepIndex: stepIndex - 1 })
+//     }
+// }

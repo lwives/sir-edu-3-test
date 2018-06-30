@@ -6,9 +6,9 @@ let mongoose = require('mongoose'),
  bcrypt = require('bcrypt');
 
 let UserSchema = new Schema({
-  email: { type: String,  index: { unique: true }, required: true, dropDups: true},
+  email: { type: String,  index: { unique: true }, required: true, dropDups: true },
   password: { type: String, required: true },
-  role: { type: String, required: true },//number to reduce payload
+  role: { type: String, required: true }, //number to reduce payload
   name: { type: String, required: true },
   lastName: { type: String },
   phone: { type: Number },

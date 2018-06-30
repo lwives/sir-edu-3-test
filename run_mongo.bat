@@ -7,7 +7,7 @@ goto fim
 
 :casa
 echo casa 
-mongod --dbpath data/
+mongod --dbpath ../data/
 goto fim
 
 --storageEngine=wiredTiger

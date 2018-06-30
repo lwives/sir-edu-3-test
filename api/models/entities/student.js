@@ -1,14 +1,14 @@
 'use strict';
 
-let mongoose = require('mongoose'),
- Schema = mongoose.Schema;
+let mongoose = require('mongoose');
+let Schema = mongoose.Schema;
 
 let StudentSchema = new Schema({
   name: { type: String },
   lastName: { type: String },
   fatherName: { type: String },
   motherName: { type: String },
-  birthDate: { type: Date},
+  birthDate: { type: Date },
   avatar: { path: String, mimeType: String },
   school: { type: String },
   classNumber: { type: Number },
@@ -16,12 +16,12 @@ let StudentSchema = new Schema({
   shift: { type: String },
   geralRegister: { type: Number },
   phoneNumber: { type: Number },
-  responsible: { type: String},
-  relationship: { type: String},
+  responsible: { type: String },
+  relationship: { type: String },
   registration: { type: Number },
-  address: { type: String},
-  cid: { type: Number},
-  historical: { type: String},
+  address: { type: String },
+  cid: { type: Number },
+  historical: { type: String },
   specialNeeds: [{ type: String }],
   docParentsAproval: { path: String, mimeType: String },
   termOfUse: { type: Boolean },

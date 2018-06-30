@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react'
 import './SchoolRegister.scss'
 import RegisterLayout from '../../../../layouts/RegisterLayout'
 import RegisterForm from './SchoolRegisterForm';
-import { handleNext, handlePrev } from '../../../../helpers/register-helper'
+// import { handleNext, handlePrev } from '../../../../helpers/register-helper'
 
 export default class SchoolRegister extends React.Component {
   static propTypes = {
-    // saveSchool: PropTypes.func.isRequired,
-    // getSchool: PropTypes.func.isRequired,
-     schools: PropTypes.object
+    saveSchool: PropTypes.func.isRequired,
+    getSchool: PropTypes.func.isRequired,
+    schools: PropTypes.object
     // id: PropTypes.string,
     // modo: PropTypes.string
   }
@@ -18,6 +18,7 @@ export default class SchoolRegister extends React.Component {
     this.state = {
       stepIndex: 0
     }
+    console.log('props register', this.props);
 
     this.openTermOfUse = false;
     // console.log('Id: ' + props.params.id)
@@ -46,27 +47,27 @@ export default class SchoolRegister extends React.Component {
     this.props.saveSchool(form)
   }
 
-//   export const handleNext = (data) => {
-//     if (data.step < data.tabs.length) {
-//         this.setState({ stepIndex: stepIndex + 1 })
-//     }
-// }
+  handleNext = (data) => {
+    const { stepIndex } = this.state
+    if (data.step < data.tabs.length) {
+      this.setState({ stepIndex: stepIndex + 1 })
+    }
+  }
 
-// export const handlePrev = () => {
-//     const { stepIndex } = this.state
-//     if (stepIndex > 0) {
-//         this.setState({ stepIndex: stepIndex - 1 })
-//     }
-// }
+  handlePrev = () => {
+    const { stepIndex } = this.state
+    if (stepIndex > 0) {
+      this.setState({ stepIndex: stepIndex - 1 })
+    }
+  }
 
   componentDidMount() {
-    // const { getSchool, schools } = this.props
-    
-    // if (schools && schools.school && !schools.school.name && ( 
-    //   this.props.params.modo === 'editar' || this.props.params.modo === 'excluir')) { 
-    //   getSchool(this.props.params.id)
+    const { getSchool, schools } = this.props
+
+    // if ( !schools.school && !schools.school.name && (
+    //   this.props.params.modo === 'editar' || this.props.params.modo === 'excluir')) {
+      getSchool(this.props.params.id)
     // }
-    // this.setState(this.props.Schools.School)
   }
 
   render() {
@@ -74,7 +75,7 @@ export default class SchoolRegister extends React.Component {
       ...this.data,
       step: this.state.stepIndex
     }
-    
+
     return (
       <RegisterLayout titulo="Cadastro de Escola" {...this.data}>
         <div className="row register-form">

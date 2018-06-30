@@ -1,9 +1,10 @@
 'use strict';
 
 let router = require('express').Router();
+let route = require('../../constants/api-routes');
 let schoolService = require('../../models/services/school-service');
 
-router.post('/schools', function(req, res, next) {
+router.post('/schools', function (req, res, next) {
     schoolService.saveSchool(req.body)
         .then((data) => {
             res.json(data);
@@ -14,7 +15,9 @@ router.post('/schools', function(req, res, next) {
         });
 });
 
-router.get('/schools', function(req, res, next) {
+router.get('/schools', function (req, res, next) {
+    console.log('list schools. Route:');
+    console.log(route.School);
     schoolService.getAll()
         .then((data) => {
             res.json(data);
@@ -25,7 +28,7 @@ router.get('/schools', function(req, res, next) {
         })
 });
 
-router.get('/schools/:id', function(req, res, next) {
+router.get('/schools/:id', function (req, res, next) {
     schoolService.getSchool(req.params.id)
         .then((data) => {
             res.json({
