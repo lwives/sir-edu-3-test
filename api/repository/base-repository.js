@@ -20,6 +20,10 @@ class BaseRepository {
     return this.Model.find(params).exec();
   };
 
+  getAll() {
+    return this.Model.exec();
+  }
+
   save(obj) {
     let entity = new this.Model(obj);
     return entity.save();

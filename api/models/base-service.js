@@ -19,6 +19,10 @@ class BaseService {
     return this.repository.find(params);
   }
 
+  getAll() {
+    return this.repository.getAll();
+  }
+
   save(entity) {
     return new Promise(function (resolve, reject) {
       this.repository.save(entity)

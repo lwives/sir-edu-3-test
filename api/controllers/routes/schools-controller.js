@@ -15,17 +15,30 @@ router.post('/schools', function (req, res, next) {
         });
 });
 
+// router.get('/students', function(req, res, next) {
+//     studentService.find({ _createdBy: req.user._id })
+//         .then((data) => {
+//             res.json(data);
+//         })
+//         .catch((err) => {
+//             //TODO middleware to handle errors
+//             next(err);
+//         })
+// });
+
 router.get('/schools', function (req, res, next) {
     console.log('list schools. Route:');
-    console.log(route.School);
-    schoolService.getAll()
-        .then((data) => {
-            res.json(data);
-        })
-        .catch((err) => {
-            //TODO middleware to handle errors
-            next(err);
-        })
+    console.log(schoolService);
+
+    //schoolService.find() //{ _createdBy: req.user._id })
+    // schoolService.getAll()
+    //     .then((data) => {
+    //         res.json(data);
+    //     })
+    //     .catch((err) => {
+    //         //TODO middleware to handle errors
+    //         next(err);
+    //     })
 });
 
 router.get('/schools/:id', function (req, res, next) {
