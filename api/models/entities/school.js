@@ -15,7 +15,7 @@ let SchoolSchema = new Schema({
   country: { type: String },
   phone: { tupe: String },
   email: { tupe: String },
-  principal: { tupe: String, ref: 'User' }
+  principal: { tupe: String }
  });
 
 // set up a mongoose model

@@ -8,6 +8,8 @@ export default class StudentHeader extends React.Component {
 
     render() {
         const { student } = this.props;
+        console.log("Perfil do esdudante", student);
+        
 
         return (
             <nav className="container-fluid navbar navbar-default student-header">

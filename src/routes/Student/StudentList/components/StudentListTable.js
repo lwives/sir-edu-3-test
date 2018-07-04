@@ -57,6 +57,18 @@ export default class StudentListTable extends React.Component {
         link: (_id) => { return StudentRegister.pathWithoutParam + _id + '/excluir' }
       }
     ]
+
+    this.layoutData = {
+      titulo: "Meus Alunos",
+      visibleColumn: this.visibleColumn
+    }
+    this.register = {
+      handleFilter: this.searchStudent,
+      descriptionRegister: "aluno",
+      pathRegister: StudentRegister.pathWithoutParam,
+      lenght: this.props.students.list.length,
+      textNothingFound: "Nenhum Aluno cadastrado!"
+    }
   }
 
   searchStudent(e) {
@@ -66,9 +78,9 @@ export default class StudentListTable extends React.Component {
   }
 
   componentDidMount() {
-    const { getStudentsList, students } = this.props
+    const { getStudentsList } = this.props
 
-    if (!students.list.length) {
+    if (!this.register.length) {
       getStudentsList()
     }
   }
@@ -79,9 +91,12 @@ export default class StudentListTable extends React.Component {
     filteredRegister = getFiltered(students.list, filterText || '')
 
     return (
-      <ListLayout className="container list" titulo="Meus Alunos" handleFilter={this.searchStudent}>
-        <div>
-          <Table selectable={false}>
+      <ListLayout className="container list" layout={this.layoutData} register={this.register}>
+         <TableBody
+                            showRowHover
+                            displayRowCheckbox={false}
+                            deselectOnClickaway>
+        {/*  <Table selectable={false}>
             <TableHeader
               displaySelectAll={false}
               adjustForCheckbox={false} >
@@ -96,7 +111,7 @@ export default class StudentListTable extends React.Component {
             <TableBody
               showRowHover
               displayRowCheckbox={false}
-              deselectOnClickaway>
+              deselectOnClickaway> */}
               {
                 filteredRegister && filteredRegister.map((student, index) => (
                   <TableRow key={index}>
@@ -133,15 +148,15 @@ export default class StudentListTable extends React.Component {
                     }
                   </TableRow>
                 ))}
-            </TableBody>
+            {/* </TableBody>
           </Table>
           {
             !filteredRegister &&
             <Alert bsStyle="warning">
               <strong>Aviso:</strong> Nenhum aluno selecionado.
             </Alert>
-          }
-        </div>
+          }*/}
+        </TableBody>
       </ListLayout>
     )
   }

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { TextField } from 'material-ui'
-import { handleChange } from '../../../../helpers/register-helper'
+import { handleChangeHelper } from '../../../../helpers/register-helper'
 
 export default class RegisterForm extends React.Component {
   static propTypes = {
@@ -9,17 +9,31 @@ export default class RegisterForm extends React.Component {
     school: PropTypes.object
   }
 
-  register = {}
-
   constructor(props) {
     super(props);
     this.state = {}
     this.openTermOfUse = false;
     this.isInitialState = true;
+    this.handleChangeHelper = handleChangeHelper.bind(this)
 
-    this.handleChange = handleChange
-  }
+    this.register = {}
+    this.defaultValue()
+    }
 
+    handleChange = (event, id, valueParam) => {
+      console.log(event);
+      
+      this.register = this.handleChangeHelper(event, id, valueParam, this.register)
+
+    }
+
+    defaultValue = () => {
+        if ( !this.register.country ) {
+          this.register.city = 'Porto Alegre'
+          this.register.state = 'Rio Grande do Sul'
+          this.register.country = 'Brasil'
+        }
+    }
   handleSubmit = (evt) => {
     evt.preventDefault()
 
@@ -31,8 +45,12 @@ export default class RegisterForm extends React.Component {
   }
 
   render() {
+    console.log(this.register);
+    
     if (!this.register.name) {
-      this.register = { ...this.props.school }
+      console.log('register name não');
+      
+      //this.register = { ...this.props.school }
     }
     
     return (

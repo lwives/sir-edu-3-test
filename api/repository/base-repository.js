@@ -21,7 +21,7 @@ class BaseRepository {
   };
 
   getAll() {
-    return this.Model.exec();
+    return this.Model.find({}).exec();
   }
 
   save(obj) {

@@ -21,8 +21,10 @@ export default class RegisterForm extends React.Component {
     }
 
     defaultValue = () => {
-        this.register.city = 'Porto Alegre'
-        this.register.state = 'Rio Grande do Sul'
+        if ( !this.register.country ) {
+            this.register.city = 'Porto Alegre'
+            this.register.state = 'Rio Grande do Sul'
+        }
     }
 
     onImageDrop = (field, file) => {
@@ -32,6 +34,7 @@ export default class RegisterForm extends React.Component {
     handleChange = (event, id, valueParam) => {
         let name = '';
         let value = null;
+        console.log(event);
 
         if (event) {
             name = event.target.name;

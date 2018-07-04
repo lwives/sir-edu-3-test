@@ -64,8 +64,6 @@ router.post('/students', upload.any(), function(req, res, next) {
 });
 
 router.get('/students', function(req, res, next) {
-    console.log('list student. Route:');
-    console.log(studentService);
     studentService.find({ _createdBy: req.user._id })
         .then((data) => {
             res.json(data);

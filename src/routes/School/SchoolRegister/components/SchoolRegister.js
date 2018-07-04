@@ -18,7 +18,7 @@ export default class SchoolRegister extends React.Component {
     this.state = {
       stepIndex: 0
     }
-    console.log('props register', this.props);
+    //console.log('props register', this.props);
 
     this.openTermOfUse = false;
     // console.log('Id: ' + props.params.id)
@@ -64,10 +64,10 @@ export default class SchoolRegister extends React.Component {
   componentDidMount() {
     const { getSchool, schools } = this.props
 
-    // if ( !schools.school && !schools.school.name && (
-    //   this.props.params.modo === 'editar' || this.props.params.modo === 'excluir')) {
+    if ( !schools.school && !schools.school.name && (
+      this.props.params.modo === 'editar' || this.props.params.modo === 'excluir')) {
       getSchool(this.props.params.id)
-    // }
+    }
   }
 
   render() {

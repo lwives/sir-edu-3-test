@@ -1,5 +1,5 @@
 
-export const handleChange = (event, id, valueParam) => {
+export let handleChangeHelper = (register = {}, event, id, valueParam) => {
     let name = '';
     let value = null;
 
@@ -10,8 +10,16 @@ export const handleChange = (event, id, valueParam) => {
         name = id;
         value = valueParam;
     }
-    this.addStudentTemporario(name, value)
+    register = addRegister(register, name, value)
     this.forceUpdate()
+    return register
+}
+
+export const addRegister = (state, key, content) => {
+    return {
+        ...state,
+        [key]: content
+    }
 }
 
 // export const handleNext = (data) => {
