@@ -52,6 +52,7 @@ export function saveJudgement(jdgmnt) {
         dispatch(success(UPLOAD_JUDGEMENT_SUCCESS, res.data));
     }).catch((error) => {
         dispatch(failure(UPLOAD_JUDGEMENT_FAILURE, error));
+        console.log('UPLOAD_JUDGEMENT_FAILURE', error);
     })
   } 
 }
@@ -63,6 +64,8 @@ export function getJudgements(studentId) {
         dispatch(success(GET_ALL_JUDGEMENTS_SUCCESS, res.data));
     }).catch((error) => {
         dispatch(failure(GET_ALL_JUDGEMENTS_FAILURE, error));
+        console.log('GET_ALL_JUDGEMENTS_FAILURE', error);
+
     })
   } 
 }

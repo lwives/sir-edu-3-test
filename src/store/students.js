@@ -57,7 +57,7 @@ export function saveStudent(student) {
       router.goToStudentsPage();
     }).catch((error) => {
       dispatch(failure(SAVE_STUDENT_FAILURE))
-      console.log(error);
+      console.log('SAVE_STUDENT_FAILURE', error);
     })
   }
 }
@@ -70,7 +70,7 @@ export function getStudentsList() {
         })
         .catch((error) => {
           dispatch(failure(GET_STUDENTS_LIST_FAILURE))
-          console.log(error);
+          console.log('GET_STUDENTS_LIST_FAILURE', error);
         });
     }
 }
@@ -101,7 +101,7 @@ export function getStudent(idShow) {
     })
       .catch((err) => {
         dispatch(failure(GET_STUDENT_FAILURE, ''))
-        console.log(err);
+        console.log('GET_STUDENT_FAILURE', err);
       });
   }
 }

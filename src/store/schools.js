@@ -57,7 +57,7 @@ export function saveSchool(school) {
         router.goToSchoolsPage();
     }).catch((error) => {
         dispatch(failure(SAVE_SCHOOL_FAILURE));
-        console.log(error);
+        console.log('SAVE_SCHOOL_FAILURE', error);
     })
   } 
 }
@@ -89,7 +89,7 @@ export function getSchoolsList() {
         })
         .catch((error) => {
           dispatch(failure(GET_SCHOOLS_LIST_FAILURE))
-          console.log(error);
+          console.log('GET_SCHOOLS_LIST_FAILURE', error);
         });
     }
 }
@@ -120,7 +120,7 @@ export function getSchool(idShow) {
     })
       .catch((err) => {
         dispatch(failure(GET_SCHOOL_FAILURE, ''))
-        console.log(err);
+        console.log('GET_SCHOOL_FAILURE', err);
       });
   }
 }

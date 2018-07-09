@@ -70,7 +70,7 @@ export function login(creds) {
         router.goToStudentsPage();
     })
     .catch((err) => {
-      console.log(err)
+      console.log('LOGIN_FAILURE', err)
       dispatch(loginError('Error'));
     });
   }

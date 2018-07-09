@@ -64,7 +64,7 @@ export function registerUser(user) {
                 dispatch(success(REGISTER_USER_SUCCESS));
             }).catch((error) => {
                 dispatch(failure(REGISTER_USER_FAILURE));
-                console.log(error);
+                console.log('REGISTER_USER_FAILURE', error);
             })
   } 
 }

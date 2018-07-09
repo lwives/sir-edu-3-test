@@ -50,6 +50,7 @@ export function uploadFile(file) {
         dispatch(success(UPLOAD_FILE_SUCCESS, res.data));
     }).catch((error) => {
         dispatch(failure(UPLOAD_FILE_FAILURE, error));
+        console.log('UPLOAD_FILE_FAILURE', error);
     })
   } 
 }
@@ -62,6 +63,7 @@ export function getFiles(studentId) {
         dispatch(success(GET_FILES_SUCCESS, res.data));
     }).catch((error) => {
         dispatch(failure(GET_FILES_FAILURE, error));
+        console.log('GET_FILES_FAILURE', error);
     })
   }
 }
