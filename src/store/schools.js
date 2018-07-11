@@ -21,9 +21,9 @@ const GET_SCHOOL_FAILURE = 'GET_SCHOOL_FAILURE'
 // ------------------------------------
 export function request(type) {
   return {
-    type:  type,
+    type: type,
     payload: {
-        isFetching: true
+      isFetching: true
     }
   }
 }
@@ -32,8 +32,8 @@ export function success(type, key, content) {
   return {
     type: type,
     payload: {
-        isFetching: false,
-        [key]: content
+      isFetching: false,
+      [key]: content
     }
   }
 }
@@ -42,74 +42,72 @@ function failure(type, message) {
   return {
     type: type,
     payload: {
-        isFetching: false,
-        message
+      isFetching: false,
+      message
     }
   }
 }
 
-export function saveSchool(school) {
+function modifiedSchool(school, run) {
   return dispatch => {
     dispatch(request(SAVE_SCHOOL_REQUEST));
-    return schoolService.saveSchool(school).then((res) => {
-        dispatch(success(SAVE_SCHOOL_SUCCESS, 'school', res.data));
+    console.log(run);
+    
+    return run(school).then((res) => {
+      dispatch(success(SAVE_SCHOOL_SUCCESS, 'school', res.data));
 
-        router.goToSchoolsPage();
+      router.goToSchoolsPage();
     }).catch((error) => {
-        dispatch(failure(SAVE_SCHOOL_FAILURE));
-        console.log('SAVE_SCHOOL_FAILURE', error);
+      dispatch(failure(SAVE_SCHOOL_FAILURE));
+      console.log('SAVE_SCHOOL_FAILURE', error);
     })
-  } 
+  }
 }
 
-// export function getSchoolListRequest() {
-//   return {
-//     type:  GET_SCHOOLS_LIST_REQUEST,
-//     payload: {
-//         isFetching: true,
-//     }
-//   }
-// }
-
-// export function getSchoolListSuccess(list) {
-//   return {
-//     type:  GET_SCHOOLS_LIST_SUCCESS,
-//     payload: {
-//         isFetching: false,
-//         list
-//     }
-//   }
-// }
+export function insertSchool(school) {
+  const runFunction = schoolService.insertSchool
+  console.log(runFunction);
+  
+  modifiedSchool(school, runFunction)
+}
+export function editSchool(school) {
+  const runFunction = schoolService.editSchool
+  modifiedSchool(school, runFunction)
+}
+export function deleteSchool(school) {
+  const runFunction = schoolService.deleteSchool
+  modifiedSchool(school, runFunction)
+}
 
 export function getSchoolsList() {
-    return dispatch => {
-        dispatch(request(GET_SCHOOLS_LIST_REQUEST))
-        return schoolService.getSchools().then((res) => {
-          dispatch(success(GET_SCHOOLS_LIST_SUCCESS, 'list', res.data));
-        })
-        .catch((error) => {
-          dispatch(failure(GET_SCHOOLS_LIST_FAILURE))
-          console.log('GET_SCHOOLS_LIST_FAILURE', error);
-        });
-    }
+  return dispatch => {
+    dispatch(request(GET_SCHOOLS_LIST_REQUEST))
+    return schoolService.getSchools().then((res) => {
+      dispatch(success(GET_SCHOOLS_LIST_SUCCESS, 'list', res.data));
+    })
+      .catch((error) => {
+        dispatch(failure(GET_SCHOOLS_LIST_FAILURE))
+        console.log('GET_SCHOOLS_LIST_FAILURE', error);
+      });
+  }
 }
 
 export function filterSchools(filterText) {
-    return {
-      type:  FILTER_SCHOOLS,
-      payload: {
-          filterText
-      }
+  return {
+    type: FILTER_SCHOOLS,
+    payload: {
+      filterText
     }
+  }
 }
 
 export function setSelectedSchool(school) {
-    return {
-      type:  SET_SELECTED_SCHOOL,
-      payload: {
-        school
-      }
+  return {
+    type: SET_SELECTED_SCHOOL,
+    payload: {
+      school
     }
+  }
 }
 
 export function getSchool(idShow) {
@@ -135,14 +133,14 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [SAVE_SCHOOL_REQUEST] : (state, action) => ({ ...state, ...action.payload }),
-  [SAVE_SCHOOL_SUCCESS] : (state, action) => ({ ...state, isFetching: false, list: [...state.list, action.payload.school] }),
-  [SAVE_SCHOOL_FAILURE] : (state, action) => ({ ...state, ...action.payload }),
-  [GET_SCHOOLS_LIST_REQUEST] : (state, action) => state,
-  [GET_SCHOOLS_LIST_SUCCESS] : (state, action) => ({ ...state, ...action.payload }),
-  [GET_SCHOOLS_LIST_FAILURE] : (state, action) => state,
-  [FILTER_SCHOOLS] : (state, action) => ({ ...state, ...action.payload }),
-  [SET_SELECTED_SCHOOL] : (state, action) => ({ ...state, selectedSchool: action.payload.school }),
+  [SAVE_SCHOOL_REQUEST]: (state, action) => ({ ...state, ...action.payload }),
+  [SAVE_SCHOOL_SUCCESS]: (state, action) => ({ ...state, isFetching: false, list: [...state.list, action.payload.school] }),
+  [SAVE_SCHOOL_FAILURE]: (state, action) => ({ ...state, ...action.payload }),
+  [GET_SCHOOLS_LIST_REQUEST]: (state, action) => state,
+  [GET_SCHOOLS_LIST_SUCCESS]: (state, action) => ({ ...state, ...action.payload }),
+  [GET_SCHOOLS_LIST_FAILURE]: (state, action) => state,
+  [FILTER_SCHOOLS]: (state, action) => ({ ...state, ...action.payload }),
+  [SET_SELECTED_SCHOOL]: (state, action) => ({ ...state, selectedSchool: action.payload.school }),
   [GET_SCHOOL_RESQUEST]: (state, action) => ({ ...state, ...action.payload }),
   [GET_SCHOOL_SUCESS]: (state, action) => ({ ...state, ...action.payload }),
   [GET_SCHOOL_FAILURE]: (state, action) => ({ ...state, ...action.payload })
@@ -150,7 +148,7 @@ const ACTION_HANDLERS = {
 
 const initialState = {
   isFetching: false,
-  list: [], 
+  list: [],
   filterText: '',
   selectedSchool: {},
   school: {}
@@ -159,7 +157,7 @@ const initialState = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-export default function SchoolsReducer (state = initialState, action) {
+export default function SchoolsReducer(state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state

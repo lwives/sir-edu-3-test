@@ -48,10 +48,38 @@ function failure(type, message) {
   }
 }
 
-export function saveStudent(student) {
+export function insertStudent(student) {
   return dispatch => {
     dispatch(request(SAVE_STUDENT_REQUEST));
-    return studentService.saveStudent(student).then((res) => {
+    return studentService.insertStudent(student).then((res) => {
+      dispatch(success(SAVE_STUDENT_SUCCESS, 'student', res.data));
+      
+      router.goToStudentsPage();
+    }).catch((error) => {
+      dispatch(failure(SAVE_STUDENT_FAILURE))
+      console.log('SAVE_STUDENT_FAILURE', error);
+    })
+  }
+}
+
+export function editStudent(student) {
+  return dispatch => {
+    dispatch(request(SAVE_STUDENT_REQUEST));
+    return studentService.editStudent(student).then((res) => {
+      dispatch(success(SAVE_STUDENT_SUCCESS, 'student', res.data));
+      
+      router.goToStudentsPage();
+    }).catch((error) => {
+      dispatch(failure(SAVE_STUDENT_FAILURE))
+      console.log('SAVE_STUDENT_FAILURE', error);
+    })
+  }
+}
+
+export function deleteStudent(student) {
+  return dispatch => {
+    dispatch(request(SAVE_STUDENT_REQUEST));
+    return studentService.deleteStudent(student).then((res) => {
       dispatch(success(SAVE_STUDENT_SUCCESS, 'student', res.data));
       
       router.goToStudentsPage();

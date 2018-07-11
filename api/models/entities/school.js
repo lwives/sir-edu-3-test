@@ -6,16 +6,18 @@ let Schema = mongoose.Schema;
 let SchoolSchema = new Schema({
   name: { type: String, required: true },
   mapLocation: { type: [Number], index: '2d' },
-  cep: { type: Number },
+  zipcode: { type: Number },
   adress: { type: String },
-  adressNum: { type: Number },
+  adress2: { type: String },
   district: { type: String },
   city: { type: String },
   state: { type: String },
   country: { type: String },
   phone: { tupe: String },
   email: { tupe: String },
-  principal: { tupe: String }
+  _dateCreate: { type: Date },
+  _dateModifi: { type: Date },
+  _createdBy: { type: String, ref: 'User' } //Link to teacher model
  });
 
 // set up a mongoose model

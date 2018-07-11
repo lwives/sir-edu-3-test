@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { TextField } from 'material-ui'
+import { TextField, RaisedButton } from 'material-ui'
 import { handleChangeHelper } from '../../../../helpers/register-helper'
 
 export default class RegisterForm extends React.Component {
@@ -14,43 +14,43 @@ export default class RegisterForm extends React.Component {
     this.state = {}
     this.openTermOfUse = false;
     this.isInitialState = true;
-    this.handleChangeHelper = handleChangeHelper.bind(this)
-
     this.register = {}
     this.defaultValue()
-    }
+  }
 
-    handleChange = (event, id, valueParam) => {
-      console.log(event);
-      
-      this.register = this.handleChangeHelper(event, id, valueParam, this.register)
+  handleChange = (event, id, valueParam) => {
+    //console.log(event)
+    this.addRegister(handleChangeHelper(event, id, valueParam))
+    this.forceUpdate()
+  }
 
+  addRegister = (entry, key = '', content = '') => {
+    if (entry.lenth <= 0) { 
+        entry = {[key]: content}
     }
+    this.register = {
+        ...this.register,
+        ...entry
+    }
+  }
 
-    defaultValue = () => {
-        if ( !this.register.country ) {
-          this.register.city = 'Porto Alegre'
-          this.register.state = 'Rio Grande do Sul'
-          this.register.country = 'Brasil'
-        }
-    }
+  defaultValue = () => {
+      if (!this.register.country) {
+        this.register.city = 'Porto Alegre'
+        this.register.state = 'Rio Grande do Sul'
+        this.register.country = 'Brasil'
+      }
+  }
   handleSubmit = (evt) => {
     evt.preventDefault()
-
-    this.setState(...this.register)
-    // console.log('handleSubmit')
-    // console.log(this.register)
-    // console.log(this.state)
+    
+    //this.setState(...this.register)
     this.props.handleSubmit(this.register);
   }
 
   render() {
-    console.log(this.register);
-    
     if (!this.register.name) {
-      console.log('register name não');
-      
-      //this.register = { ...this.props.school }
+      this.register = { ...this.register, ...this.props.school }
     }
     
     return (
@@ -60,25 +60,26 @@ export default class RegisterForm extends React.Component {
             <div className="col-md-12">
               <TextField fullWidth value={this.register.name || ''} type="text" name="name" onChange={this.handleChange} floatingLabelText="Nome:" required />
             </div><div className="col-md-6">
-              {/* <TextField fullWidth value={this.register.name || ''} type="number" name="mapLocation" onChange={this.handleChange} floatingLabelText="Nome:" required />
-            </div><div className="col-md-6"> */}
-              <TextField fullWidth value={this.register.adress || ''} type="text" name="adress" onChange={this.handleChange} floatingLabelText="Endereço:" />
-            </div><div className="col-md-6">
-              <TextField fullWidth value={this.register.adressNum || ''} type="text" name="adressNum" onChange={this.handleChange} floatingLabelText="Número:" required />
-            </div><div className="col-md-6">
-              <TextField fullWidth value={this.register.district || ''} type="text" name="district" onChange={this.handleChange} floatingLabelText="Bairro:" required />
-            </div><div className="col-md-6">
-              <TextField fullWidth value={this.register.city || ''} type="text" name="city" onChange={this.handleChange} floatingLabelText="Cidade:" required />
-            </div><div className="col-md-6">
-              <TextField fullWidth value={this.register.state || ''} type="text" name="state" onChange={this.handleChange} floatingLabelText="Estado:" required />
-            {/* </div><div className="col-md-6">
-              <TextField fullWidth value={this.register.country || ''} type="text" name="country" onChange={this.handleChange} floatingLabelText="País:" required /> */}
-            </div><div className="col-md-6">
               <TextField fullWidth value={this.register.phone || ''} type="text" name="phone" onChange={this.handleChange} floatingLabelText="Telefone:" />
             </div><div className="col-md-6">
               <TextField fullWidth value={this.register.email || ''} type="text" name="email" onChange={this.handleChange} floatingLabelText="E-mail:" />
             </div><div className="col-md-6">
-              <TextField fullWidth value={this.register.principal || ''} type="text" name="principal" onChange={this.handleChange} floatingLabelText="Diretor:" />
+              {/* <TextField fullWidth value={this.register.name || ''} type="number" name="mapLocation" onChange={this.handleChange} floatingLabelText="Nome:" required />
+            </div><div className="col-md-6"> */}
+              <TextField fullWidth value={this.register.adress || ''} type="text" name="adress" onChange={this.handleChange} floatingLabelText="Endereço:" />
+            </div><div className="col-md-6">
+              <TextField fullWidth value={this.register.adress2 || ''} type="text" name="adress2" onChange={this.handleChange} floatingLabelText="Número:" />
+            </div><div className="col-md-6">
+              <TextField fullWidth value={this.register.district || ''} type="text" name="district" onChange={this.handleChange} floatingLabelText="Bairro:" />
+            </div><div className="col-md-6">
+              <TextField fullWidth value={this.register.city || ''} type="text" name="city" onChange={this.handleChange} floatingLabelText="Cidade:" />
+            </div><div className="col-md-6">
+              <TextField fullWidth value={this.register.state || ''} type="text" name="state" onChange={this.handleChange} floatingLabelText="Estado:" />
+            {/* </div><div className="col-md-6">
+              <TextField fullWidth value={this.register.country || ''} type="text" name="country" onChange={this.handleChange} floatingLabelText="País:" /> */}
+            </div>
+            <div className="col-md-12">
+              <RaisedButton color="primary" type="submit" label="Cadastrar" />
             </div>
           </div>
         }
@@ -86,3 +87,17 @@ export default class RegisterForm extends React.Component {
     )
   }
 }
+// name: { type: String, required: true },
+//   mapLocation: { type: [Number], index: '2d' },
+//   zipcode: { type: Number },
+//   adress: { type: String },
+//   adress2: { type: String },
+//   district: { type: String },
+//   city: { type: String },
+//   state: { type: String },
+//   country: { type: String },
+//   phone: { tupe: String },
+//   email: { tupe: String },
+//   _dateCreate: { type: Date },
+//   _dateModifi: { type: Date },
+//   _createdBy: { type: String, ref: 'User' }

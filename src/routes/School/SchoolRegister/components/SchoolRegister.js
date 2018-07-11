@@ -6,7 +6,9 @@ import RegisterForm from './SchoolRegisterForm';
 
 export default class SchoolRegister extends React.Component {
   static propTypes = {
-    saveSchool: PropTypes.func.isRequired,
+    insertSchool: PropTypes.func.isRequired,
+    editSchool: PropTypes.func.isRequired,
+    deleteSchool: PropTypes.func.isRequired,
     getSchool: PropTypes.func.isRequired,
     schools: PropTypes.object
     // id: PropTypes.string,
@@ -18,11 +20,6 @@ export default class SchoolRegister extends React.Component {
     this.state = {
       stepIndex: 0
     }
-    //console.log('props register', this.props);
-
-    this.openTermOfUse = false;
-    // console.log('Id: ' + props.params.id)
-    // console.log('modo: ' + props.params.modo)
     this.isInitialState = true
 
     this.tabs = [
@@ -43,8 +40,21 @@ export default class SchoolRegister extends React.Component {
   }
 
   handleSubmit = (form) => {
-    // console.log('enviando form', form)
-    this.props.saveSchool(form)
+    //this.setState(...form)
+    console.log(form);
+    
+    switch (this.props.params.modo) {
+      case 'editar':
+        this.props.editSchool(form)
+        break
+      case 'excluir':
+        this.props.deleteSchool(form)
+        break
+      case 'inserir':
+        this.props.insertSchool(form)
+        break
+      default:
+    }
   }
 
   handleNext = (data) => {
@@ -64,7 +74,7 @@ export default class SchoolRegister extends React.Component {
   componentDidMount() {
     const { getSchool, schools } = this.props
 
-    if ( !schools.school && !schools.school.name && (
+    if (!schools.school && !schools.school.name && (
       this.props.params.modo === 'editar' || this.props.params.modo === 'excluir')) {
       getSchool(this.props.params.id)
     }

@@ -1,8 +1,9 @@
 
-export let handleChangeHelper = (register = {}, event, id, valueParam) => {
+export const handleChangeHelper = (event, id, valueParam) => {
     let name = '';
     let value = null;
-
+    //console.log(event.target);
+    
     if (event) {
         name = event.target.name;
         value = event.target.value;
@@ -10,9 +11,7 @@ export let handleChangeHelper = (register = {}, event, id, valueParam) => {
         name = id;
         value = valueParam;
     }
-    register = addRegister(register, name, value)
-    this.forceUpdate()
-    return register
+    return { [name]: value }
 }
 
 export const addRegister = (state, key, content) => {

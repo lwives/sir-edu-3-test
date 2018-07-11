@@ -1,16 +1,13 @@
 import React, { PropTypes } from 'react'
 import './StudentRegister.scss'
 import RegisterLayout from '../../../../layouts/RegisterLayout'
-// import { DatePicker, Checkbox, RaisedButton, TextField } from 'material-ui' //RaisedButton, SelectField, MenuItem, TextField, Button, 
-// import Dropzone from 'components/Dropzone'
-// import MultipleCheckboxes from './MultipleCheckboxes'
-// import TermOfUse from './TermOfUse'
-// import { specialNeeds } from '../../../../constants/necessidadesEspeciais'
 import RegisterForm from './RegisterForm';
 
 export default class StudentRegister extends React.Component {
   static propTypes = {
-    saveStudent: PropTypes.func.isRequired,
+    insertStudent: PropTypes.func.isRequired,
+    editStudent: PropTypes.func.isRequired,
+    deleteStudent: PropTypes.func.isRequired,
     getStudent: PropTypes.func.isRequired,
     students: PropTypes.object
     // id: PropTypes.string,
@@ -29,9 +26,9 @@ export default class StudentRegister extends React.Component {
     this.isInitialState = true
 
     this.tabs = [
-      { name: 'Preencha os dados do aluno' },
-      { name: 'Atividades Extraclasse' },
-      { name: 'Necessidades Educacionais Especiais' }]
+      { name: 'Dados do aluno' },
+      { name: 'Dados da Escola' },
+      { name: 'NEE' }]
 
     this.data = {
       tabs: this.tabs,
@@ -41,10 +38,6 @@ export default class StudentRegister extends React.Component {
       handlePrev: this.handlePrev,
       step: this.state.stepIndex
     }
-
-    // if (this.props.params.modo === 'editar') {
-    //   this.props.getStudent(this.props.params.id)
-    // }
   }
 
   handleSetStepindex = (newState) => {
@@ -52,8 +45,19 @@ export default class StudentRegister extends React.Component {
   }
 
   handleSubmit = (form) => {
-    // console.log('enviando form', form)
-    this.props.saveStudent(form)
+    //this.setState(...form)
+    switch (this.props.params.modo) {
+      case 'editar':
+        this.props.editStudent(form)
+        break
+      case 'excluir':
+        this.props.deleteStudent(form)
+        break
+      case 'inserir':
+        this.props.insertStudent(form)
+        break
+      default:
+    }
   }
 
   handleNext = () => {
@@ -77,7 +81,6 @@ export default class StudentRegister extends React.Component {
       this.props.params.modo === 'editar' || this.props.params.modo === 'excluir')) { 
       getStudent(this.props.params.id)
     }
-    //this.setState(this.props.students.student)
   }
 
   render() {
