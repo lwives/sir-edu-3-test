@@ -4,22 +4,22 @@ import IconButton from 'material-ui/IconButton';
 import './Dropzone.scss'
 
 const preventDropOnDocument = () => {
-    window.addEventListener("dragover",function(e){
+    window.addEventListener('dragover', function(e){
         e = e || event;
         e.preventDefault();
-    },false);
-    window.addEventListener("drop",function(e){
+    }, false);
+    window.addEventListener('drop', function(e){
         e = e || event;
         e.preventDefault();
-    },false);
+    }, false);
 }
 
 const getFilePreview = (file) => {
     console.log(file);
-    if(file.type.includes('video')) {
-        return (<video src={file.preview} class="video-thumb" controls preload="metadata"/>);
+    if (file && file.mimeType.includes('video')) {
+        return (<video src={file.preview} className="video-thumb" controls preload="metadata"/>);
     }
-    return (<img src={file.preview} class="img-thumbnail" height="100" width="230"/>);
+    return (<img src={file.preview} className="img-thumbnail" height="100" width="230" />);
 } 
 
 export default class DropzoneComponent extends React.Component {
@@ -52,15 +52,15 @@ export default class DropzoneComponent extends React.Component {
 
     render() {
         return (
-            <div class="dropzone-component">
+            <div className="dropzone-component">
                 <Dropzone ref={(dropzone) => {this.dropzone = dropzone; }}
                     className="dropzone-box"
                     activeClassName="dropzone-box-active"
                     onDrop={this.onDrop}
                     accept={this.props.accept}
                     multiple={this.props.multiple}
-                    disableClick={true}>
-                    <div class="dropzone-content">
+                    disableClick>
+                    <div className="dropzone-content">
                         {
                             this.file && 
                             <div>
@@ -74,9 +74,9 @@ export default class DropzoneComponent extends React.Component {
                                 </span>
                             </div> ||
                             <div>
-                                <i class="fa fa-cloud-upload fa-5x" aria-hidden="true"></i>
+                                <em className="fa fa-cloud-upload fa-5x" aria-hidden="true" />
                                 <h5>{this.props.text}</h5>
-                                <button type="button" class="btn btn-success" onClick={this.onOpenClick}>
+                                <button type="button" className="btn btn-success" onClick={this.onOpenClick}>
                                     Selecionar arquivo
                                 </button>
                             </div>

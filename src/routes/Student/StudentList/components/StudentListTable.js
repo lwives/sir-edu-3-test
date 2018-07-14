@@ -91,7 +91,7 @@ export default class StudentListTable extends React.Component {
     filteredRegister = getFiltered(students.list, filterText || '')
 
     return (
-      <ListLayout className="container list" layout={this.layoutData} register={this.register}>
+      <ListLayout className="list" layout={this.layoutData} register={this.register}>
          <TableBody
                             showRowHover
                             displayRowCheckbox={false}

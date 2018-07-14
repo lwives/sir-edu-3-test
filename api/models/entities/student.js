@@ -6,9 +6,9 @@ let Schema = mongoose.Schema;
 let StudentSchema = new Schema({
   //_studentId: { type: Number },
   name: { type: String },
+  avatar: { path: String, mimeType: String },
   lastName: { type: String },
   birthDate: { type: Date },
-  avatar: { path: String, mimeType: String },
   motherName: { type: String },
   motherPhone: { type: Number }, 
   motherEmail: { type: String }, 

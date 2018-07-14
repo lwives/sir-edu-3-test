@@ -19,3 +19,8 @@ body {
 *:after {
   box-sizing: inherit;
 }
+
+$color: #44943a;
+.btn-primary{
+  background-color: $color;
+}

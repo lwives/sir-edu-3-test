@@ -1,9 +1,24 @@
 import React, { PropTypes } from 'react'
-import { DatePicker, Checkbox, RaisedButton, TextField } from 'material-ui' //RaisedButton, SelectField, MenuItem, TextField, Button, 
-import Dropzone from 'components/Dropzone'
+import { DatePicker, RaisedButton, TextField } from 'material-ui' //Checkbox, RaisedButton, SelectField, MenuItem, TextField, Button, 
+import Dropzone from '../../../../components/Dropzone'
 import MultipleCheckboxes from './MultipleCheckboxes'
 import { specialNeeds } from '../../../../constants/necessidadesEspeciais'
-import handleChangeHelper from '../../../../helpers/register-helper'
+import handleChangeHelper2 from '../../../../helpers/register-helper'
+
+const handleChangeHelper = (event, id, valueParam) => {
+    let name = '';
+    let value = null;
+    console.log(event.target);
+    
+    if (event) {
+        name = event.target.name;
+        value = event.target.value;
+    } else {
+        name = id;
+        value = valueParam;
+    }
+    return { [name]: value }
+}
 
 export default class RegisterForm extends React.Component {
     static propTypes = {
@@ -19,10 +34,11 @@ export default class RegisterForm extends React.Component {
         this.isInitialState = true;
         this.register = {}
         this.defaultValue()
+        this.registerInitialLength = this.register.lenght
     }
 
     defaultValue = () => {
-        if (!this.register.country) {
+        if (!this.register.country && !this.register.city) {
             this.register.city = 'Porto Alegre'
             this.register.state = 'Rio Grande do Sul'
             this.register.country = 'Brasil'
@@ -65,6 +81,8 @@ export default class RegisterForm extends React.Component {
     }
     
     addRegister = (entry, key = '', content = '') => {
+        console.log(entry);
+        
         if (entry.lenth <= 0) { 
             entry = {[key]: content}
         }
@@ -137,7 +155,6 @@ export default class RegisterForm extends React.Component {
                         {/* </div><div className="col-md-2">
                             <TextField fullWidth value={this.register.country || ''} type="text" name="country" onChange={this.handleChange} floatingLabelText="País:" /> */}
                         </div>
-
                     </div>
                 }
                 {this.props.step === 1 &&
@@ -187,6 +204,12 @@ export default class RegisterForm extends React.Component {
                             _dateCreate: { type: Date },
                             _dateModifi: { type: Date },*/}
   
+                            {/* geralRegister: { type: Number },
+  historical: { type: String },
+  docParentsAproval: { path: String, mimeType: String },
+  termOfUse: { type: Boolean },
+  _createdBy: { type: String, ref: 'User' }, //Link to teacher model
+  _schoolId: { type: String, ref: 'School' } //Link to school model */}
                             <RaisedButton color="primary" type="submit" label="Cadastrar" />
                         </div>
                     </div>
