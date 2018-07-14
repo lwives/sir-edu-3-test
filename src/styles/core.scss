@@ -20,7 +20,30 @@ body {
   box-sizing: inherit;
 }
 
-$color: #44943a;
+
+/* Colors */
+$color-primary: #c1ecbb;
+$color-primary-destaque: #dbf3d7;
+$color-secundary: #89c236;
+$color-secundary-destaque: #44943a;
+
+$color: #89c236;
+$color-active: #2f8624;
+
 .btn-primary{
   background-color: $color;
+  border-color: $color;
+}
+.btn-primary:hover{
+  background-color: $color-active;
+}
+.btn-secondary {
+  background-color: $color-primary;
+  border-color: $color-primary;
+  color: #000 !important;
+}
+
+.btn-secondary:hover{
+  background-color: $color;
+  text-decoration: none;
 }

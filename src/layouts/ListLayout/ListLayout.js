@@ -9,7 +9,7 @@ import '../../styles/core.scss'
 import AlertNothingFound from '../../components/AlertNothingFound'
 
 export const ListLayout = ({ children, layout, register, className }) => {
-    const { handleFilter, descriptionRegister = 'aluno', pathRegister = '/aluno/', lenght, textNothingFound } = register
+    const { handleFilter, searchValue, descriptionRegister = 'aluno', pathRegister = '/aluno/', lenght, textNothingFound } = register
     const { visibleColumn, titulo } = layout
     
     return (
@@ -22,7 +22,7 @@ export const ListLayout = ({ children, layout, register, className }) => {
                     <HeaderDefault texto={titulo} type="h1" />
                 </div>
                 
-                <FilterSearch descriptionRegister={descriptionRegister} pathRegister={pathRegister} handleFilter={handleFilter} />
+                <FilterSearch descriptionRegister={descriptionRegister} pathRegister={pathRegister} handleFilter={handleFilter} searchValue={searchValue} />
 
                 <div className="col-md-12">
                     <Table selectable={false}>

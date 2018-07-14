@@ -4,11 +4,15 @@ import './FilterSearch.scss'
 
 export default class FilterSearch extends React.Component {
     static propTypes = {
-        handleFilter: React.PropTypes.func
+        handleFilter: React.PropTypes.func,
+        descriptionRegister: React.PropTypes.string,
+        pathRegister: React.PropTypes.string, 
+        searchValue: React.PropTypes.func
     }
 
     render() {
-        const { descriptionRegister, pathRegister } = this.props
+        const { descriptionRegister, pathRegister, searchValue } = this.props
+        
         return (
             <div className="col-md-12">
                 <div className="search-student">
@@ -16,8 +20,10 @@ export default class FilterSearch extends React.Component {
                         <div className="input-group col">
                             <input
                                 type="text"
-                                ref={(input) => { this.textInput = input }}
+                                ref={(input) => { searchValue(input.value) }}
                                 className="form-control input-lg"
+                                //name="textInput"
+                                //wevalue={inputValue}
                                 placeholder={'Procurar ' + descriptionRegister} />
                         </div>
                         <div className="input-group-btn col-1">
@@ -25,10 +31,10 @@ export default class FilterSearch extends React.Component {
                                 <i className="fas fa-search" />
                             </button>
                         </div>
-                        <div className="input-group col-2">
-                            <div className="btn btn-warning btn-lg">
+                        <div className="input-group-btn col-2">
+                            <button className="btn btn-secondary">
                                 <Link to={pathRegister + '0/' + 'inserir'}>Cadastrar {descriptionRegister}</Link>
-                            </div>
+                            </button>
                         </div>
                     </form>
                 </div>

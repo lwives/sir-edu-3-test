@@ -57,24 +57,30 @@ export default class StudentListTable extends React.Component {
         link: (_id) => { return StudentRegister.pathWithoutParam + _id + '/excluir' }
       }
     ]
+    this.inputValue = {}
 
     this.layoutData = {
-      titulo: "Meus Alunos",
+      titulo: 'Meus Alunos',
       visibleColumn: this.visibleColumn
     }
     this.register = {
       handleFilter: this.searchStudent,
-      descriptionRegister: "aluno",
+      searchValue: this.searchValue,
+      descriptionRegister: 'aluno',
       pathRegister: StudentRegister.pathWithoutParam,
       lenght: this.props.students.list.length,
-      textNothingFound: "Nenhum Aluno cadastrado!"
+      textNothingFound: 'Nenhum Aluno cadastrado!'
     }
   }
 
   searchStudent(e) {
     e.preventDefault()
     const { filterStudents } = this.props
-    filterStudents(this.textInput.value)
+    filterStudents(this.inputValue)
+  }
+
+  searchValue(value) {
+    this.inputValue = value
   }
 
   componentDidMount() {
