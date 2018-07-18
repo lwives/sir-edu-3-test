@@ -18,7 +18,7 @@ export default class studentService {
         console.log('formatStudent', newStudent);
         return newStudent
     }
-    static saveStudent(student) {
+    static insertStudent(student) {
         let newStudent = this.formatStudent(student)
         return axios.post(Route.Student, newStudent)
     }

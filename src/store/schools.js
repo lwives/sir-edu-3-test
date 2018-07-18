@@ -66,8 +66,6 @@ function modifiedSchool(school, run) {
 
 export function insertSchool(school) {
   const runFunction = schoolService.insertSchool
-  console.log(runFunction);
-  
   modifiedSchool(school, runFunction)
 }
 export function editSchool(school) {
