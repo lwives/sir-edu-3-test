@@ -1,7 +1,7 @@
 {
-  "name": "sir-edu",
+  "name": "sig-edu",
   "version": "3.0.0-alpha.2",
-  "description": "SIS-EDU - Sistema integrado de recursos educacionais para a gestão do acompanhamento de alunos com necessidades especiais.",
+  "description": "SIG-EDU - Sistema integrado para a gestão salas de recursos especiais",
   "main": "index.js",
   "engines": {
     "node": "8.11.x",
