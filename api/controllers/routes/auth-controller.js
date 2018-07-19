@@ -3,6 +3,8 @@
 var router = require('express').Router();
 var AuthenticationService = require('../../application-services/authentication-service');
 var authenticationService = new AuthenticationService();
+var dictTotal = require('../../constants/dictTotal')
+var dict = dictTotal['pt-br']
 
 //TODO treat errors with some middleware
 router.post('/register', function(req, res, next) {
@@ -30,7 +32,9 @@ router.post('/authenticate', function(req, res, next) {
         });
     })
     .catch((err) => {
-        res.status(404).send({ error: 'Not found' })
+        //console.log('router.post.authenticate', err);
+        
+        res.status(403).send({ error: dict[autentication][errorUserNotFound] }) // dict[autentication][errorUserNotFound]
     })
 });
 

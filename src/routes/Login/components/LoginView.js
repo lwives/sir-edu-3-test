@@ -56,7 +56,7 @@ export default class Login extends React.Component {
                   <button type="submit" name="go" class="btn btn-block btn-success">Entrar</button>
                 </section>
                 <div>
-                  <Link to={UserRegister.pathWithoutParam}>Criar uma conta</Link>
+                  <Link to={UserRegister.pathWithoutParam + '/0' + '/inserir'}>Criar uma conta</Link>
                 </div>
               </form>
             </section>

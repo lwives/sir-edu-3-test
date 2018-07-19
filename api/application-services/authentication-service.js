@@ -18,9 +18,9 @@ class AuthenticationService {
 	//TODO _validatePassword is wrong, verify promises, order of functions calls
 	authenticate(user) {
 		return this.userService.findOne({ email : user.email })
-			.then((userFound) => {
-				if(!userFound) {
-					throw new Error(404);
+		.then((userFound) => {
+			if(!userFound) {
+					throw Error(403); 
 				}
 				return userFound.comparePassword(user.password)
 				.then((isMatch) => {
@@ -34,7 +34,7 @@ class AuthenticationService {
 					}
 					else{
 						//TODO Config file for error messages in portuguese
-						throw new Error('O usuário não foi encontrado ou a senha informada esta incorreta.');
+						throw new Error(403);
 					}
 				})
 				.catch((err) => { throw err; });

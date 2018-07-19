@@ -24,7 +24,6 @@ export function requestLogin() {
 }
 
 export function receiveLogin(data) {
-  console.log('receiveLogin', data)
   return {
     type: LOGIN_SUCCESS,
     payload: {
@@ -71,7 +70,8 @@ export function login(creds) {
     })
     .catch((err) => {
       console.log('LOGIN_FAILURE', err)
-      dispatch(loginError('Error'));
+      console.log('LOGIN_FAILURE', err.response)
+      dispatch(loginError(err));
     });
   }
 }
