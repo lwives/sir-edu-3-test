@@ -104,7 +104,7 @@ export default class RegisterForm extends React.Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 {this.props.step === 0 &&
-                    <div className="col-md-12">
+                    <div className="row">
                         <div className="col-md-12">
                         <div className="col-md-8">
                             <label>Imagem do aluno:</label>
@@ -183,7 +183,7 @@ export default class RegisterForm extends React.Component {
                     </div>
                 }
                 {this.props.step === 2 &&
-                    <div className="col-md-12">
+                    <div className="row ">
                         <div className="col-md-8">
                             <TextField fullWidth value={this.register.cid || ''} type="text" name="cid" onChange={this.handleChange} floatingLabelText="CID:" />
                         </div><div className="col-md-12">
@@ -209,8 +209,9 @@ export default class RegisterForm extends React.Component {
   docParentsAproval: { path: String, mimeType: String },
   termOfUse: { type: Boolean },
   _createdBy: { type: String, ref: 'User' }, //Link to teacher model
-  _schoolId: { type: String, ref: 'School' } //Link to school model */}
-                            <RaisedButton color="primary" type="submit" label="Cadastrar" />
+  _schoolId: { type: String, ref: 'School' } //Link to school model */} 
+                            {/* <RaisedButton color="primary" type="submit" label="Cadastrar" /> */}
+                            <button className="btn btn-primary">Cadastrar</button>
                         </div>
                     </div>
                 }

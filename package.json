@@ -2,7 +2,7 @@
   "name": "sir-edu",
   "version": "3.0.0-alpha.2",
   "description": "SIS-EDU - Sistema integrado de recursos educacionais para a gestão do acompanhamento de alunos com necessidades especiais.",
-  "main": "index.js",
+  "main": "main.js",
   "engines": {
     "node": "8.11.x",
     "npm": "5.6.x"

@@ -6,12 +6,13 @@ import { connect } from 'react-redux'
 import { logout } from 'store/login'
 
 import Home from '../../routes/Home'
-import UserRegister from '../../routes/User/UserRegister'
-import Login from '../../routes/Login'
 import Paginas from '../../pages'
+import Login from '../../routes/Login'
+
 import StundentList from '../../routes/Student/StudentList/'
 import SchoolList from '../../routes/School/SchoolList'
 import GroupList from '../../routes/Group/GroupList'
+import UserRegister from '../../routes/User/UserRegister'
 
 const dictAll = {
   en: {
@@ -28,9 +29,11 @@ const dictAll = {
 
 const dict = dictAll['pt_br']
 
-export const Header = (props, user) => {
+export const Header = (props, user1) => {
   const classActive = {}
   classActive[window.location.pathname] = 'active';
+  console.log(props);
+  console.log(user1);
   
   return (
     <header className="pt-0 pt-md-1">
@@ -54,8 +57,8 @@ export const Header = (props, user) => {
                     <li className={'nav-item ' + classActive[Paginas.contato.pathWithoutParam]} key="contato"><Link to={Paginas.contato.pathWithoutParam}>Contato</Link></li>
                   ] : [
                     <li className={'nav-item ' + classActive[StundentList.pathWithoutParam]} key="alunos"><Link to={StundentList.pathWithoutParam}>Alunos</Link></li>,
-                    <li className={'nav-item ' + classActive[SchoolList.pathWithoutParam]} key="escolas"><Link to={SchoolList.pathWithoutParam}>Escolas</Link></li>
-                    // <li className={'nav-item ' +  classActive[GroupList.pathWithoutParam]} key="grupos"><Link to={GroupList.pathWithoutParam}>Grupos</Link></li>
+                    <li className={'nav-item ' + classActive[SchoolList.pathWithoutParam]} key="escolas"><Link to={SchoolList.pathWithoutParam}>Escolas</Link></li>,
+                    <li className={'nav-item ' + classActive[GroupList.pathWithoutParam]} key="grupos"><Link to={GroupList.pathWithoutParam}>Grupos</Link></li>
                   ]
               }
             </ul>
@@ -65,7 +68,9 @@ export const Header = (props, user) => {
                   ? [
                     <li className={'nav-item ' + classActive[Login.pathWithoutParam]} key="login"><Link to={Login.pathWithoutParam}><span className="glyphicon glyphicon-log-in" /> Entrar</Link></li>
                   ] : [
-                    <li className={'nav-item ' + classActive[UserRegister.pathWithoutParam]} key="usuario"><Link to={UserRegister.pathWithoutParam + '/' + props.auth.user._id + '/editar'}><span className="glyphicon glyphicon-user" /> Bem-vindo, {props.auth.user.name}</Link></li>,
+                    <li className={'nav-item ' + classActive[UserRegister.pathWithoutParam]} key="usuario"><Link to={UserRegister.pathWithoutParam + '/' + "props.auth.user._id" + '/editar'}><span className="glyphicon glyphicon-user" /> Bem-vindo, 
+                    Eduardo {/* {props.auth.user.name} */}
+                    </Link></li>,
                     <li className={'nav-item '} key="logout"><a onClick={() => { props.logout(); }}>
                       <span className="glyphicon glyphicon-log-out" /> Sair
                   </a></li>

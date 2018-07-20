@@ -24,8 +24,6 @@ export function makeColumn(column, elementContent, link) {
     if (column.link) {
         elemento = <Link to={column.link(link)} className={column.className} onClick={column.onClick}>{elemento}</Link>
     }
-    if (elemento) {
-        elemento = <TableRowColumn key={column.name + makeColumnKey}>{elemento}</TableRowColumn>
-    }
+    elemento = <TableRowColumn key={column.name + makeColumnKey}>{elemento} </TableRowColumn>
     return elemento
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../../components/Header'
 import './CoreLayout.scss'
 import '../../styles/core.scss'
+import Footer from '../../components/Footer'
 
 export const CoreLayout = ({ children }) => {
   const user = {}
@@ -11,6 +12,7 @@ export const CoreLayout = ({ children }) => {
       <div className="container">
         {children}
       </div>
+      {/* <Footer user={user} /> */}
     </div>
   )
 }

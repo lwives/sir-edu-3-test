@@ -32,28 +32,28 @@ export default class Login extends React.Component {
     
     render() {
        return (
-          <section class="login-container">
-            <LoadingSpinner loading={this.props.auth.isFetching}/>
-            <section class="login-form">
+          <section className="login-container">
+            <LoadingSpinner loading={this.props.auth.isFetching} />
+            <section className="login-form">
               <form name="loginForm" role="login" onSubmit={this.handleSubmit}>
                 <section>
                   <h3>Login</h3>
-                  <div class="form-group">
-                      <div class="input-group">
-                          <div class="input-group-addon"><span class="text-primary glyphicon glyphicon-envelope"></span></div>
-                      <input type="email" value={this.state.email} onChange={this.handleChange} placeholder="Email" required class="form-control" />
+                  <div className="form-group">
+                      <div className="input-group">
+                          <div className="input-group-addon"><span className="text-primary glyphicon glyphicon-envelope"></span></div>
+                      <input type="email" value={this.state.email} onChange={this.handleChange} placeholder="Email" required className="form-control" />
                     </div>
                   </div>
-                  <div class="form-group">
-                      <div class="input-group">
-                          <div class="input-group-addon"><span class="text-primary glyphicon glyphicon-lock"></span></div>
-                      <input type="password" value={this.state.password} onChange={this.handleChange} placeholder="Senha" required class="form-control" />
+                  <div className="form-group">
+                      <div className="input-group">
+                          <div className="input-group-addon"><span className="text-primary glyphicon glyphicon-lock"></span></div>
+                      <input type="password" value={this.state.password} onChange={this.handleChange} placeholder="Senha" required className="form-control" />
                     </div>
                   </div>
-                  <div class="form-group pull-left">
+                  <div className="form-group pull-left">
                     <input type="checkbox" name="remember" value="1" /> Lembrar de mim
                   </div>
-                  <button type="submit" name="go" class="btn btn-block btn-success">Entrar</button>
+                  <button type="submit" name="go" className="btn btn-block btn-success">Entrar</button>
                 </section>
                 <div>
                   <Link to={UserRegister.pathWithoutParam + '/0' + '/inserir'}>Criar uma conta</Link>

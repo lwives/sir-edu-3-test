@@ -15,7 +15,8 @@ const StepperPagination = (data) => {
                     <RaisedButton
                         label="Próximo"
                         disabled={data.step === (data.tabs.length - 1)}
-                        primary
+                        // color="primary"
+                        className="btn btn-primary"
                         onTouchTap={data.handleNext}
                     />
                 </div>

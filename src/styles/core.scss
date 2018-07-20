@@ -1,4 +1,5 @@
 @import 'base';
+@import 'color';
 @import '~normalize.css/normalize';
 
 // Some best-practice CSS that's useful for most apps
@@ -20,30 +21,37 @@ body {
   box-sizing: inherit;
 }
 
+/* Padrões */
+body, th, td {
+  //color: $color-in-light-bg;
+}
 
-/* Colors */
-$color-primary: #c1ecbb;
-$color-primary-destaque: #dbf3d7;
-$color-secundary: #89c236;
-$color-secundary-destaque: #44943a;
-
-$color: #89c236;
-$color-active: #2f8624;
+/* Botões */
 
 .btn-primary{
-  background-color: $color;
-  border-color: $color;
+  background-color: $btn-bg-primary;
+  border-color: $btn-bg-primary;
+  color: $btn-text-primary !important;
 }
 .btn-primary:hover{
-  background-color: $color-active;
+  background-color: $btn-bg-primary-hover;
 }
 .btn-secondary {
-  background-color: $color-primary;
-  border-color: $color-primary;
-  color: #000 !important;
+  background-color: $btn-bg-secondary;
+  border-color: $btn-bg-secondary;
+  color: $btn-text-secundary !important;
 }
 
 .btn-secondary:hover{
-  background-color: $color;
+  background-color: $btn-bg-secondary-hover;
   text-decoration: none;
+}
+
+.btn-success {
+  background-color: $btn-bg-primary;
+  border-color: $btn-bg-primary;
+  color: $btn-text-primary !important;
+}
+.btn-success:hover{
+  background-color: $btn-bg-primary-hover;
 }

@@ -65,12 +65,13 @@ export function login(creds) {
     dispatch(requestLogin(creds))
     return loginUser(creds).then((res) => {
         dispatch(receiveLogin(res.data));
+        console.log(res.data);
+        
         localStorage.setItem('authToken', res.data.token);
         router.goToStudentsPage();
     })
     .catch((err) => {
       console.log('LOGIN_FAILURE', err)
-      console.log('LOGIN_FAILURE', err.response)
       dispatch(loginError(err));
     });
   }

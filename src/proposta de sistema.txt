@@ -1,0 +1,25 @@
+
+Um sistema está sendo desenvolvido ainda em fase de prototipo para apoiar esta proposta.  
+
+O sistema é feito para web com acesso por um site, sendo o acesso tanto com telas grandes, 
+como as de computadores e notebooks, quanto por telas pequenas de celular e tablet. Não necessitando 
+instalação de qualquer aplicativo. Ele está sendo desenvolvido com a linguagem JavaScript (ES6) com a 
+biblioteca de software React, permitindo mais rápidez entre as telas por não ter muito carregamento de página 
+completos do site funcionando como uma aplicação instalada. Mas caso haja necessidade também pode ser 
+desenvolvido um versão pra instalação em smartphone com um biblioteca de software complementar o ReactNative 
+de forma fácil.
+E no servidor com javascript com a ferramenta nodeJS permitindo muitos usuário simultâneos e com banco de 
+dados relacional. Está sendo preparado para intenacionalização e multiplos idiomas em versões posteriores.
+
+Atualmente o sistema permite o cadastramento de professores, escolas, alunos e agrupá-los numa turma. E também fotos 
+e videos dos alunos com data e hora.
+
+Imagem 1 - Tela de login do professor.
+
+Imagem 2 - Listagem de alunos de um professor
+
+Imagem 3 - Parte de cadatro de alunos, dados de pessoais
+
+Imagme 3 - Parte de cadsatro de alunos, dados da escola.
+
+imagem 5 - Menu para acesso a cadastro de fotos/videos e outras funcionalidade previstas.

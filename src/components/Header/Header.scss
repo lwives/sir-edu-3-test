@@ -4,16 +4,25 @@ $height-total: 70px;
 $header-padding-vertical: 10px;
 $logo-height: $height-total - ($header-padding-vertical * 2);
 
+@import 'color';
+
 /* Colors */
-$color-primary: #c1ecbb;
-$color-primary-destaque: #dbf3d7;
-$color-secundary: #89c236;
-$color-secundary-destaque: #44943a;
+// $color-primary: #c1ecbb;
+// $color-primary-destaque: #dbf3d7;
+// $color-secundary: #89c236;
+// $color-secundary-destaque: #44943a;
 
-
+$header-text-primary: $color-text-1;
+$header-text-hover: $color-text-2;
+$header-bg-primary: $color-1;
+$header-bg-secondary: $color-2;
+$header-bg-primary-hover: $color-2-adjacente;
+$header-bg-secondary-hover: $color-2-adjacente;
+$header-destaque: $color-2;
+$header-destaque-simples: $color-2-adjacente;
 header {
-	background: $color-primary;
-	border-bottom: 5px solid $color-secundary-destaque;
+	background-color: $header-bg-primary;
+	border-bottom: 5px solid $header-destaque;
 	//padding-top: 5px;
 	
 	nav.navbar {
@@ -49,13 +58,8 @@ header {
 	}
 	
 	.navbar-inner {
-	//	background: #c1ecbb;
 		padding-left: 0px !important;
 		padding-right: 0px !important;
-	}
-
-	.navbar-right {
-		//margin-left: 50px;
 	}
 
 	.navbar .navbar-nav {
@@ -66,9 +70,9 @@ header {
 	.navbar .nav > li > a {
 		width: 100%;
 		display: block;
-		color: #444;
-		background-color: $color-primary;
-		border-top:4px solid $color-secundary;
+		color: $header-text-primary;
+		background-color: $header-bg-primary;
+		border-top:4px solid $header-destaque-simples;
 		text-shadow: none;
 		font-size: 16px;
 		padding: 21px 15px;
@@ -79,17 +83,19 @@ header {
 	
 	.navbar .nav > li > a:focus,
 	.navbar .nav > li > a:hover {
-		background: $color-secundary !important;		
-		border-top:4px solid $color-secundary-destaque;
-		color: #fff;
+		background: $header-bg-primary-hover !important;		
+		border-top:4px solid $header-destaque-simples;
+		color: $header-text-hover;
 	}
 
 	.navbar .nav > .active > a {
-		background-color: $color-primary-destaque !important;	
+		background-color: $header-bg-secondary !important;
+		border-top-color: $header-destaque;	
 	}
 	
 	.navbar .nav > .active > a:hover,
 	.navbar .nav > .active > a:focus {
+		background-color: $header-bg-secondary-hover;
 		text-decoration: none;
 		-webkit-box-shadow: none;
 		-moz-box-shadow: none;

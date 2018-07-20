@@ -8,16 +8,15 @@ export default class StudentHeader extends React.Component {
 
     render() {
         const { student } = this.props;
-        console.log("Perfil do esdudante", student);
+        console.log('Perfil do estudante', student);
         
-
         return (
             <nav className="container-fluid navbar navbar-default student-header">
                 <div className="col-md-1">
                     {
                     student.avatar ?
-                    <img className="thumbnail avatar" src={'/' + student.avatar.path}/> :
-                    <img className="thumbnail avatar" src={defaultAvatar}/>
+                    <img className="thumbnail avatar" src={'/' + student.avatar.path} /> :
+                    <img className="thumbnail avatar" src={defaultAvatar} />
                     }
                 </div>
                 <div className="col-md-4">
