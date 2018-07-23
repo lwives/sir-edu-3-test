@@ -3,7 +3,9 @@ import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } // TableFo
   from 'material-ui/Table'
 import { Avatar } from 'material-ui' // TextField
 
-import defaultAvatar from 'public/default-avatar.png'
+//import defaultAvatar from 'public/default-avatar.png'
+import defaultAvatar from '../../../../constants/configConstants'
+
 import './List.scss'
 import { Alert } from 'react-bootstrap'
 import StudentRegister from '../../StudentRegister'

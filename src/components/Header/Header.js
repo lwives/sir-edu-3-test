@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import './Header.scss'
-import logo from './assets/sir-edu_logo.png'
+import { logo } from '../../constants/configConstants'
 import { connect } from 'react-redux'
 import { logout } from 'store/login'
 
@@ -68,9 +68,7 @@ export const Header = (props, user1) => {
                   ? [
                     <li className={'nav-item ' + classActive[Login.pathWithoutParam]} key="login"><Link to={Login.pathWithoutParam}><span className="glyphicon glyphicon-log-in" /> Entrar</Link></li>
                   ] : [
-                    <li className={'nav-item ' + classActive[UserRegister.pathWithoutParam]} key="usuario"><Link to={UserRegister.pathWithoutParam + '/' + "props.auth.user._id" + '/editar'}><span className="glyphicon glyphicon-user" /> Bem-vindo, 
-                    Eduardo {/* {props.auth.user.name} */}
-                    </Link></li>,
+                    <li className={'nav-item ' + classActive[UserRegister.pathWithoutParam]} key="usuario"><Link to={UserRegister.pathWithoutParam + '/' + "props.auth.user._id" + '/editar'}><span className="glyphicon glyphicon-user" /> Bem-vindo, {props.auth.user.name}</Link></li>,
                     <li className={'nav-item '} key="logout"><a onClick={() => { props.logout(); }}>
                       <span className="glyphicon glyphicon-log-out" /> Sair
                   </a></li>

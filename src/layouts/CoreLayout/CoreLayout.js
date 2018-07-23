@@ -12,7 +12,7 @@ export const CoreLayout = ({ children }) => {
       <div className="container">
         {children}
       </div>
-      {/* <Footer user={user} /> */}
+      <Footer user={user} />
     </div>
   )
 }
