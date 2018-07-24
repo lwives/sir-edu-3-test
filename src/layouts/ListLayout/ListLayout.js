@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } // TableFooter
+import { Table, TableHeader, TableHeaderColumn, TableRow } // TableFooter
   from 'material-ui/Table'
 
 import FilterSearch from '../../components/FilterSearch'
@@ -32,6 +32,7 @@ export const ListLayout = ({ children, layout, register, className }) => {
                             <TableRow>
                                 {
                                     visibleColumn.map((column = { name: '' }, index) => {
+                                        // style={{width: column.width}} 
                                         return <TableHeaderColumn key={index}>{column.name}</TableHeaderColumn>
                                     })
                                 }
@@ -56,7 +57,8 @@ export const ListLayout = ({ children, layout, register, className }) => {
 ListLayout.propTypes = {
     layout: React.PropTypes.object.isRequired,
     children: React.PropTypes.element.isRequired,
-    register: React.PropTypes.object.isRequired
+    register: React.PropTypes.object.isRequired,
+    className: React.PropTypes.string
 }
 
 export default ListLayout

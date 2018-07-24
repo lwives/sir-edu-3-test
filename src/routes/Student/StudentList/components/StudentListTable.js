@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } // TableFooter
+import { TableBody,  TableRow } // TableFooter
   from 'material-ui/Table'
 import { Avatar } from 'material-ui' // TextField
 
@@ -7,7 +7,7 @@ import { Avatar } from 'material-ui' // TextField
 import defaultAvatar from '../../../../constants/configConstants'
 
 import './List.scss'
-import { Alert } from 'react-bootstrap'
+// import { Alert } from 'react-bootstrap'
 import StudentRegister from '../../StudentRegister'
 import StudentMenu from '../../StudentMenu'
 import ListLayout from '../../../../layouts/ListLayout'
@@ -31,29 +31,35 @@ export default class StudentListTable extends React.Component {
     this.visibleColumn = [
       {
         name: 'Foto',
+        width: 100,
         content: (avatar) => { return <Avatar src={avatar} className="student-avatar pull-left" size={45} /> }
       },
       {
         name: 'Nome',
+        //width: 400,
         content: returnParameter,
         link: returnParameter
       },
       {
         name: 'Escola',
+        width: 200,
         content: returnParameter
       },
       {
         name: 'Turma',
+        width: 150,
         content: returnParameter
       },
       {
         name: 'Editar',
+        width: 120,
         className: 'register-edit',
         content: () => { return <span><i className="fa fa-pencil-square-o fa-lg" /> Editar</span> },
         link: (_id) => { return StudentRegister.pathWithoutParam + _id + '/editar' }
       },
       {
         name: 'Excluir',
+        width: 220,
         className: 'register-remove',
         content: () => { return <span><i className="fa fa-user-times fa-lg" /> Excluir</span> },
         link: (_id) => { return StudentRegister.pathWithoutParam + _id + '/excluir' }
@@ -104,25 +110,9 @@ export default class StudentListTable extends React.Component {
                             showRowHover
                             displayRowCheckbox={false}
                             deselectOnClickaway>
-        {/*  <Table selectable={false}>
-            <TableHeader
-              displaySelectAll={false}
-              adjustForCheckbox={false} >
-              <TableRow>
-                {
-                  this.visibleColumn.map((column = { name: '' }, index) => {
-                    return <TableHeaderColumn key={index}>{column.name}</TableHeaderColumn>
-                  })
-                }
-              </TableRow>
-            </TableHeader>
-            <TableBody
-              showRowHover
-              displayRowCheckbox={false}
-              deselectOnClickaway> */}
               {
                 filteredRegister && filteredRegister.map((student, index) => (
-                  <TableRow key={index}>
+                  <TableRow className="row" key={index}>
                     {this.visibleColumn.map((column, index) => {
                       let elementContent, link
 
@@ -150,8 +140,8 @@ export default class StudentListTable extends React.Component {
                         default:
                           break
                       }
-
-                      return makeColumn(column, elementContent, link)
+                      
+                      return makeColumn(column, elementContent, link, column.width)
                     })
                     }
                   </TableRow>

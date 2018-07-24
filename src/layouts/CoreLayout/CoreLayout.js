@@ -7,9 +7,9 @@ import Footer from '../../components/Footer'
 export const CoreLayout = ({ children }) => {
   const user = {}
   return (
-    <div>
+    <div className="main">
       <Header user={user} />
-      <div className="container">
+      <div className="container ">
         {children}
       </div>
       <Footer user={user} />
