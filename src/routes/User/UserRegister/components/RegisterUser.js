@@ -5,6 +5,7 @@ import { browserHistory } from 'react-router'
 import Dialog from 'components/Dialog/Dialog'
 import './RegisterUser.scss'
 import RegisterLayout from '../../../../layouts/RegisterLayout'
+import Formulario from './Formulario'
 
 class RegisterUser extends React.Component {
     static propTypes = {
@@ -28,6 +29,10 @@ class RegisterUser extends React.Component {
                 idRegistration: '',
                 school: ''
             }
+        }
+
+        this.data = {
+
         }
     }
 
@@ -60,7 +65,7 @@ class RegisterUser extends React.Component {
 
     render() {
         const { user } = this.props; // this.props.user.showModal
-        const handles = { handleSubmit: handleSubmit, handleCancel: handleCancel, handleChange: handleChange }
+        const handles = { handleSubmit: this.handleSubmit, handleCancel: this.handleCancel, handleChange: this.handleChange }
 
         return (
             <RegisterLayout titulo="Cadastro de Escola" {...this.data}>
