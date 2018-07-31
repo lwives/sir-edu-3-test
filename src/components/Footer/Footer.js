@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import './Footer.scss'
 import { logo } from '../../constants/configConstants'
 
-import Paginas from '../../pages'
+import Paginas from '../../routes/Pages'
 
 const dict = {
     footer: {

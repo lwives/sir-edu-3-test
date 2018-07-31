@@ -39,24 +39,6 @@ export default class SchoolRegister extends React.Component {
     this.setState({ stepIndex: newState })
   }
 
-  handleSubmit = (form) => {
-    //this.setState(...form)
-    console.log(form);
-    
-    switch (this.props.params.modo) {
-      case 'editar':
-        this.props.editSchool(form)
-        break
-      case 'excluir':
-        this.props.deleteSchool(form)
-        break
-      case 'inserir':
-        this.props.insertSchool(form)
-        break
-      default:
-    }
-  }
-
   handleNext = (data) => {
     const { stepIndex } = this.state
     if (data.step < data.tabs.length) {
@@ -68,6 +50,21 @@ export default class SchoolRegister extends React.Component {
     const { stepIndex } = this.state
     if (stepIndex > 0) {
       this.setState({ stepIndex: stepIndex - 1 })
+    }
+  }
+
+  handleSubmit = (form) => {
+    switch (this.props.params.modo) {
+      case 'editar':
+        this.props.editSchool(form)
+        break
+      case 'excluir':
+        this.props.deleteSchool(form)
+        break
+      case 'inserir':
+        this.props.insertSchool(form)
+        break
+      default:
     }
   }
 

@@ -22,7 +22,7 @@ export const ListLayout = ({ children, layout, register, className }) => {
                     <HeaderDefault texto={titulo} type="h1" />
                 </div>
                 
-                <FilterSearch descriptionRegister={descriptionRegister} pathRegister={pathRegister} handleFilter={handleFilter} searchValue={searchValue} />
+                {/* <FilterSearch descriptionRegister={descriptionRegister} pathRegister={pathRegister} handleFilter={handleFilter} searchValue={searchValue} /> */}
 
                 <div className="col-md-12">
                     <Table selectable={false}>

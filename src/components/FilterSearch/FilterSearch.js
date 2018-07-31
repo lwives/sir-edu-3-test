@@ -20,7 +20,7 @@ export default class FilterSearch extends React.Component {
                         <div className="input-group col">
                             <input
                                 type="text"
-                                ref={(input) => { searchValue(input.value) }}
+                                //ref={(input) => { searchValue(input.value) }}
                                 className="form-control input-lg"
                                 //name="textInput"
                                 //wevalue={inputValue}
