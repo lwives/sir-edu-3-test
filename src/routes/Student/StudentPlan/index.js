@@ -1,8 +1,8 @@
-import StudentRegisterContainer from './containers/StudentRegisterContainer'
+import StudentPlanContainer from './containers/StudentPlanContainer'
 
-// Sync route definition
+// P.D.I.
 export default {
-    path:'aluno/:id/:modo',
-    pathWithoutParam:'/aluno/',
-    component : StudentRegisterContainer
+    path:'pdi(/:modo)',
+    pathWithoutParam:'/pdi/',
+    component : StudentPlanContainer
 }

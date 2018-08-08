@@ -30,11 +30,11 @@ class JudgementItem extends React.Component {
         const student = students.selectedStudent;
 
         return (
-            <div class="judgement-item">
+            <div className="judgement-item">
                 <Card style={{margin: 5}}>
                     <div style={{height: 125, padding: '16px', cursor: 'pointer'}} onClick={() => { this.setState({open: true}) }}>
-                        <div class="pull-left" >
-                            <i  class="fa fa-pencil-square-o"
+                        <div className="pull-left" >
+                            <i  className="fa fa-pencil-square-o"
                                 aria-hidden="true"
                                 style={{margin:0, fontSize:'7em'}}>
                             </i>
@@ -58,36 +58,36 @@ class JudgementItem extends React.Component {
                         <Modal.Title>Visualizar Parecer</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <div class="judgement-content">
-                            <Paper class="container-fluid judgement-text" zDepth={4}>
-                                <div class="row">
-                                    <div class="col-md-12 text-center">
+                        <div className="judgement-content">
+                            <Paper className="container-fluid judgement-text" zDepth={4}>
+                                <div className="row">
+                                    <div className="col-md-12 text-center">
                                         <h5>{student.school}</h5>
                                     </div>
-                                    <div class="col-md-12 text-center title">
-                                        <h1>Parecer</h1>
+                                    <div className="col-md-12 text-center title">
+                                        <h1>Parecer 2</h1>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div className="col-md-3">
                                         <label>Nome:</label> {student.name}
                                     </div>
-                                    <div class="col-md-2">
+                                    <div className="col-md-2">
                                         <label>Turma:</label> {student.classNumber || ''}
                                     </div>
-                                    <div class="col-md-3">
+                                    <div className="col-md-3">
                                         <label>Data de nascimento:</label> {student.birthDate || ''}
                                     </div>
-                                    <div class="col-md-4">
+                                    <div className="col-md-4">
                                         <label>Professor(a):</label> {loggedUser.user.name + ' ' + (loggedUser.user.lastName || '')}
                                     </div>
                                 </div>
-                                <div class="row text-container">
-                                    <div class="col-md-5">
+                                <div className="row text-container">
+                                    <div className="col-md-5">
                                         <label>Data:</label> {displayDate}
                                     </div>
-                                    <div class="col-md-12 text" dangerouslySetInnerHTML={{__html: item.text}}/>
+                                    <div className="col-md-12 text" dangerouslySetInnerHTML={{__html: item.text}}/>
                                 </div>
                             </Paper>
-                            <div class="btn-generate-pdf text-center">
+                            <div className="btn-generate-pdf text-center">
                                 <RaisedButton label="Gerar PDF" primary={true}/>
                             </div>
                         </div>

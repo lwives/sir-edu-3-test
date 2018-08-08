@@ -13,6 +13,9 @@ export default class HeaderDefault extends React.Component {
       case 'h1':
         element = <h1>{texto}</h1>
         break;
+      case 'h4':
+        element = <h4>{texto}</h4>
+        break;
 
       default:
         element = <h2>{texto}</h2>

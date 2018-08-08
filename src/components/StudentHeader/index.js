@@ -1,3 +1,3 @@
 import StudentHeader from './StudentHeader'
 
-export default StudentHeader;
+export default StudentHeader

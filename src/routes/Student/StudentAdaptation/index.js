@@ -1,8 +1,8 @@
 import StudentAdaptationContainer from './containers/StudentAdaptationContainer'
 
-// Sync route definition
+// Adequação curricular
 export default {
-    path:'aluno/adequacao/:id',
-    pathWithoutParam:'/aluno/adequacao',
+    path:'adequacao(/:modo)',
+    pathWithoutParam:'/adequacao/',
     component : StudentAdaptationContainer
 }

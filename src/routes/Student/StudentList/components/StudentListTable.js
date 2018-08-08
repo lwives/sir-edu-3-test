@@ -123,7 +123,7 @@ export default class StudentListTable extends React.Component {
                         case 'Nome':
                           elementContent = student.name
                           link = StudentMenu.pathWithoutParam + student._id
-                          column.onClick = setSelectedStudent
+                          column.onClick = () => { setSelectedStudent(student) }
                           break
                         case 'Escola':
                           elementContent = student.school
@@ -133,9 +133,11 @@ export default class StudentListTable extends React.Component {
                           break
                         case 'Editar':
                           link = student._id
+                          column.onClick = () => { setSelectedStudent(student) }
                           break
                         case 'Excluir':
                           link = student._id
+                          column.onClick = () => { setSelectedStudent(student) }
                           break
                         default:
                           break

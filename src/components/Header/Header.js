@@ -32,7 +32,6 @@ const dict = dictAll['pt_br']
 export const Header = (props, user) => {
   const classActive = {}
   classActive[window.location.pathname] = 'active';
-  console.log(props.auth);
   
   return (
     <header className="pt-0 pt-md-1">

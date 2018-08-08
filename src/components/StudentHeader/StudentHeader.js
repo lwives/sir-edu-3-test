@@ -1,22 +1,23 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
 import TextField from 'material-ui/TextField'
 import Divider from 'material-ui/Divider'
-import defaultAvatar from 'public/default-avatar.png'
+import { defaultAvatar } from '../../constants/configConstants'
 import './StudentHeader.scss'
 
 export default class StudentHeader extends React.Component {
+    static propTypes = {
+        student : PropTypes.object
+    }
 
     render() {
         const { student } = this.props;
-        console.log('Perfil do estudante', student);
-        
         return (
             <nav className="container-fluid navbar navbar-default student-header">
                 <div className="col-md-1">
                     {
-                    student.avatar ?
-                    <img className="thumbnail avatar" src={'/' + student.avatar.path} /> :
-                    <img className="thumbnail avatar" src={defaultAvatar} />
+                    student.avatar 
+                    ? <img className="thumbnail avatar" src={'/' + student.avatar.path} /> 
+                    : <img className="thumbnail avatar" src={defaultAvatar} />
                     }
                 </div>
                 <div className="col-md-4">

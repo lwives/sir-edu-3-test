@@ -1,17 +1,19 @@
 import React, { PropTypes } from 'react'
-import './StudentRegister.scss'
+import './StudentPlan.scss'
 import RegisterLayout from '../../../../layouts/RegisterLayout'
 import RegisterForm from './RegisterForm';
 
-export default class StudentRegister extends React.Component {
+export default class StudentPlan extends React.Component {
   static propTypes = {
     insertStudent: PropTypes.func.isRequired,
     editStudent: PropTypes.func.isRequired,
     deleteStudent: PropTypes.func.isRequired,
     getStudent: PropTypes.func.isRequired,
-    students: PropTypes.object
-    // id: PropTypes.string,
-    // modo: PropTypes.string
+    students: PropTypes.object, 
+    params: PropTypes.shape({
+      id: PropTypes.string,
+      modo: PropTypes.string
+    })
   }
 
   constructor(props) {

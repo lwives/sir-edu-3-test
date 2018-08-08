@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react'
-import './StudentRegister.scss'
+import './StudentAdaptation.scss'
 import RegisterLayout from '../../../../layouts/RegisterLayout'
 import RegisterForm from './RegisterForm';
 
-export default class StudentRegister extends React.Component {
+export default class StudentAdaptation extends React.Component {
   static propTypes = {
     insertStudent: PropTypes.func.isRequired,
     editStudent: PropTypes.func.isRequired,

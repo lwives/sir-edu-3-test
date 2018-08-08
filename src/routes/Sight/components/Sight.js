@@ -4,27 +4,27 @@ import TinyMCE from 'react-tinymce'
 import Paper from 'material-ui/Paper'
 import { browserHistory } from 'react-router'
 import { TextField, DatePicker, RaisedButton, FlatButton, MenuItem, Menu, Popover } from 'material-ui';
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
 import './Sight.scss'
 import SliderItem from 'components/Slider/SliderItem';
 import LoadingSpinner from 'components/LoadingSpinner';
 import { Alert } from 'react-bootstrap'
 
 const paperStyle = {
-  marginBotton: 300
+    marginBotton: 400
 };
 
 const filesCarousel = (items, actions) => {
-    return items.map((item, index) =>(
+    return items.map((item, index) => (
         <div key={index}>
-            <SliderItem item={item} editable={true} actions={actions}/>
+            <SliderItem item={item} editable={true} actions={actions} />
         </div>)
     )
 }
 
 const searchStudent = (students, id) => {
     let student = students.filter((student) => student._id === id);
-    return student.length > 1 ? null : student[0]; 
+    return student.length > 1 ? null : student[0];
 }
 
 class Sight extends React.Component {
@@ -49,7 +49,7 @@ class Sight extends React.Component {
     componentDidMount() {
         const { getFiles, params, files, students } = this.props;
 
-        if(!files.list.length) {
+        if (!files.list.length) {
             getFiles(params.id);
         }
     }
@@ -96,9 +96,9 @@ class Sight extends React.Component {
     };
 
     handleInsertLink(url, text) {
-        let val = '<a href=' + url +' target="_blank">' + text + '</a>';
+        let val = '<a href=' + url + ' target="_blank">' + text + '</a>';
         // let val = '<a onclick="window.open("'+ url +'", "_blank");">' + text + '</a>';
-        tinymce.activeEditor.execCommand('mceInsertContent', false, val );
+        tinymce.activeEditor.execCommand('mceInsertContent', false, val);
     }
 
     shouldChangeLocation = (judgement) => {
@@ -121,53 +121,55 @@ class Sight extends React.Component {
         };
 
         return (
-            <div class="sight">
-                <LoadingSpinner loading={files.isFetching || judgement.isFetching}/>
-                <h1 class="text-center page-title">Parecer</h1>
-                <div class="row student-info">
-                    <div class="col-md-5">
-                        <TextField 
-                            fullWidth={true} 
-                            value={this.state.judgement.title || ''} 
+            <div className="sight">
+                <LoadingSpinner loading={files.isFetching || judgement.isFetching} />
+                <h1 className="text-center page-title">Parecer</h1>
+
+                <div className="row student-info">
+                    <div className="col-md-4">
+                        {/* <div className="col-md-12"> */}
+                        <TextField
+                            fullWidth={true}
+                            value={this.state.judgement.title || ''}
                             floatingLabelText="Título"
                             onChange={(evt, value) => { this.handleChange('title', value) }}
                         />
-                    </div>
-                    <div class="col-md-3 pull-right">
                         <DatePicker DateTimeFormat={Intl.DateTimeFormat}
                             locale="pt-br"
-                            onChange={(evt, value)=>{this.handleChange('date', value.toISOString())}}
+                            onChange={(evt, value) => { this.handleChange('date', value.toISOString()) }}
                             floatingLabelText="Data"
                         />
+                        {/* </div> */}
                     </div>
+                    <div className="col-md-8 text-area">
+                        <Paper style={paperStyle} zDepth={5}>
+                            <TinyMCE
+                                content={this.state.judgement.text}
+                                config={{
+                                    plugins: 'link paste autoresize',
+                                    toolbar: 'undo redo | bold italic | link | alignleft aligncenter alignright',
+                                    autoresize_max_height: 1500,
+                                    statusbar: false
+                                }}
+                                onChange={this.handleEditorChange}
+                            />
+                        </Paper>
+                    </div>
+
                 </div>
-                <div class="row text-area">
-                    <Paper style={paperStyle} zDepth={5}>
-                        <TinyMCE
-                            content={this.state.judgement.text}
-                            config={{
-                                plugins: 'link paste autoresize',
-                                toolbar: 'undo redo | bold italic | link | alignleft aligncenter alignright',
-                                autoresize_max_height: 1000,
-                                statusbar: false
-                            }}
-                            onChange={this.handleEditorChange}
-                        />
-                    </Paper>
-                </div>
-                <div class="row slider">
+                <div className="row slider">
                     {
-                        files.list.length > 0 ?
-                        <Slider>
-                            {filesCarousel(files.list, actions)}
-                        </Slider> :
-                        <Alert bsStyle="warning">
-                            <strong>Aviso:</strong> Nenhum arquivo cadastrado2
-                        </Alert>
+                        files.list.length > 0
+                            ? <Slider>
+                                {filesCarousel(files.list, actions)}
+                              </Slider>
+                            : <Alert bsStyle="warning">
+                                <strong>Aviso:</strong> Nenhum arquivo cadastrado2
+                              </Alert>
                     }
                 </div>
-                <div class="row actions pull-right">
-                    <RaisedButton class="btn-actions" label="Cancelar" onClick={this.handleCancel}/>
+                <div className="row actions pull-right">
+                    <RaisedButton className="btn-actions" label="Cancelar" onClick={this.handleCancel} />
                     <RaisedButton label="Salvar" primary={true} onClick={this.handleSave} />
                 </div>
             </div>

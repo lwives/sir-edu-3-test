@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { insertStudent, editStudent, deleteStudent, getStudent } from 'store/students'
-import StudentRegister from '../components/StudentRegister'
+import StudentAdaptation from '../components/StudentAdaptation'
 
 const mapDispatchToProps = {
     insertStudent,
@@ -13,4 +13,4 @@ const mapStateToProps = (state) => ({
     students: state.students
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(StudentRegister)
+export default connect(mapStateToProps, mapDispatchToProps)(StudentAdaptation)
