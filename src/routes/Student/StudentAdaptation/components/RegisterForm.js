@@ -1,7 +1,16 @@
 import React, { PropTypes } from 'react'
-import { DatePicker, RaisedButton, TextField } from 'material-ui' //Checkbox, RaisedButton, SelectField, MenuItem, TextField, Button, 
-import Dropzone from '../../../../components/Dropzone'
-import handleChangeHelper2 from '../../../../helpers/register-helper'
+import { DatePicker, TextField } from 'material-ui' //Checkbox, RaisedButton, SelectField, MenuItem, TextField, Button, 
+import Paper from 'material-ui/Paper'
+import TinyMCE from 'react-tinymce'
+import { setDefaultValue } from '../../../../helpers/register-helper'
+
+const defaultValue = [
+    { date: new Date() }
+];
+
+const paperStyle = {
+    marginBotton: 400
+};
 
 const handleChangeHelper = (event, id, valueParam) => {
     let name = '';
@@ -30,7 +39,7 @@ export default class RegisterForm extends React.Component {
         this.openTermOfUse = false;
         this.isInitialState = true;
         this.register = {}
-        this.defaultValue()
+        setDefaultValue(defaultValue, this.addRegister, this.getRegister)
         this.registerInitialLength = this.register.lenght
     
     this.classes = theme => ({
@@ -44,18 +53,6 @@ export default class RegisterForm extends React.Component {
           width: 200
         }
       })
-    }
-
-    defaultValue = () => {
-        if (!this.register.country && !this.register.city) {
-            this.register.city = 'Porto Alegre'
-            this.register.state = 'Rio Grande do Sul'
-            this.register.country = 'Brasil'
-        }
-    }
-
-    onImageDrop = (field, file) => {
-        this.addRegister({}, field, file)
     }
 
     handleChange = (event, id, valueParam) => {
@@ -90,8 +87,6 @@ export default class RegisterForm extends React.Component {
     }
     
     addRegister = (entry, key = '', content = '') => {
-        console.log(entry);
-        
         if (entry.lenth <= 0) { 
             entry = {[key]: content}
         }
@@ -101,8 +96,8 @@ export default class RegisterForm extends React.Component {
         }
     }
 
-    showTermOfUse = () => {
-        this.openTermOfUse = true;
+    getRegister = (key) => {
+        return this.register[key]
     }
 
     render() {
@@ -114,53 +109,38 @@ export default class RegisterForm extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 {this.props.step === 0 &&
                     <div className="row">
-                        <div className="col-md-12">
                         <div className="col-md-8">
-                            <label>Imagem do aluno:</label>
-                            <span className="text-center">
-                                <Dropzone
-                                    multiple={false}
-                                    accept={'image/*'}
-                                    name="avatar"
-                                    onDrop={this.onImageDrop}
-                                    initConfig={this.register.avatar}
-                                    text={'Arraste e solte uma imagem ou clique no botão para selecionar um arquivo'} />
-                            </span>
-                            </div>
+                            <TextField
+                                fullWidth
+                                value={this.register.title || ''}
+                                floatingLabelText="Título"
+                                onChange={(evt, value) => { this.handleChange(evt, 'title', value) }}
+                            />
                         </div>
-                    </div>
-                }
-                {this.props.step === 1 &&
-                    <div className="row">
                         <div className="col-md-4">
+                            <DatePicker DateTimeFormat={Intl.DateTimeFormat}
+                                locale="pt-br"
+                                value={this.register.date || {}}
+                                name="date"
+                                onChange={(evt, value) => { this.handleChange(evt, 'date', value.toISOString()) }}
+                                floatingLabelText="Data"
+                            />
                         </div>
-                    </div>
-                }
-                {this.props.step === 2 &&
-                    <div className="row ">
-                        <div className="col-md-8">
-                            <TextField fullWidth className={this.classes.textField} value={this.register.cid || ''} type="text" name="cid" onChange={this.handleChange} floatingLabelText="CID:" />
+                        <div className="col-md-12 col-md-offset-3 text-area">
+                            <Paper style={paperStyle} zDepth={5}>
+                                <TinyMCE
+                                    content={this.register.text}
+                                    config={{
+                                        plugins: 'link paste autoresize',
+                                        toolbar: 'undo redo | bold italic | link | alignleft aligncenter alignright',
+                                        autoresize_max_height: 1500,
+                                        statusbar: false
+                                    }}
+                                    onChange={this.handleEditorChange}
+                                />
+                            </Paper>
                         </div>
                         <div className="col-md-12">
-                            {/* <Checkbox style={{ width: 290, float: 'left', marginTop: 5 }}
-                                label="Você concorda com o termo de uso?" name="termOfUse"
-                                checked={this.register.termOfUse || false}
-                                onCheck={this.handleCheckbox}
-                            /> */}
-                            {/* geralRegister: { type: Number }, 
-                            historical: { type: String },
-                            docParentsAproval: { path: String, mimeType: String },
-                            termOfUse: { type: Boolean }, 
-                            _dateCreate: { type: Date },
-                            _dateModifi: { type: Date },*/}
-  
-                            {/* geralRegister: { type: Number },
-  historical: { type: String },
-  docParentsAproval: { path: String, mimeType: String },
-  termOfUse: { type: Boolean },
-  _createdBy: { type: String, ref: 'User' }, //Link to teacher model
-  _schoolId: { type: String, ref: 'School' } //Link to school model */} 
-                            {/* <RaisedButton color="primary" type="submit" label="Cadastrar" /> */}
                             <button className="btn btn-primary">Cadastrar</button>
                         </div>
                     </div>

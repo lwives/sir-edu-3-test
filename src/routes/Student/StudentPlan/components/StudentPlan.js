@@ -5,10 +5,6 @@ import RegisterForm from './RegisterForm';
 
 export default class StudentPlan extends React.Component {
   static propTypes = {
-    insertStudent: PropTypes.func.isRequired,
-    editStudent: PropTypes.func.isRequired,
-    deleteStudent: PropTypes.func.isRequired,
-    getStudent: PropTypes.func.isRequired,
     students: PropTypes.object, 
     params: PropTypes.shape({
       id: PropTypes.string,
@@ -23,14 +19,9 @@ export default class StudentPlan extends React.Component {
     }
 
     this.openTermOfUse = false;
-    // console.log('Id: ' + props.params.id)
-    // console.log('modo: ' + props.params.modo)
     this.isInitialState = true
 
-    this.tabs = [
-      { name: 'Dados do aluno' },
-      { name: 'Dados da Escola' },
-      { name: 'NEE' }]
+    this.tabs = []
 
     this.data = {
       tabs: this.tabs,
@@ -47,7 +38,6 @@ export default class StudentPlan extends React.Component {
   }
 
   handleSubmit = (form) => {
-    //this.setState(...form)
     switch (this.props.params.modo) {
       case 'editar':
         this.props.editStudent(form)
@@ -77,12 +67,15 @@ export default class StudentPlan extends React.Component {
   }
 
   componentDidMount() {
-    const { getStudent, students } = this.props
-    
-    if (!students.student.name && ( 
-      this.props.params.modo === 'editar' || this.props.params.modo === 'excluir')) { 
-      getStudent(this.props.params.id)
-    }
+    //   const { getStudent, students } = this.props
+    const { getFiles, getJudgements, routeParams } = this.props;
+
+    // getFiles(routeParams.id);
+    // getJudgements(routeParams.id);
+    //   if (!students.student.name && ( 
+    //     this.props.params.modo === 'editar' || this.props.params.modo === 'excluir')) { 
+    //     getStudent(this.props.params.id)
+    //   }
   }
 
   render() {
@@ -92,7 +85,7 @@ export default class StudentPlan extends React.Component {
     }
     
     return (
-      <RegisterLayout titulo="Cadastro de Aluno" {...this.data}>
+      <RegisterLayout titulo="P.D.I." {...this.data}>
         <div className="row register-form">
           <RegisterForm {...this.props.students} {...this.data} />
         </div>

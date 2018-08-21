@@ -9,7 +9,11 @@ export default class StudentRegister extends React.Component {
     editStudent: PropTypes.func.isRequired,
     deleteStudent: PropTypes.func.isRequired,
     getStudent: PropTypes.func.isRequired,
-    students: PropTypes.object
+    students: PropTypes.object,
+    params: PropTypes.shape({
+      modo: React.string,
+      id: React.string
+    })
     // id: PropTypes.string,
     // modo: PropTypes.string
   }
@@ -38,6 +42,7 @@ export default class StudentRegister extends React.Component {
       handlePrev: this.handlePrev,
       step: this.state.stepIndex
     }
+    //this.props.selectedStudent
   }
 
   handleSetStepindex = (newState) => {

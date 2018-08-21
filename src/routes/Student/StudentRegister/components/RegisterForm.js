@@ -23,7 +23,8 @@ export default class RegisterForm extends React.Component {
     static propTypes = {
         step: PropTypes.number.isRequired,
         handleSubmit: PropTypes.func.isRequired,
-        student: PropTypes.object
+        //student: PropTypes.object
+        selectedStudent: PropTypes.object
     }
 
     constructor(props) {
@@ -109,7 +110,7 @@ export default class RegisterForm extends React.Component {
 
     render() {
         if (!this.register.name) {
-            this.register = { ...this.register, ...this.props.student }
+            this.register = { ...this.register, ...this.props.selectedStudent }
         }
 
         return (

@@ -1,3 +1,3 @@
-import RegisterLayout from './RegisterLayout'
+import StudentLayout from './StudentLayout'
 
-export default RegisterLayout
+export default StudentLayout

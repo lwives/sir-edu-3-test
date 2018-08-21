@@ -1,4 +1,15 @@
 
+export const setDefaultValue = (defaultValue, addRegister, getRegister) => {
+    const someValueDefaultPrevious = defaultValue.some((column, index) => {
+        return getRegister(Object.keys(column)[0])
+    })
+    if (!someValueDefaultPrevious) {
+        defaultValue.forEach((column, index) => {
+            addRegister(column)
+        })
+    }
+}
+
 export const handleChangeHelper = (event, id, valueParam) => {
     let name = '';
     let value = null;

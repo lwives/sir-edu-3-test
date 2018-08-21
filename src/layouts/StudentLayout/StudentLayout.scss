@@ -1,4 +1,4 @@
-.container-register {
+.container-student {
   // background: #f7f7f7;
   // border-radius: 10px;
   // -moz-border-radius: 10px;
@@ -13,4 +13,33 @@
   .stepper-pagination {
       padding: 50px 0;
   }
+}
+.sight {
+    .page-title {
+        margin-bottom: 0;
+    }
+
+    .text-area {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .toolbar-edit {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+    }
+
+    .slider {
+        margin-bottom: 50px;
+    }
+
+    .actions {
+        margin-bottom: 50px;
+    }
+
+    .btn-actions {
+        margin-right: 5px;
+    }
 }
