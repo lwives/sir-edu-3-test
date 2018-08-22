@@ -36,7 +36,7 @@ export default class StudentListTable extends React.Component {
       },
       {
         name: 'Nome',
-        //width: 400,
+        width: 200,
         content: returnParameter,
         link: returnParameter
       },

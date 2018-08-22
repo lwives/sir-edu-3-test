@@ -22,7 +22,7 @@ export const ListLayout = ({ children, layout, register, className }) => {
                     <HeaderDefault texto={titulo} type="h1" />
                 </div>
                 
-                {/* <FilterSearch descriptionRegister={descriptionRegister} pathRegister={pathRegister} handleFilter={handleFilter} searchValue={searchValue} /> */}
+                <FilterSearch descriptionRegister={descriptionRegister} pathRegister={pathRegister} handleFilter={handleFilter} searchValue={searchValue} />
 
                 <div className="col-md-12">
                     <Table selectable={false}>
@@ -32,8 +32,9 @@ export const ListLayout = ({ children, layout, register, className }) => {
                             <TableRow>
                                 {
                                     visibleColumn.map((column = { name: '' }, index) => {
+                                        console.log(column.width);
                                         // style={{width: column.width}} 
-                                        return <TableHeaderColumn key={index}>{column.name}</TableHeaderColumn>
+                                        return <TableHeaderColumn style={{width: column.width}}  key={index}>{column.name}</TableHeaderColumn>
                                     })
                                 }
                             </TableRow>
