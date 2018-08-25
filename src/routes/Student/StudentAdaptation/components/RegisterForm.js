@@ -127,18 +127,7 @@ export default class RegisterForm extends React.Component {
                             />
                         </div>
                         <div className="col-md-12 col-md-offset-3 text-area">
-                            <Paper style={paperStyle} zDepth={5}>
-                                <TinyMCE
-                                    content={this.register.text}
-                                    config={{
-                                        plugins: 'link paste autoresize',
-                                        toolbar: 'undo redo | bold italic | link | alignleft aligncenter alignright',
-                                        autoresize_max_height: 1500,
-                                        statusbar: false
-                                    }}
-                                    onChange={this.handleEditorChange}
-                                />
-                            </Paper>
+                            
                         </div>
                         <div className="col-md-12">
                             <button className="btn btn-primary">Cadastrar</button>
