@@ -181,7 +181,9 @@ export default class RegisterForm extends React.Component {
                     </div><div className="col-md-6">
                         <TextField fullWidth value={this.register.otherInformation || ''} floatingLabelText="Outras informação" onChange={(evt, value) => { this.handleChange(evt, 'otherInformation', value) }} />
                     </div>
-                    <HeaderDefault texto="Histórico" type="h2" />
+                </div>
+                <HeaderDefault texto="Histórico" type="h2" />
+                <div className="row">
                     <div className="col-md-6">
                         <TextField fullWidth value={this.register.forwardingCode || ''} floatingLabelText="Código no Encaminhamento AEE" onChange={(evt, value) => { this.handleChange(evt, 'forwardingCode', value) }} />
                     </div><div className="col-md-6">
@@ -197,37 +199,38 @@ export default class RegisterForm extends React.Component {
                     </div><div className="col-md-6">
                         <TextField fullWidth value={this.register.NEES || ''} floatingLabelText="NEES *" onChange={(evt, value) => { this.handleChange(evt, 'NEES', value) }} />
                     </div>
-                    <HeaderDefault texto="SITUAÇÃO DO DESENVOLVIMENTO" type="h2" />
-                    <HeaderDefault texto={developeStatus.title} type="h3" />
-                    {
+                </div>
+                <HeaderDefault texto="SITUAÇÃO DO DESENVOLVIMENTO" type="h2" />
+                <HeaderDefault texto={developeStatus.title} type="h3" />
+                {
+                    this.developeStatusTransposed.map(rowDiv => {
+                        return <div className="row">
+                            {
+                                rowDiv.map((columnDiv) => {
+                                    return <div className="col-sm-6 col-md-4">
+                                        <TextField fullWidth value={this.register['caracter' + columnDiv.column + columnDiv.line] || ''} floatingLabelText={columnDiv.title} onChange={(evt, value) => { this.handleChange(evt, 'caracter' + columnDiv.column + columnDiv.line, value) }} />
+                                    </div>
+                                })
+                            }
+                        </div>
+                    })
 
-                        this.developeStatusTransposed.forEach(row => {
-                            <div className="row">
-                                {
-                                    row.forEach((column) => {
-                                        <div className="col-sm-6 col-md-4">
-                                            <TextField fullWidth value={this.register[column.column][column.line] || ''} floatingLabelText={column.title} onChange={(evt, value) => { this.handleChange(evt, 'this.register', value) }} />
-                                        </div>
-                                    })
-                                }
-                            </div>
-                        })
+                }
 
-                    }
-
-                    <HeaderDefault texto="SITUAÇÃO DO DESENVOLVIMENTO" type="h2" />
+                <HeaderDefault texto="DESENVOLVIMENTO" type="h2" />
+                <div className="row">
                     <div className="col-md-6">
                         <TextField fullWidth value={this.register.actionExiting || ''} floatingLabelText="Ações já existentes" onChange={(evt, value) => { this.handleChange(evt, 'actionExiting', value) }} />
                     </div><div className="col-md-6">
                         <TextField fullWidth value={this.register.actionFuture || ''} floatingLabelText="Ações a serem desenvolvidas" onChange={(evt, value) => { this.handleChange(evt, 'actionFuture', value) }} />
                     </div>
                     {/* <div className="col-md-12 col-md-offset-3 text-area">
-                        <Paper style={paperStyle} zDepth={5}>
+                    <Paper style={paperStyle} zDepth={5}>
                             <TinyMCE
-                                content={this.register.text}
-                                config={{
-                                    plugins: 'link paste autoresize',
-                                    toolbar: 'undo redo | bold italic | link | alignleft aligncenter alignright',
+                            content={this.register.text}
+                            config={{
+                                plugins: 'link paste autoresize',
+                                toolbar: 'undo redo | bold italic | link | alignleft aligncenter alignright',
                                     autoresize_max_height: 1500,
                                     statusbar: false
                                 }}
