@@ -18,10 +18,7 @@ const Footer = (pros) => {
                 <img id="logo-footer" src={logo} />
                 SR-Edu - Sistema integrado de recursos educacionais - 2018
             </div>
-            {/* <button className="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarMenuFooter" aria-controls="navbarMenuFooter" aria-expanded="false" aria-label={dict.footer.LabelMenuCollapsed}>
-                <span className="navbar-toggler-icon" />
-            </button>collapse navbar-collapse */}
-            <div className="navbar-inner " id="navbarMenuFooter">
+            <div className="navbar-inner navbar-right" id="navbarMenuFooter">
                 <ul className="nav nav-menu navbar-nav navbar-right">
                     <li className={'nav-item'} key="termos"><Link to={Paginas.termos.pathWithoutParam}>Termo de uso e privacidade</Link></li>
                     <li className={'nav-item'} key="sobre"><Link to={Paginas.sobre.pathWithoutParam}>Sobre</Link></li>
