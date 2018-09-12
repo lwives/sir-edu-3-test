@@ -32,9 +32,8 @@ export const ListLayout = ({ children, layout, register, className }) => {
                             <TableRow>
                                 {
                                     visibleColumn.map((column = { name: '' }, index) => {
-                                        console.log(column.width);
-                                        // style={{width: column.width}} 
-                                        return <TableHeaderColumn style={{width: column.width}}  key={index}>{column.name}</TableHeaderColumn>
+                                        console.log(column.style);
+                                        return <TableHeaderColumn style={column.style}  key={index}>{column.name}</TableHeaderColumn>
                                     })
                                 }
                             </TableRow>

@@ -3,8 +3,9 @@ export const setDefaultValue = (defaultValue, addRegister, getRegister) => {
     const someValueDefaultPrevious = defaultValue.some((column, index) => {
         return getRegister(Object.keys(column)[0])
     })
+    
     if (!someValueDefaultPrevious) {
-        defaultValue.forEach((column, index) => {
+        defaultValue.map((column, index) => {
             addRegister(column)
         })
     }

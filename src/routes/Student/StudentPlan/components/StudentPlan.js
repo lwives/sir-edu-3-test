@@ -21,7 +21,12 @@ export default class StudentPlan extends React.Component {
     this.openTermOfUse = false;
     this.isInitialState = true
 
-    this.tabs = []
+    this.tabs = [
+      {name: 'Identificação'},
+      {name: 'Histórico'},
+      {name: 'Situação do desenvolvimento'},
+      {name: 'Proposições'}
+    ]
 
     this.data = {
       tabs: this.tabs,
@@ -85,7 +90,7 @@ export default class StudentPlan extends React.Component {
     }
     
     return (
-      <RegisterLayout titulo="P.D.I." {...this.data}>
+      <RegisterLayout titulo="P.D.I.: Plano de Desenvolvimento Individualizado " {...this.data}>
         <div className="row register-form">
           <RegisterForm {...this.props.students} {...this.data} />
         </div>

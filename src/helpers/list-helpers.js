@@ -15,18 +15,16 @@ export const getFiltered = (registerForFilter, filterText) => {
 }
 
 let makeColumnKey = 0
-export function makeColumn(column, elementContent, link, style) {
+export function makeColumn(column, elementContent, link, style = {}) {
     var elemento
-    // if ( !style ) {
-    //     style = 
-    // }
     makeColumnKey++
     if (column.content) {
         elemento = column.content(elementContent)
     }
     if (column.link) {
         elemento = <Link to={column.link(link)} className={column.className} onClick={column.onClick}>{elemento}</Link>
-    }//  style={{width: style}}
-    elemento = <TableRowColumn style={{width: style}} key={column.name + makeColumnKey}>{elemento} </TableRowColumn>
+    }
+    elemento = <TableRowColumn style={style} key={column.name + makeColumnKey}>{elemento} </TableRowColumn>
     return elemento
 }
+// style={{width: style}}

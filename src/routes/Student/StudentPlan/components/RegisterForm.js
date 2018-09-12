@@ -1,17 +1,20 @@
 import React, { PropTypes } from 'react'
 import { DatePicker, TextField } from 'material-ui' //Checkbox, RaisedButton, SelectField, MenuItem, TextField, Button, 
-import Paper from 'material-ui/Paper'
-import TinyMCE from 'react-tinymce'
 import { setDefaultValue } from '../../../../helpers/register-helper'
 import HeaderDefault from '../../../../components/HeaderDefault';
+
+//import { withStyles } from '@material-ui/core';
 
 const defaultValue = [
     { date: new Date() }
 ];
 
-const paperStyle = {
-    marginBotton: 400
-};
+// const styles = {
+//     field: {
+//         color: 'white',
+//         height: 48
+//     }
+// };
 
 const handleChangeHelper = (event, id, valueParam) => {
     let name = '';
@@ -61,6 +64,8 @@ const developeStatus = {
     ]
 }
 
+//withStyles(styles)(RegisterForm)
+
 export default class RegisterForm extends React.Component {
     static propTypes = {
         step: PropTypes.number.isRequired,
@@ -76,6 +81,9 @@ export default class RegisterForm extends React.Component {
         this.register = {}
         setDefaultValue(defaultValue, this.addRegister, this.getRegister)
         this.registerInitialLength = this.register.lenght
+        this.InputLabelProps = {
+            shrink: true
+        }
 
         this.classes = theme => ({
             container: {
@@ -140,91 +148,97 @@ export default class RegisterForm extends React.Component {
     }
 
     addRegister = (entry, key = '', content = '') => {
-        if (entry.lenth <= 0) {
+        if (entry.length <= 0) {
             entry = { [key]: content }
         }
         this.register = {
             ...this.register,
-            entry
+            ...entry
         }
     }
 
     getRegister = (key) => {
-        return this.register[key]
+        return (key) ? this.register[key] : this.register
     }
 
     render() {
-        if (!this.register.name) {
-            this.register = { ...this.register, ...this.props.student }
-        }
+        // if (!this.register.name) {
+        //     this.register = { ...this.register, ...this.props.student }
+        // }
 
         return (
-            <form onSubmit={this.handleSubmit}>
-                <HeaderDefault texto="Identificacao" type="h2" />
-                <div className="row">
-                    <div className="col-md-6">
-                        <DatePicker DateTimeFormat={Intl.DateTimeFormat}
-                            locale="pt-br"
-                            value={this.register.date || {}}
-                            name="date"
-                            onChange={(evt, value) => { this.handleChange(evt, 'date', value.toISOString()) }}
-                            floatingLabelText="Data"
-                        />
-                    </div><div className="col-md-6">
-                        <TextField fullWidth value={this.register.extraClassActivity || ''} floatingLabelText="Título" onChange={(evt, value) => { this.handleChange(evt, 'extraClassActivity', value) }} />
-                    </div><div className="col-md-6">
-                        <TextField fullWidth value={this.register.AEE || ''} floatingLabelText="AEE **" onChange={(evt, value) => { this.handleChange(evt, 'aee', value) }} />
-                    </div><div className="col-md-6">
-                        <TextField fullWidth value={this.register.days || ''} floatingLabelText="Dias de atendimento" onChange={(evt, value) => { this.handleChange(evt, 'days', value) }} />
-                    </div><div className="col-md-6">
-                        <TextField fullWidth value={this.register.shift || ''} floatingLabelText="Turno" onChange={(evt, value) => { this.handleChange(evt, 'shift', value) }} />
-                    </div><div className="col-md-6">
-                        <TextField fullWidth value={this.register.otherInformation || ''} floatingLabelText="Outras informação" onChange={(evt, value) => { this.handleChange(evt, 'otherInformation', value) }} />
+            <form onSubmit={this.handleSubmit} className="col-md-12">
+                {this.props.step === 0 &&
+                    <div className="row">
+                        <div className="col-md-6">
+                            <DatePicker DateTimeFormat={Intl.DateTimeFormat}
+                                locale="pt-br"
+                                value={this.register.date || {}}
+                                name="date"
+                                onChange={(evt, value) => { this.handleChange(evt, 'date', value.toISOString()) }}
+                                floatingLabelText="Data"
+                            />
+                        </div><div className="col-md-3">
+                            <TextField fullWidth className="" value={this.register.days || ''} placeholder="Dias de atendimento" floatingLabelText="Dias de atendimento" onChange={(evt, value) => { this.handleChange(evt, 'days', value) }} />
+                        </div><div className="col-md-3">
+                            <TextField fullWidth value={this.register.shift || ''} floatingLabelText="Turno" onChange={(evt, value) => { this.handleChange(evt, 'shift', value) }} />
+                        </div><div className="col-md-6">
+                            <TextField fullWidth multiLine value={this.register.extraClassActivity || ''} floatingLabelText="Atividades Extra-Classe" onChange={(evt, value) => { this.handleChange(evt, 'extraClassActivity', value) }} />
+                        </div><div className="col-md-6">
+                            <TextField fullWidth multiLine value={this.register.AEE || ''} floatingLabelText="AEE **" onChange={(evt, value) => { this.handleChange(evt, 'aee', value) }} />
+                        </div><div className="col-md-6">
+                            <TextField fullWidth multiLine rows="2" value={this.register.otherInformation || ''} floatingLabelText="Outras informação" onChange={(evt, value) => { this.handleChange(evt, 'otherInformation', value) }} />
+                        </div>
                     </div>
-                </div>
-                <HeaderDefault texto="Histórico" type="h2" />
-                <div className="row">
-                    <div className="col-md-6">
-                        <TextField fullWidth value={this.register.forwardingCode || ''} floatingLabelText="Código no Encaminhamento AEE" onChange={(evt, value) => { this.handleChange(evt, 'forwardingCode', value) }} />
-                    </div><div className="col-md-6">
-                        <TextField fullWidth value={this.register.forwardingReason || ''} floatingLabelText="Motivo do encaminhamento" onChange={(evt, value) => { this.handleChange(evt, 'forwardingReason', value) }} />
-                    </div><div className="col-md-6">
-                        <TextField fullWidth value={this.register.forwardingDate || ''} floatingLabelText="Data do encaminhamento" onChange={(evt, value) => { this.handleChange(evt, 'forwardingDate', value) }} />
-                    </div><div className="col-md-6">
-                        <TextField fullWidth value={this.register.familyDinamics || ''} floatingLabelText="Dinâmica Familiar" onChange={(evt, value) => { this.handleChange(evt, 'familyDinamics', value) }} />
-                    </div><div className="col-md-6">
-                        <TextField fullWidth value={this.register.historical || ''} floatingLabelText="Histórico Escolar" onChange={(evt, value) => { this.handleChange(evt, 'historical', value) }} />
-                    </div><div className="col-md-6">
-                        <TextField fullWidth value={this.register.attendance || ''} floatingLabelText="Atendimento (especializado)*" onChange={(evt, value) => { this.handleChange(evt, 'attendance', value) }} />
-                    </div><div className="col-md-6">
-                        <TextField fullWidth value={this.register.NEES || ''} floatingLabelText="NEES *" onChange={(evt, value) => { this.handleChange(evt, 'NEES', value) }} />
+                }
+                {this.props.step === 1 &&
+                    <div className="row">
+                        <div className="col-md-4">
+                            <TextField fullWidth value={this.register.forwardingCode || ''} floatingLabelText="Código no Encaminhamento AEE" onChange={(evt, value) => { this.handleChange(evt, 'forwardingCode', value) }} />
+                        </div><div className="col-md-4">
+                            <TextField fullWidth value={this.register.forwardingDate || ''} floatingLabelText="Data do encaminhamento" onChange={(evt, value) => { this.handleChange(evt, 'forwardingDate', value) }} />
+                        </div><div className="col-md-6">
+                            <TextField fullWidth multiLine rows="2" value={this.register.forwardingReason || ''} floatingLabelText="Motivo do encaminhamento" onChange={(evt, value) => { this.handleChange(evt, 'forwardingReason', value) }} />
+                        </div><div className="col-md-6">
+                            <TextField fullWidth multiLine rows="2" value={this.register.familyDinamics || ''} floatingLabelText="Dinâmica Familiar" onChange={(evt, value) => { this.handleChange(evt, 'familyDinamics', value) }} />
+                        </div><div className="col-md-6">
+                            <TextField fullWidth multiLine rows="2" value={this.register.historical || ''} floatingLabelText="Histórico Escolar" onChange={(evt, value) => { this.handleChange(evt, 'historical', value) }} />
+                        </div><div className="col-md-6">
+                            <TextField fullWidth multiLine rows="2" value={this.register.attendance || ''} floatingLabelText="Atendimento (especializado)*" onChange={(evt, value) => { this.handleChange(evt, 'attendance', value) }} />
+                        </div><div className="col-md-6">
+                            <TextField fullWidth multiLine rows="2" value={this.register.NEES || ''} floatingLabelText="NEES *" onChange={(evt, value) => { this.handleChange(evt, 'NEES', value) }} />
+                        </div>
                     </div>
-                </div>
-                <HeaderDefault texto="SITUAÇÃO DO DESENVOLVIMENTO" type="h2" />
-                <HeaderDefault texto={developeStatus.title} type="h3" />
-                {
-                    this.developeStatusTransposed.map(rowDiv => {
-                        return <div className="row">
+                }
+                {this.props.step === 2 &&
+                    <div className="row">
+                        <div className="col-md-12">
+                            <HeaderDefault texto={developeStatus.title} type="h3" />
                             {
-                                rowDiv.map((columnDiv) => {
-                                    return <div className="col-sm-6 col-md-4">
-                                        <TextField fullWidth value={this.register['caracter' + columnDiv.column + columnDiv.line] || ''} floatingLabelText={columnDiv.title} onChange={(evt, value) => { this.handleChange(evt, 'caracter' + columnDiv.column + columnDiv.line, value) }} />
+                                this.developeStatusTransposed.map(rowDiv => {
+                                    return <div className="row">
+                                        {
+                                            rowDiv.map((columnDiv) => {
+                                                return <div className="col-sm-6 col-md-4">
+                                                    <TextField fullWidth multiLine rows="2" rowsMax="4" value={this.register['caracter' + columnDiv.column + columnDiv.line] || ''} floatingLabelText={columnDiv.title} onChange={(evt, value) => { this.handleChange(evt, 'caracter' + columnDiv.column + columnDiv.line, value) }} />
+                                                </div>
+                                            })
+                                        }
                                     </div>
                                 })
                             }
                         </div>
-                    })
-
-                }
-
-                <HeaderDefault texto="DESENVOLVIMENTO" type="h2" />
-                <div className="row">
-                    <div className="col-md-6">
-                        <TextField fullWidth value={this.register.actionExiting || ''} floatingLabelText="Ações já existentes" onChange={(evt, value) => { this.handleChange(evt, 'actionExiting', value) }} />
-                    </div><div className="col-md-6">
-                        <TextField fullWidth value={this.register.actionFuture || ''} floatingLabelText="Ações a serem desenvolvidas" onChange={(evt, value) => { this.handleChange(evt, 'actionFuture', value) }} />
                     </div>
-                    {/* <div className="col-md-12 col-md-offset-3 text-area">
+                }
+                {this.props.step === 3 &&
+                    <div className="row">
+                        <HeaderDefault texto="Plano de Intervenção Pedagógica" type="h3" />
+                        <div className="col-md-12">
+                            <TextField fullWidth multiLine rows="4" value={this.register.actionExiting || ''} floatingLabelText="Ações já existentes" onChange={(evt, value) => { this.handleChange(evt, 'actionExiting', value) }} />
+                        </div><div className="col-md-12">
+                            <TextField fullWidth multiLine rows="4" value={this.register.actionFuture || ''} floatingLabelText="Ações a serem desenvolvidas" onChange={(evt, value) => { this.handleChange(evt, 'actionFuture', value) }} />
+                        </div>
+                        {/* <div className="col-md-12 col-md-offset-3 text-area">
                     <Paper style={paperStyle} zDepth={5}>
                             <TinyMCE
                             content={this.register.text}
@@ -238,21 +252,21 @@ export default class RegisterForm extends React.Component {
                             />
                         </Paper>
                     </div> */}
-                    <div className="col-md-12">
-                        <button className="btn btn-primary">Cadastrar</button>
-                        {/* btn Gerar .doc
+                        <div className="col-md-12">
+                            <button className="btn btn-primary">Cadastrar</button>
+                            {/* btn Gerar .doc
                         btn Gerar Apresentações
                         btn Gerar pdf
                         btn Gerar Imprimir */}
+                        </div>
                     </div>
-                </div>
+                }
             </form>
         )
     }
 }
 
 /*
-Data:
 
 DADOS DE OUTROS CADASTROS
 Escola
@@ -267,54 +281,6 @@ Turma
 Professores
 Endereço
 Contatos
-
-
-Atividades Extra-Classes: 	
-AEE:
-Dias: 	
-Turno:
-Outras Informações: 
-
-HISTORICO 	
-Encaminhamento AEE: 	
-Motivo Principal: 
-Data:
-Dinâmica Familiar: 
-Histórico Escolar: 
-Atendimento(especializados): 
-NEES:
-
-SITUAÇÃO DO DESENVOLVIMENTO:
-*Anacronismos e Habilidades:
-**Funções Cognitiva:
-	
-**Funções Interativas Sociais:
-	
-**Funções Motora:
--Memória (Curto/Longo Prazo): 
-Relações Interpessoais: 
-Dinâmica Geral - Controle das ações motoras: 
--Raciocínio Lógico: 
-Relações Comportamentais: 
-Execução e intencionalidade: 
--Linguagem:
-Autonomia:
-Flexibilidade, tonicidade, movimentos involuntários: 
--Atenção:
-Relações Culturais:
-Lateralidade e domínio de esquema corporal: 
--Percepção:
-Auto-imagem, auto-estima: 
-Equilíbrio estático e dinâmico: 
--Funções Executivas:
-Resolução de conflitos: 
-Compensações motoras:
-
-------------
-PROPOSIÇÕES
-*PLANO DE INTERVENÇÃO PEDAGÓGICA
-Ações já existentes: textarea
-Ações a serem desenvolvidas: textarea
 
 btn Gerar .doc
 btn Gerar Apresentações

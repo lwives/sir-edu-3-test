@@ -31,35 +31,35 @@ export default class StudentListTable extends React.Component {
     this.visibleColumn = [
       {
         name: 'Foto',
-        width: 100,
+        style: {width: 100},
         content: (avatar) => { return <Avatar src={avatar} className="student-avatar pull-left" size={45} /> }
       },
       {
         name: 'Nome',
-        width: 200,
+        style: {width: 'auto'},
         content: returnParameter,
         link: returnParameter
       },
       {
         name: 'Escola',
-        width: 200,
+        style: {width: 200},
         content: returnParameter
       },
       {
         name: 'Turma',
-        width: 150,
+        style: {width: 150},
         content: returnParameter
       },
       {
         name: 'Editar',
-        width: 120,
+        style: {width: 120},
         className: 'register-edit',
         content: () => { return <span><i className="fa fa-pencil-square-o fa-lg" /> Editar</span> },
         link: (_id) => { return StudentRegister.pathWithoutParam + _id + '/editar' }
       },
       {
         name: 'Excluir',
-        width: 220,
+        style: {width: 120},
         className: 'register-remove',
         content: () => { return <span><i className="fa fa-user-times fa-lg" /> Excluir</span> },
         link: (_id) => { return StudentRegister.pathWithoutParam + _id + '/excluir' }
@@ -143,7 +143,7 @@ export default class StudentListTable extends React.Component {
                           break
                       }
                       
-                      return makeColumn(column, elementContent, link, column.width)
+                      return makeColumn(column, elementContent, link, column.style)
                     })
                     }
                   </TableRow>
