@@ -18,7 +18,7 @@ export default class StudentListTable extends React.Component {
     filterStudents: React.PropTypes.func.isRequired,
     getStudentsList: React.PropTypes.func,
     students: React.PropTypes.object,
-    filterText: React.PropTypes.string,
+    //filterText: React.PropTypes.string,
     setSelectedStudent: React.PropTypes.func
   }
 
@@ -102,7 +102,8 @@ export default class StudentListTable extends React.Component {
   render() {
     const { students, filterText, setSelectedStudent } = this.props
     let filteredRegister
-    filteredRegister = getFiltered(students.list, filterText || '')
+    
+    filteredRegister = getFiltered(students.list,  (typeof filterText !== 'string') ? '' : filterText);
 
     return (
       <ListLayout className="list" layout={this.layoutData} register={this.register}>

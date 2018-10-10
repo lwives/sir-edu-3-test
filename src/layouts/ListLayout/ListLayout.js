@@ -9,7 +9,7 @@ import '../../styles/core.scss'
 import AlertNothingFound from '../../components/AlertNothingFound'
 
 export const ListLayout = ({ children, layout, register, className }) => {
-    const { handleFilter, searchValue, descriptionRegister = 'aluno', pathRegister = '/aluno/', lenght, textNothingFound } = register
+    const { handleFilter, searchValue, descriptionRegister = 'aluno', pathRegister = '/aluno/register/', lenght, textNothingFound } = register
     const { visibleColumn, titulo } = layout
     
     return (
@@ -32,7 +32,7 @@ export const ListLayout = ({ children, layout, register, className }) => {
                             <TableRow>
                                 {
                                     visibleColumn.map((column = { name: '' }, index) => {
-                                        console.log(column.style);
+                                        //console.log(column.style);
                                         return <TableHeaderColumn style={column.style}  key={index}>{column.name}</TableHeaderColumn>
                                     })
                                 }

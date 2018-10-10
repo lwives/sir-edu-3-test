@@ -36,17 +36,7 @@ export default class RegisterForm extends React.Component {
         this.defaultValue()
         this.registerInitialLength = this.register.lenght
     
-    this.classes = theme => ({
-        container: {
-          display: 'flex',
-          flexWrap: 'wrap'
-        },
-        textField: {
-          marginLeft: 10, //theme.spacing.unit,
-          marginRight: 100, //theme.spacing.unit,
-          width: 200
-        }
-      })
+        this.classes = { textField: 'textField' }
     }
 
     defaultValue = () => {
@@ -93,15 +83,15 @@ export default class RegisterForm extends React.Component {
     }
     
     addRegister = (entry, key = '', content = '') => {
-        console.log(entry);
         
         if (entry.lenth <= 0) { 
             entry = {[key]: content}
         }
         this.register = {
             ...this.register,
-            entry
+            ...entry
         }
+        console.log(this.register);
     }
 
     showTermOfUse = () => {
@@ -112,6 +102,7 @@ export default class RegisterForm extends React.Component {
         if (!this.register.name) {
             this.register = { ...this.register, ...this.props.selectedStudent }
         }
+        console.log(this.register)
 
         return (
             <form onSubmit={this.handleSubmit}>
