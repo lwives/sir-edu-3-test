@@ -49,6 +49,7 @@ function failure(type, message) {
 }
 
 function modifiedSchool(school, run) {
+  console.log('run');
   return dispatch => {
     dispatch(request(SAVE_SCHOOL_REQUEST));
     console.log(run);
@@ -111,7 +112,7 @@ export function setSelectedSchool(school) {
 export function getSchool(idShow) {
   return dispatch => {
     dispatch(request(GET_SCHOOL_RESQUEST))
-    return schoolService.getStudent(idShow).then((res) => {
+    return schoolService.getSchool(idShow).then((res) => {
       dispatch(success(GET_SCHOOL_SUCESS, 'school', res.data));
     })
       .catch((err) => {

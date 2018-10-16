@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { DatePicker, RaisedButton, TextField } from 'material-ui' //Checkbox, RaisedButton, SelectField, MenuItem, TextField, Button, 
+import { DatePicker, TextField } from 'material-ui' //Checkbox, RaisedButton, SelectField, MenuItem, TextField, Button, 
 import Dropzone from '../../../../components/Dropzone'
 import MultipleCheckboxes from './MultipleCheckboxes'
 import { specialNeeds } from '../../../../constants/necessidadesEspeciais'
@@ -83,7 +83,6 @@ export default class RegisterForm extends React.Component {
     }
     
     addRegister = (entry, key = '', content = '') => {
-        
         if (entry.lenth <= 0) { 
             entry = {[key]: content}
         }
@@ -128,23 +127,23 @@ export default class RegisterForm extends React.Component {
                         </div><div className="col-md-6">
                             <TextField fullWidth className={this.classes.textField} value={this.register.motherName || ''} type="text" name="motherName" onChange={this.handleChange} floatingLabelText="Nome da Mãe:" />
                         </div><div className="col-md-2">
-                            <TextField fullWidth className={this.classes.textField} value={this.register.motherPhone || ''} type="number" name="phoneNumber" onChange={this.handleChange} floatingLabelText="Telefone na Mãe:" />
+                            <TextField fullWidth className={this.classes.textField} value={this.register.motherPhone || ''} type="phone" name="motherPhone" onChange={this.handleChange} floatingLabelText="Telefone na Mãe:" />
                         </div><div className="col-md-4">
-                            <TextField fullWidth className={this.classes.textField} value={this.register.motherEmail || ''} type="email" name="email" onChange={this.handleChange} floatingLabelText="E-mail da Mãe:" />
+                            <TextField fullWidth className={this.classes.textField} value={this.register.motherEmail || ''} type="email" name="motherEmail" onChange={this.handleChange} floatingLabelText="E-mail da Mãe:" />
                         </div><div className="col-md-6">
                             <TextField fullWidth className={this.classes.textField} value={this.register.fatherName || ''} type="text" name="fatherName" onChange={this.handleChange} floatingLabelText="Nome do Pai:" />
                         </div><div className="col-md-2">
-                            <TextField fullWidth className={this.classes.textField} value={this.register.fatherPhone || ''} type="number" name="phoneNumber" onChange={this.handleChange} floatingLabelText="Telefone do Pai:" />
+                            <TextField fullWidth className={this.classes.textField} value={this.register.fatherPhone || ''} type="phone" name="fatherPhone" onChange={this.handleChange} floatingLabelText="Telefone do Pai:" />
                         </div><div className="col-md-4">
-                            <TextField fullWidth className={this.classes.textField} value={this.register.fatherEmail || ''} type="email" name="email" onChange={this.handleChange} floatingLabelText="E-mail do Pai:" />
+                            <TextField fullWidth className={this.classes.textField} value={this.register.fatherEmail || ''} type="email" name="fatherEmail" onChange={this.handleChange} floatingLabelText="E-mail do Pai:" />
                         </div><div className="col-md-4">
                             <TextField fullWidth className={this.classes.textField} value={this.register.responsible || ''} type="text" name="responsible" onChange={this.handleChange} floatingLabelText="Nome do Responsável:" />
                         </div><div className="col-md-2">
                             <TextField fullWidth className={this.classes.textField} value={this.register.relationship || ''} type="text" name="relationship" onChange={this.handleChange} floatingLabelText="Parentesco:" />
                         </div><div className="col-md-2">
-                            <TextField fullWidth className={this.classes.textField} value={this.register.responsiblePhone || ''} type="number" name="fatherPhone" onChange={this.handleChange} floatingLabelText="Telefone do Respons.:" />
+                            <TextField fullWidth className={this.classes.textField} value={this.register.responsiblePhone || ''} type="phone" name="responsiblePhone" onChange={this.handleChange} floatingLabelText="Telefone do Respons.:" />
                         </div><div className="col-md-4">
-                            <TextField fullWidth className={this.classes.textField} value={this.register.responsibleEmail || ''} type="email" name="fatherEmail" onChange={this.handleChange} floatingLabelText="E-mail do Responsável:" />
+                            <TextField fullWidth className={this.classes.textField} value={this.register.responsibleEmail || ''} type="email" name="responsibleEmail" onChange={this.handleChange} floatingLabelText="E-mail do Responsável:" />
                         </div><div className="col-md-6">
                             <TextField fullWidth className={this.classes.textField} value={this.register.adress || ''} type="text" name="adress" onChange={this.handleChange} floatingLabelText="Endereço:" />
                         </div><div className="col-md-6">

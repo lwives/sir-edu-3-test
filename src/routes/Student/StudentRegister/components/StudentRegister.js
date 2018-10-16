@@ -14,8 +14,6 @@ export default class StudentRegister extends React.Component {
       modo: React.string,
       id: React.string
     })
-    // id: PropTypes.string,
-    // modo: PropTypes.string
   }
 
   constructor(props) {
@@ -25,14 +23,12 @@ export default class StudentRegister extends React.Component {
     }
 
     this.openTermOfUse = false;
-    // console.log('Id: ' + props.params.id)
-    // console.log('modo: ' + props.params.modo)
-    this.isInitialState = true
+    this.isInitialState = true;
 
     this.tabs = [
       { name: 'Dados do aluno' },
       { name: 'Dados da Escola' },
-      { name: 'NEE' }]
+      { name: 'NEE' }];
 
     this.data = {
       tabs: this.tabs,
@@ -42,7 +38,6 @@ export default class StudentRegister extends React.Component {
       handlePrev: this.handlePrev,
       step: this.state.stepIndex
     }
-    //this.props.selectedStudent
   }
 
   handleSetStepindex = (newState) => {
