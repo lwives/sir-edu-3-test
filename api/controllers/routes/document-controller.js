@@ -1,20 +1,20 @@
 'use strict';
 
 const router = require('express').Router();
-const JudgementService = require('../../models/services/judgement-service');
-const judgementService = new JudgementService();
+const DocumentService = require('../../models/services/document-service');
+const documentService = new DocumentService();
 
-router.post('/judgement', function(req, res, next) {
-    let newJudgement = {
+router.post('/document', function(req, res, next) {
+    let newDocument = {
         _createdBy: req.user._id,
         _studentId: req.body.studentId,
         title: req.body.title || '',
         text: req.body.text || '',
         date: req.body.date || '',
-        type: 'judgement'
+        type: 'document'
     };
 
-    judgementService.save(newJudgement)
+    documentService.save(newDocument)
         .then((data) => {
             res.json(data);
         })
@@ -24,8 +24,8 @@ router.post('/judgement', function(req, res, next) {
     });
 });
 
-router.get('/judgement', function(req, res, next) {
-    judgementService.find({ _createdBy: req.user._id, _studentId: req.query.studentId })
+router.get('/document', function(req, res, next) {
+    documentService.find({ _createdBy: req.user._id, _studentId: req.query.studentId })
         .then((data) => {
             res.json(data);
         })
@@ -37,8 +37,8 @@ router.get('/judgement', function(req, res, next) {
 });
 
 //TODO check if user has control over the student
-router.get('/judgement/:id', function(req, res, next) {
-    judgementService.findById(req.params.id)
+router.get('/document/:id', function(req, res, next) {
+    documentService.findById(req.params.id)
         .then((data) => {
             res.json(data);
         })
@@ -47,11 +47,11 @@ router.get('/judgement/:id', function(req, res, next) {
         })
 });
 
-router.delete('/judgement/:id', function(req, res, next) {
+router.delete('/document/:id', function(req, res, next) {
     res.end();
 });
 
-router.put('/judgement', function(req, res, next) {
+router.put('/document', function(req, res, next) {
     res.end();
 });
 

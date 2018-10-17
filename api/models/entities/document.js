@@ -3,7 +3,7 @@
 let mongoose = require('mongoose'),
  Schema = mongoose.Schema;
 
-let JudgementSchema = new Schema({
+let DocumentSchema = new Schema({
   _createdBy: { type: String, ref: 'User' },
   _studentId: { type: String, ref: 'Student' },
   title: { type: String },
@@ -13,6 +13,6 @@ let JudgementSchema = new Schema({
  });
 
 // set up a mongoose model
-const Judgement = mongoose.model('Judgement', JudgementSchema);
+const Document = mongoose.model('Document', DocumentSchema);
 
-module.exports = Judgement;
+module.exports = Document;

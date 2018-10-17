@@ -5,7 +5,11 @@ let Route = {
     School: '/schools',
     User: '/users',
     Files: '/files',
-    Judgement: '/judgements'
+    Judgement: '/judgements',
+    Sight: '/sight',
+    Adaptation: '/adaptation',
+    Attendance: '/attendance',
+    Plan: '/plan'
 }
 
 module.exports = Route
