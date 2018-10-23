@@ -101,7 +101,6 @@ export default class RegisterForm extends React.Component {
         // if (!this.register.name) {
         //     this.register = { ...this.register, ...this.props.student }
         // }
-        console.log(this.register);
 
         return (
             <form onSubmit={this.handleSubmit}>

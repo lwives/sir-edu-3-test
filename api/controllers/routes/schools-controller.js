@@ -17,8 +17,6 @@ router.post('/schools', function (req, res, next) {
 });
 
 router.get('/schools', function (req, res, next) {
-    //console.log('list schools. Route:');
-    //console.log(schoolService);
 
     // schoolService.find() //{ _createdBy: req.user._id })
     schoolService.getAll()

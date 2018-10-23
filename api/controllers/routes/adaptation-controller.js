@@ -1,20 +1,20 @@
 'use strict';
 
 const router = require('express').Router();
-const JudgementService = require('../../models/services/judgement-service');
-const judgementService = new JudgementService();
+const AdaptationService = require('../../models/services/adaptation-service');
+const adaptationService = new AdaptationService();
 
-router.post('/judgement', function(req, res, next) {
-    let newJudgement = {
+router.post('/adaptation', function(req, res, next) {
+    let newAdaptation = {
         _createdBy: req.user._id,
         _studentId: req.body.studentId,
         title: req.body.title || '',
         text: req.body.text || '',
         date: req.body.date || '',
-        type: 'judgement'
+        type: 'adaptation'
     };
 
-    judgementService.save(newJudgement)
+    adaptationService.save(newAdaptation)
         .then((data) => {
             res.json(data);
         })
@@ -24,8 +24,8 @@ router.post('/judgement', function(req, res, next) {
     });
 });
 
-router.get('/judgement', function(req, res, next) {
-    judgementService.find({ _createdBy: req.user._id, _studentId: req.query.studentId })
+router.get('/adaptation', function(req, res, next) {
+    adaptationService.find({ _createdBy: req.user._id, _studentId: req.query.studentId })
         .then((data) => {
             res.json(data);
         })
@@ -37,8 +37,8 @@ router.get('/judgement', function(req, res, next) {
 });
 
 //TODO check if user has control over the student
-router.get('/judgement/:id', function(req, res, next) {
-    judgementService.findById(req.params.id)
+router.get('/adaptation/:id', function(req, res, next) {
+    adaptationService.findById(req.params.id)
         .then((data) => {
             res.json(data);
         })
@@ -47,11 +47,11 @@ router.get('/judgement/:id', function(req, res, next) {
         })
 });
 
-router.delete('/judgement/:id', function(req, res, next) {
+router.delete('/adaptation/:id', function(req, res, next) {
     res.end();
 });
 
-router.put('/judgement', function(req, res, next) {
+router.put('/adaptation', function(req, res, next) {
     res.end();
 });
 

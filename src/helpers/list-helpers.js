@@ -7,6 +7,8 @@ export const getFiltered = (registerForFilter, filterText) => {
         return registerForFilter.filter(register => {
             if (register.name) {
                 const name = register.name.toLowerCase()
+                console.log(filterText);
+                
                 const filter = filterText.toLowerCase()
                 return name.includes(filter)
             }

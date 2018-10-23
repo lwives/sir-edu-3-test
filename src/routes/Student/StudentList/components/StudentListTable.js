@@ -102,8 +102,9 @@ export default class StudentListTable extends React.Component {
   render() {
     const { students, filterText, setSelectedStudent } = this.props
     let filteredRegister
+    //console.log(filterText);
     
-    filteredRegister = getFiltered(students.list,  (typeof filterText !== 'string') ? '' : filterText);
+    filteredRegister = getFiltered(students.list, ''); //filterText || 
 
     return (
       <ListLayout className="list" layout={this.layoutData} register={this.register}>
