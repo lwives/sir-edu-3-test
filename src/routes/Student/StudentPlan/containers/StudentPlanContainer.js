@@ -1,12 +1,12 @@
 import { connect } from 'react-redux'
-import { insertStudent, editStudent, deleteStudent, getStudent } from 'store/students'
+import { insertPlan, editPlan, deletePlan, getPlan } from 'store/plans'
 import StudentPlan from '../components/StudentPlan'
 
 const mapDispatchToProps = {
-    insertStudent,
-    getStudent,
-    editStudent,
-    deleteStudent
+    insertPlan,
+    getPlan,
+    editPlan,
+    deletePlan
 }
 
 const mapStateToProps = (state) => ({

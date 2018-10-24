@@ -1,12 +1,12 @@
 import { connect } from 'react-redux'
-import { insertStudent, editStudent, deleteStudent, getStudent } from 'store/students'
+import { insertAdaptation, editAdaptation, deleteAdaptation, getAdaptation } from 'store/adaptation'
 import StudentAdaptation from '../components/StudentAdaptation'
 
 const mapDispatchToProps = {
-    insertStudent,
-    getStudent,
-    editStudent,
-    deleteStudent
+    insertAdaptation,
+    getAdaptation,
+    editAdaptation,
+    deleteAdaptation
 }
 
 const mapStateToProps = (state) => ({

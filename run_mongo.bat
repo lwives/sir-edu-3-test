@@ -9,7 +9,7 @@ goto fim
 
 :trabalho
 echo "trabalho"
-mongod --dbpath ..\data\ --storageEngine=mmapv1 
+\prog\mongodb\bin\mongod --dbpath ..\data\ 
 goto fim
 
 :casa
@@ -17,5 +17,6 @@ echo "casa"
 mongod --dbpath ..\data\ 
 goto fim
 "%2"
+--storageEngine=mmapv1 
 --storageEngine=wiredTiger 
 :fim
