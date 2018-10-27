@@ -32,9 +32,9 @@ export default class FilterSearch extends React.Component {
                             </button>
                         </div>
                         <div className="input-group-btn col-2">
-                            <button className="btn btn-secondary">
-                                <Link to={pathRegister + '0/' + 'inserir'}>Cadastrar {descriptionRegister}</Link>
-                            </button>
+                            {/*<button className="btn btn-secondary">*/}
+                                <Link className="btn btn-secondary" to={pathRegister + '0/' + 'inserir'}>Cadastrar {descriptionRegister}</Link>
+                            {/*</button>*/}
                         </div>
                     </form>
                 </div>
