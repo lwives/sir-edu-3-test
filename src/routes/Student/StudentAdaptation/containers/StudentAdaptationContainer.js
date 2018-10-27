@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { insertAdaptation, editAdaptation, deleteAdaptation, getAdaptation } from 'store/adaptation'
+import { insertAdaptation, editAdaptation, deleteAdaptation, getAdaptation } from 'store/adaptations'
 import StudentAdaptation from '../components/StudentAdaptation'
 
 const mapDispatchToProps = {
