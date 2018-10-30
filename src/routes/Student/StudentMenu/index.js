@@ -1,6 +1,6 @@
 import StudentMenuContainer from './containers/StudentMenuContainer'
 import StudentFiles from '../../StudentFiles'
-import SightRoute from '../../Sight'
+import SightRoute from '../Sight'
 import StudentAdaptation from '../StudentAdaptation';
 import StudentAttendance from '../StudentAttendance';
 import StudentPlan from '../StudentPlan';

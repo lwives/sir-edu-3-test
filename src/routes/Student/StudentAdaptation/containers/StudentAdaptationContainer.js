@@ -6,11 +6,16 @@ const mapDispatchToProps = {
     insertAdaptation,
     getAdaptation,
     editAdaptation,
-    deleteAdaptation
+    deleteAdaptation,
+    // saveJudgement,
+    // getFiles,
+    // clearJudgementState
 }
 
 const mapStateToProps = (state) => ({
-    students: state.students
+    students: state.students.list,
+    files: state.files,
+    judgement: state.judgements
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentAdaptation)

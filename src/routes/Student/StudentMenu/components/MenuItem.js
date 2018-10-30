@@ -6,7 +6,7 @@ import StudentAttendance from '../../StudentAttendance';
 import StudentAdaptation from '../../StudentAdaptation';
 import StudentPlan from '../../StudentPlan';
 import StudentRegister from '../../StudentRegister';
-import Sight from '../../../Sight'
+import Sight from '../../Sight'
 import HeaderDefault from '../../../../components/HeaderDefault';
 
 export const MenuItem = (props) => (

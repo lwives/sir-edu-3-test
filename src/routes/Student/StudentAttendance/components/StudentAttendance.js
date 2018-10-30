@@ -5,7 +5,7 @@ import RegisterForm from './RegisterForm';
 
 export default class StudentAttendance extends React.Component {
   static propTypes = {
-    getStudent: PropTypes.func.isRequired,
+    // getStudent: PropTypes.func.isRequired,
     students: PropTypes.object,
     params: PropTypes.shape({
       id: PropTypes.string,

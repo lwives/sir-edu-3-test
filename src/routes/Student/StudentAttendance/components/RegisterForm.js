@@ -96,7 +96,7 @@ export default class RegisterForm extends React.Component {
         }
         this.register = {
             ...this.register,
-            entry
+            ...entry
         }
     }
 
@@ -128,6 +128,7 @@ export default class RegisterForm extends React.Component {
                                 fullWidth
                                 value={this.register.title || ''}
                                 floatingLabelText="Título"
+                                name="title"
                                 onChange={(evt, value) => { this.handleChange(evt, 'title', value) }}
                             />
                         </div>
@@ -141,7 +142,7 @@ export default class RegisterForm extends React.Component {
                             />
                         </div>
                         <div className="col-md-12 col-md-offset-3 text-area">
-                            <Paper style={paperStyle} zDepth={5}>
+                            <Paper style={paperStyle} zDepth={5} name="paper">
                                 <TinyMCE
                                     content={this.register.text}
                                     config={{
@@ -155,6 +156,7 @@ export default class RegisterForm extends React.Component {
                             </Paper>
                         </div>
                         <div className="col-md-12">
+                            <button className="btn btn-secundary btn-actions" label="Cancelar" onClick={this.handleCancel} />
                             <button className="btn btn-primary">Cadastrar</button>
                         </div>
                     </div>

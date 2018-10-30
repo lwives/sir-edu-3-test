@@ -12,6 +12,7 @@ const defaultValue = [
 const handleChangeHelper = (event, id, valueParam) => {
     let name = '';
     let value = null;
+console.log(event.target);
 
     if (event) {
         name = event.target.name;
@@ -39,17 +40,7 @@ export default class RegisterForm extends React.Component {
         setDefaultValue(defaultValue, this.addRegister, this.getRegister)
         this.registerInitialLength = this.register.lenght
 
-        this.classes = theme => ({
-            container: {
-                display: 'flex',
-                flexWrap: 'wrap'
-            },
-            textField: {
-                marginLeft: 10, //theme.spacing.unit,
-                marginRight: 100, //theme.spacing.unit,
-                width: 200
-            }
-        })
+        this.classes = '';
     }
 
     handleChange = (event, id, valueParam) => {
@@ -84,6 +75,8 @@ export default class RegisterForm extends React.Component {
     }
 
     addRegister = (entry, key = '', content = '') => {
+        console.log(entry, key, content);
+        
         if (entry.length <= 0) {
             entry = { [key]: content }
         }
@@ -91,6 +84,7 @@ export default class RegisterForm extends React.Component {
             ...this.register,
             ...entry
         }
+        console.log(this.register);
     }
 
     getRegister = (key) => {
@@ -116,15 +110,15 @@ export default class RegisterForm extends React.Component {
                                     floatingLabelText="Data"
                                 />
                             </div><div className="col-md-3">
-                                <TextField fullWidth className={this.classes.field} value={this.register.grade || ''} placeholder="Série/Etapa" floatingLabelText="Série/Etapa" onChange={(evt, value) => { this.handleChange(evt, 'grade', value) }} />
+                                <TextField fullWidth className={this.classes} value={this.register.grade || ''} placeholder="Série/Etapa" name="grade" floatingLabelText="Série/Etapa" onChange={(evt, value) => { this.handleChange(evt, 'grade', value) }} />
                             </div><div className="col-md-3">
-                                <TextField fullWidth className={this.classes.field} value={this.register.class || ''} placeholder="Turma" floatingLabelText="Turma" onChange={(evt, value) => { this.handleChange(evt, 'class', value) }} />
+                                <TextField fullWidth className={this.classes} value={this.register.class || ''} placeholder="Turma" name="class" floatingLabelText="Turma" onChange={(evt, value) => { this.handleChange(evt, 'class', value) }} />
                             </div><div className="col-md-3">
-                                <TextField fullWidth className={this.classes.field} value={this.register.period || ''} placeholder="Trimestre" floatingLabelText="Trimestre" onChange={(evt, value) => { this.handleChange(evt, 'period', value) }} />
+                                <TextField fullWidth className={this.classes} value={this.register.period || ''} placeholder="Trimestre" name="period" floatingLabelText="Trimestre" onChange={(evt, value) => { this.handleChange(evt, 'period', value) }} />
                             </div><div className="col-md-6">
-                                <TextField fullWidth className={this.classes.field} value={this.register.matters || ''} placeholder="Matéria/Área" floatingLabelText="Matéria/Área" onChange={(evt, value) => { this.handleChange(evt, 'matters', value) }} />
+                                <TextField fullWidth className={this.classes} value={this.register.matters || ''} placeholder="Matéria/Área" name="matters" floatingLabelText="Matéria/Área" onChange={(evt, value) => { this.handleChange(evt, 'matters', value) }} />
                             </div><div className="col-md-6">
-                                <TextField fullWidth className={this.classes.field} value={this.register.teacher || ''} placeholder="Professor" floatingLabelText="Professor" onChange={(evt, value) => { this.handleChange(evt, 'teacher', value) }} />
+                                <TextField fullWidth className={this.classes} value={this.register.teacher || ''} placeholder="Professor" name="teacher" floatingLabelText="Professor" onChange={(evt, value) => { this.handleChange(evt, 'teacher', value) }} />
                             </div>
                         </div>
                         <div className="row">
@@ -132,25 +126,25 @@ export default class RegisterForm extends React.Component {
                         </div>
                         <div className="row">
                             <div className="col-md-6">
-                                <TextField fullWidth multiLine rows="3" className={this.classes.field} value={this.register.adaptationHistoric || ''} placeholder="Histórico" floatingLabelText="Histórico" onChange={(evt, value) => { this.handleChange(evt, 'adaptationHistoric', value) }} />
+                                <TextField fullWidth multiLine rows={3} className={this.classes} value={this.register.adaptationHistoric || ''} placeholder="Histórico" name="adaptationHistoric" floatingLabelText="Histórico" onChange={(evt, value) => { this.handleChange(evt, 'adaptationHistoric', value) }} />
                             </div><div className="col-md-6">
-                                <TextField fullWidth multiLine rows="3" className={this.classes.field} value={this.register.adaptationNeed || ''} placeholder="Necessidade" floatingLabelText="Necessidade" onChange={(evt, value) => { this.handleChange(evt, 'adaptationNeed', value) }} />
+                                <TextField fullWidth multiLine rows={3} className={this.classes} value={this.register.adaptationNeed || ''} placeholder="Necessidade" name="adaptationNeed" floatingLabelText="Necessidade" onChange={(evt, value) => { this.handleChange(evt, 'adaptationNeed', value) }} />
                             </div><div className="col-md-6">
                                 <HeaderDefault texto="Programação" type="h4" />
                             </div><div className="col-md-6">
                                 <HeaderDefault texto="Sugestão" type="h4" />
                             </div><div className="col-md-6">
-                                <TextField fullWidth multiLine rows="3" className={this.classes.field} value={this.register.programGoals || ''} placeholder="Objetivos" floatingLabelText="Objetivos" onChange={(evt, value) => { this.handleChange(evt, 'programGoals', value) }} />
+                                <TextField fullWidth multiLine rows={3} className={this.classes} value={this.register.programGoals || ''} placeholder="Objetivos" name="programGoals" floatingLabelText="Objetivos" onChange={(evt, value) => { this.handleChange(evt, 'programGoals', value) }} />
                             </div><div className="col-md-6">
-                                <TextField fullWidth multiLine rows="3" className={this.classes.field} value={this.register.suggestionGoals || ''} placeholder="Objetivos" floatingLabelText="Objetivos" onChange={(evt, value) => { this.handleChange(evt, 'suggestionGoals', value) }} />
+                                <TextField fullWidth multiLine rows={3} className={this.classes} value={this.register.suggestionGoals || ''} placeholder="Objetivos" name="suggestionGoals" floatingLabelText="Objetivos" onChange={(evt, value) => { this.handleChange(evt, 'suggestionGoals', value) }} />
                             </div><div className="col-md-6">
-                                <TextField fullWidth multiLine rows="3" className={this.classes.field} value={this.register.programConceptual || ''} placeholder="Conteúdos Conceituais" floatingLabelText="Conteúdos Conceituais" onChange={(evt, value) => { this.handleChange(evt, 'programConceptual', value) }} />
+                                <TextField fullWidth multiLine rows={3} className={this.classes} value={this.register.programConceptual || ''} placeholder="Conteúdos Conceituais" name="programConceptual" floatingLabelText="Conteúdos Conceituais" onChange={(evt, value) => { this.handleChange(evt, 'programConceptual', value) }} />
                             </div><div className="col-md-6">
-                                <TextField fullWidth multiLine rows="3" className={this.classes.field} value={this.register.suggestionConceptual || ''} placeholder="Conteúdos Conceituais" floatingLabelText="Conteúdos Conceituais" onChange={(evt, value) => { this.handleChange(evt, 'suggestionConceptual', value) }} />
+                                <TextField fullWidth multiLine rows={3} className={this.classes} value={this.register.suggestionConceptual || ''} placeholder="Conteúdos Conceituais" name="suggestionConceptual" floatingLabelText="Conteúdos Conceituais" onChange={(evt, value) => { this.handleChange(evt, 'suggestionConceptual', value) }} />
                             </div><div className="col-md-6">
-                                <TextField fullWidth multiLine rows="3" className={this.classes.field} value={this.register.programContents || ''} placeholder="Conteúdos Procedimentais e Avaliações" floatingLabelText="Conteúdos Procedimentais e Avaliações" onChange={(evt, value) => { this.handleChange(evt, 'programContents', value) }} />
+                                <TextField fullWidth multiLine rows={3} className={this.classes} value={this.register.programContents || ''} placeholder="Conteúdos Procedimentais e Avaliações" name="programContents" floatingLabelText="Conteúdos Procedimentais e Avaliações" onChange={(evt, value) => { this.handleChange(evt, 'programContents', value) }} />
                             </div><div className="col-md-6">
-                                <TextField fullWidth multiLine rows="3" className={this.classes.field} value={this.register.suggestionContents || ''} placeholder="Conteúdos Procedimentais e Avaliações" floatingLabelText="Conteúdos Procedimentais e Avaliações" onChange={(evt, value) => { this.handleChange(evt, 'suggestionContents', value) }} />
+                                <TextField fullWidth multiLine rows={3} className={this.classes} value={this.register.suggestionContents || ''} placeholder="Conteúdos Procedimentais e Avaliações" name="suggestionContents" floatingLabelText="Conteúdos Procedimentais e Avaliações" onChange={(evt, value) => { this.handleChange(evt, 'suggestionContents', value) }} />
                             </div>
 
                             <div className="col-md-12">

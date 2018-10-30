@@ -179,34 +179,34 @@ export default class RegisterForm extends React.Component {
                                 floatingLabelText="Data"
                             />
                         </div><div className="col-md-3">
-                            <TextField fullWidth className="" value={this.register.days || ''} placeholder="Dias de atendimento" floatingLabelText="Dias de atendimento" onChange={(evt, value) => { this.handleChange(evt, 'days', value) }} />
+                            <TextField fullWidth className="" value={this.register.days || ''} placeholder="Dias de atendimento" name="days" floatingLabelText="Dias de atendimento" onChange={(evt, value) => { this.handleChange(evt, 'days', value) }} />
                         </div><div className="col-md-3">
-                            <TextField fullWidth value={this.register.shift || ''} floatingLabelText="Turno" onChange={(evt, value) => { this.handleChange(evt, 'shift', value) }} />
+                            <TextField fullWidth value={this.register.shift || ''} name="shift" floatingLabelText="Turno" onChange={(evt, value) => { this.handleChange(evt, 'shift', value) }} />
                         </div><div className="col-md-6">
-                            <TextField fullWidth multiLine value={this.register.extraClassActivity || ''} floatingLabelText="Atividades Extra-Classe" onChange={(evt, value) => { this.handleChange(evt, 'extraClassActivity', value) }} />
+                            <TextField fullWidth multiLine value={this.register.extraClassActivity || ''} name="extraClassActivity" floatingLabelText="Atividades Extra-Classe" onChange={(evt, value) => { this.handleChange(evt, 'extraClassActivity', value) }} />
                         </div><div className="col-md-6">
-                            <TextField fullWidth multiLine value={this.register.AEE || ''} floatingLabelText="AEE **" onChange={(evt, value) => { this.handleChange(evt, 'aee', value) }} />
+                            <TextField fullWidth multiLine value={this.register.AEE || ''} name="AEE" floatingLabelText="AEE **" onChange={(evt, value) => { this.handleChange(evt, 'aee', value) }} />
                         </div><div className="col-md-6">
-                            <TextField fullWidth multiLine rows="2" value={this.register.otherInformation || ''} floatingLabelText="Outras informação" onChange={(evt, value) => { this.handleChange(evt, 'otherInformation', value) }} />
+                            <TextField fullWidth multiLine rows={2} value={this.register.otherInformation || ''} name="otherInformation" floatingLabelText="Outras informação" onChange={(evt, value) => { this.handleChange(evt, 'otherInformation', value) }} />
                         </div>
                     </div>
                 }
                 {this.props.step === 1 &&
                     <div className="row">
                         <div className="col-md-4">
-                            <TextField fullWidth value={this.register.forwardingCode || ''} floatingLabelText="Código no Encaminhamento AEE" onChange={(evt, value) => { this.handleChange(evt, 'forwardingCode', value) }} />
+                            <TextField fullWidth value={this.register.forwardingCode || ''} name="forwardingCode" floatingLabelText="Código no Encaminhamento AEE" onChange={(evt, value) => { this.handleChange(evt, 'forwardingCode', value) }} />
                         </div><div className="col-md-4">
-                            <TextField fullWidth value={this.register.forwardingDate || ''} floatingLabelText="Data do encaminhamento" onChange={(evt, value) => { this.handleChange(evt, 'forwardingDate', value) }} />
+                            <TextField fullWidth value={this.register.forwardingDate || ''} name="forwardingDate" floatingLabelText="Data do encaminhamento" onChange={(evt, value) => { this.handleChange(evt, 'forwardingDate', value) }} />
                         </div><div className="col-md-6">
-                            <TextField fullWidth multiLine rows="2" value={this.register.forwardingReason || ''} floatingLabelText="Motivo do encaminhamento" onChange={(evt, value) => { this.handleChange(evt, 'forwardingReason', value) }} />
+                            <TextField fullWidth multiLine rows={2} value={this.register.forwardingReason || ''} name="forwardingReason" floatingLabelText="Motivo do encaminhamento" onChange={(evt, value) => { this.handleChange(evt, 'forwardingReason', value) }} />
                         </div><div className="col-md-6">
-                            <TextField fullWidth multiLine rows="2" value={this.register.familyDinamics || ''} floatingLabelText="Dinâmica Familiar" onChange={(evt, value) => { this.handleChange(evt, 'familyDinamics', value) }} />
+                            <TextField fullWidth multiLine rows={2} value={this.register.familyDinamics || ''} name="familyDinamics" floatingLabelText="Dinâmica Familiar" onChange={(evt, value) => { this.handleChange(evt, 'familyDinamics', value) }} />
                         </div><div className="col-md-6">
-                            <TextField fullWidth multiLine rows="2" value={this.register.historical || ''} floatingLabelText="Histórico Escolar" onChange={(evt, value) => { this.handleChange(evt, 'historical', value) }} />
+                            <TextField fullWidth multiLine rows={2} value={this.register.historical || ''} name="historical" floatingLabelText="Histórico Escolar" onChange={(evt, value) => { this.handleChange(evt, 'historical', value) }} />
                         </div><div className="col-md-6">
-                            <TextField fullWidth multiLine rows="2" value={this.register.attendance || ''} floatingLabelText="Atendimento (especializado)*" onChange={(evt, value) => { this.handleChange(evt, 'attendance', value) }} />
+                            <TextField fullWidth multiLine rows={2} value={this.register.attendance || ''} name="attendance" floatingLabelText="Atendimento (especializado)*" onChange={(evt, value) => { this.handleChange(evt, 'attendance', value) }} />
                         </div><div className="col-md-6">
-                            <TextField fullWidth multiLine rows="2" value={this.register.NEES || ''} floatingLabelText="NEES *" onChange={(evt, value) => { this.handleChange(evt, 'NEES', value) }} />
+                            <TextField fullWidth multiLine rows={2} value={this.register.NEES || ''} name="NEES" floatingLabelText="NEES *" onChange={(evt, value) => { this.handleChange(evt, 'NEES', value) }} />
                         </div>
                     </div>
                 }
@@ -220,7 +220,7 @@ export default class RegisterForm extends React.Component {
                                         {
                                             rowDiv.map((columnDiv) => {
                                                 return <div className="col-sm-6 col-md-4">
-                                                    <TextField fullWidth multiLine rows="2" rowsMax="4" value={this.register['caracter' + columnDiv.column + columnDiv.line] || ''} floatingLabelText={columnDiv.title} onChange={(evt, value) => { this.handleChange(evt, 'caracter' + columnDiv.column + columnDiv.line, value) }} />
+                                                    <TextField fullWidth multiLine rows={2} rowsMax={4} value={this.register['caracter' + columnDiv.column + columnDiv.line] || ''} name={'caracter' + columnDiv.column + columnDiv.line} floatingLabelText={columnDiv.title} onChange={(evt, value) => { this.handleChange(evt, 'caracter' + columnDiv.column + columnDiv.line, value) }} />
                                                 </div>
                                             })
                                         }
@@ -234,9 +234,9 @@ export default class RegisterForm extends React.Component {
                     <div className="row">
                         <HeaderDefault texto="Plano de Intervenção Pedagógica" type="h3" />
                         <div className="col-md-12">
-                            <TextField fullWidth multiLine rows="4" value={this.register.actionExiting || ''} floatingLabelText="Ações já existentes" onChange={(evt, value) => { this.handleChange(evt, 'actionExiting', value) }} />
+                            <TextField fullWidth multiLine rows={4} value={this.register.actionExiting || ''} name="actionExiting" floatingLabelText="Ações já existentes" onChange={(evt, value) => { this.handleChange(evt, 'actionExiting', value) }} />
                         </div><div className="col-md-12">
-                            <TextField fullWidth multiLine rows="4" value={this.register.actionFuture || ''} floatingLabelText="Ações a serem desenvolvidas" onChange={(evt, value) => { this.handleChange(evt, 'actionFuture', value) }} />
+                            <TextField fullWidth multiLine rows={4} value={this.register.actionFuture || ''} name="actionFuture" floatingLabelText="Ações a serem desenvolvidas" onChange={(evt, value) => { this.handleChange(evt, 'actionFuture', value) }} />
                         </div>
                         {/* <div className="col-md-12 col-md-offset-3 text-area">
                     <Paper style={paperStyle} zDepth={5}>

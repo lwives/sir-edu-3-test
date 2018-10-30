@@ -4,13 +4,13 @@ import RegisterLayout from '../../../../layouts/RegisterLayout'
 import RegisterForm from './RegisterForm';
 
 export default class StudentAdaptation extends React.Component {
-  static propTypes = {
-    students: PropTypes.object,
-    params: PropTypes.shape({
-      id: PropTypes.string,
-      modo: PropTypes.string
-    })
-  }
+  // static propTypes = {
+  //   students: PropTypes.object,
+  //   params: PropTypes.shape({
+  //     id: PropTypes.string,
+  //     modo: PropTypes.string
+  //   })
+  // }
 
   constructor(props) {
     super(props)
@@ -79,15 +79,16 @@ export default class StudentAdaptation extends React.Component {
   }
 
   render() {
-    this.data = {
-      ...this.data,
-      step: this.state.stepIndex
-    }
+    // this.data = {
+    //   ...this.data,
+    //   step: this.state.stepIndex
+    // }
     
     return (
       <RegisterLayout titulo="Adequação Curricular" {...this.data}>
         <div className="row register-form">
-          <RegisterForm {...this.props.students} {...this.data} />
+          <RegisterForm  {...this.data} />
+          {/* {...this.props.students} */}
         </div>
       </RegisterLayout>
     )
