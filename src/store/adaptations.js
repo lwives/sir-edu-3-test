@@ -1,5 +1,5 @@
 import adaptationService from 'services/adaptation-service'
-import router from 'helpers/router-helper';
+import router from '../helpers/router-helper';
 
 // ------------------------------------
 // Constants
@@ -52,9 +52,10 @@ export function insertAdaptation(adaptation) {
   return dispatch => {
     dispatch(request(SAVE_ADAPTATION_REQUEST));
     return adaptationService.insertAdaptation(adaptation).then((res) => {
+      //console.log('adaptation', adaptation);
       dispatch(success(SAVE_ADAPTATION_SUCCESS, 'adaptation', res.data));
-      
-      router.goToAdaptationsPage();
+      //console.log('res.data', res.data);
+      router.goToStudentMenuPage(res.data._createdBy);
     }).catch((error) => {
       dispatch(failure(SAVE_ADAPTATION_FAILURE))
       console.log('SAVE_ADAPTATION_FAILURE', error);
@@ -68,7 +69,7 @@ export function editAdaptation(adaptation) {
     return adaptationService.editAdaptation(adaptation).then((res) => {
       dispatch(success(SAVE_ADAPTATION_SUCCESS, 'adaptation', res.data));
       
-      router.goToAdaptationsPage();
+      router.goToStudentMenuPage(res.data._createdBy);
     }).catch((error) => {
       dispatch(failure(SAVE_ADAPTATION_FAILURE))
       console.log('SAVE_ADAPTATION_FAILURE', error);
@@ -82,7 +83,7 @@ export function deleteAdaptation(adaptation) {
     return adaptationService.deleteAdaptation(adaptation).then((res) => {
       dispatch(success(SAVE_ADAPTATION_SUCCESS, 'adaptation', res.data));
       
-      router.goToAdaptationsPage();
+      router.goToStudentMenuPage(res.data._createdBy);
     }).catch((error) => {
       dispatch(failure(SAVE_ADAPTATION_FAILURE))
       console.log('SAVE_ADAPTATION_FAILURE', error);

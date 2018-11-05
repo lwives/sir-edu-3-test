@@ -1,7 +1,7 @@
 {
   "name": "sir-edu",
   "version": "3.0.0-alpha.2",
-  "description": "SIS-EDU - Sistema integrado de recursos educacionais para a gestão do acompanhamento de alunos com necessidades especiais.",
+  "description": "SR-EDU - Plataforma para atendimento educacional especializado para a gestão do acompanhamento de alunos com necessidades especiais.",
   "main": "main.js",
   "engines": {
     "node": "8.11.x",

@@ -127,7 +127,6 @@ class Sight extends React.Component {
 
                 <div className="row student-info">
                     <div className="col-md-4">
-                        {/* <div className="col-md-12"> */}
                         <TextField
                             fullWidth={true}
                             value={this.state.judgement.title || ''}
@@ -139,7 +138,6 @@ class Sight extends React.Component {
                             onChange={(evt, value) => { this.handleChange('date', value.toISOString()) }}
                             floatingLabelText="Data"
                         />
-                        {/* </div> */}
                     </div>
                     <div className="col-md-8 text-area">
                         <Paper style={paperStyle} zDepth={5}>

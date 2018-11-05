@@ -87,18 +87,18 @@ router.get('/files', function(req, res, next){
 });
 
 // TODO return error codes
-router.delete("/files/:id", function(req, res){
-  let params = {_id: req.params.id };
+router.delete('/files/:id', function(req, res) {
+  let params = { _id: req.params.id };
 
-  gfs.exist(params, function(err, found){
-    if(err) return res.status(404).send("Error occured");
-    if(found) {
-      gfs.remove(params, function(err){
-        if(err) return res.status(404).send("Error occured");
+  gfs.exist(params, function(err, found) {
+    if (err) return res.status(404).send('Error occured');
+    if (found) {
+      gfs.remove(params, function(err) {
+        if (err) return res.status(404).send('Error occured');
         res.json({ type: 'success', msg: 'File deleted' });
       });
-    } else{
-      res.status(404).send("No image found with that title");
+    } else {
+      res.status(404).send('No image found with that title');
     }
   });
 });

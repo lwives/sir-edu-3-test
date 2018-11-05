@@ -63,7 +63,7 @@ export const MenuItem = (props) => (
         </div>
         <div className="col-md-2">
             <div className="menu-item">
-            <Link to={StudentRegister.pathWithoutParam + '' + '/editar'}>
+            <Link to={StudentRegister.pathWithoutParam + '/editar'}>
                 <div className="icons-box">
                     <i className="fa fa-user fa-3x" aria-hidden="true" />
                 </div>

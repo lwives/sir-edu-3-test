@@ -4,13 +4,13 @@ import RegisterLayout from '../../../../layouts/RegisterLayout'
 import RegisterForm from './RegisterForm';
 
 export default class StudentAdaptation extends React.Component {
-  // static propTypes = {
-  //   students: PropTypes.object,
-  //   params: PropTypes.shape({
-  //     id: PropTypes.string,
-  //     modo: PropTypes.string
-  //   })
-  // }
+  static propTypes = {
+    students: PropTypes.array,
+    params: PropTypes.shape({
+      id: PropTypes.string,
+      modo: PropTypes.string
+    })
+  }
 
   constructor(props) {
     super(props)
@@ -40,15 +40,15 @@ export default class StudentAdaptation extends React.Component {
   handleSubmit = (form) => {
     switch (this.props.params.modo) {
       case 'editar':
-        this.props.editStudent(form)
+        this.props.editAdaptation(form)
         break
       case 'excluir':
-        this.props.deleteStudent(form)
+        this.props.deleteAdaptation(form)
         break
       case 'inserir':
-        this.props.insertStudent(form)
-        break
       default:
+        this.props.insertAdaptation(form)
+        break
     }
   }
 
@@ -83,12 +83,12 @@ export default class StudentAdaptation extends React.Component {
     //   ...this.data,
     //   step: this.state.stepIndex
     // }
+    console.log(this.props);
     
     return (
       <RegisterLayout titulo="Adequação Curricular" {...this.data}>
         <div className="row register-form">
-          <RegisterForm  {...this.data} />
-          {/* {...this.props.students} */}
+          <RegisterForm  {...this.data} {...this.props.students} />
         </div>
       </RegisterLayout>
     )

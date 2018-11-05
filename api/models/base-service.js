@@ -27,6 +27,8 @@ class BaseService {
     return new Promise(function (resolve, reject) {
       this.repository.save(entity)
         .then((newEntity) => {
+          console.log(newEntity);
+          
           resolve(newEntity);
         }, (err) => {
           reject(err);

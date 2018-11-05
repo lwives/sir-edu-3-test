@@ -54,7 +54,7 @@ export function insertAttendance(attendance) {
     return attendanceService.insertAttendance(attendance).then((res) => {
       dispatch(success(SAVE_ATTENDANCE_SUCCESS, 'attendance', res.data));
       
-      router.goToAttendancesPage();
+      router.goToStudentMenuPage();
     }).catch((error) => {
       dispatch(failure(SAVE_ATTENDANCE_FAILURE))
       console.log('SAVE_ATTENDANCE_FAILURE', error);
@@ -68,7 +68,7 @@ export function editAttendance(attendance) {
     return attendanceService.editAttendance(attendance).then((res) => {
       dispatch(success(SAVE_ATTENDANCE_SUCCESS, 'attendance', res.data));
       
-      router.goToAttendancesPage();
+      router.goToStudentMenuPage();
     }).catch((error) => {
       dispatch(failure(SAVE_ATTENDANCE_FAILURE))
       console.log('SAVE_ATTENDANCE_FAILURE', error);
@@ -82,7 +82,7 @@ export function deleteAttendance(attendance) {
     return attendanceService.deleteAttendance(attendance).then((res) => {
       dispatch(success(SAVE_ATTENDANCE_SUCCESS, 'attendance', res.data));
       
-      router.goToAttendancesPage();
+      router.goToStudentMenuPage();
     }).catch((error) => {
       dispatch(failure(SAVE_ATTENDANCE_FAILURE))
       console.log('SAVE_ATTENDANCE_FAILURE', error);

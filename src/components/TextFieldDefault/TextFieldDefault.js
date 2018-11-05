@@ -21,13 +21,22 @@ export default class TextFieldDefault extends React.Component {
         const type = (this.props.type !== undefined) ? this.props.type : 'text'
         const isMultiLine = this.props.multiLine  //(this.props.multiLine === undefined) ? true : false
         const className = this.props.className // "col-md-6"
+        const placeholder = this.props.placeholder // "col-md-6"
         
         return (
-            <TextField className={className} 
+            <div>
+            <label htmlFor={name} id={name}>{placeholder}</label>
+            <input className={className} 
                 multiLine={isMultiLine} fullWidth 
                 value={this.props.value || ''} onChange={this.props.handleOnChange}
                 type={type} name={name} 
                 floatingLabelText={LabelText} />
+            {/*  <TextField className={className} 
+                 multiLine={isMultiLine} fullWidth 
+                 value={this.props.value || ''} onChange={this.props.handleOnChange}
+                 type={type} name={name} 
+                 floatingLabelText={LabelText} /> */}
+            </div>
         )
     }
 }

@@ -15,7 +15,6 @@ export default class adaptationService {
                 newAdaptation.append(key, adaptation[key].toString())
             }
         })
-        console.log('formatAdaptation', newAdaptation);
         return newAdaptation
     }
     static insertAdaptation(adaptation) {

@@ -54,7 +54,7 @@ export function insertPlan(plan) {
     return planService.insertPlan(plan).then((res) => {
       dispatch(success(SAVE_PLAN_SUCCESS, 'plan', res.data));
       
-      router.goToPlansPage();
+      router.goToStudentMenuPage();
     }).catch((error) => {
       dispatch(failure(SAVE_PLAN_FAILURE))
       console.log('SAVE_PLAN_FAILURE', error);
@@ -68,7 +68,7 @@ export function editPlan(plan) {
     return planService.editPlan(plan).then((res) => {
       dispatch(success(SAVE_PLAN_SUCCESS, 'plan', res.data));
       
-      router.goToPlansPage();
+      router.goToStudentMenuPage();
     }).catch((error) => {
       dispatch(failure(SAVE_PLAN_FAILURE))
       console.log('SAVE_PLAN_FAILURE', error);
@@ -82,7 +82,7 @@ export function deletePlan(plan) {
     return planService.deletePlan(plan).then((res) => {
       dispatch(success(SAVE_PLAN_SUCCESS, 'plan', res.data));
       
-      router.goToPlansPage();
+      router.goToStudentMenuPage();
     }).catch((error) => {
       dispatch(failure(SAVE_PLAN_FAILURE))
       console.log('SAVE_PLAN_FAILURE', error);
