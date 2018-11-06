@@ -6,6 +6,9 @@ import RegisterForm from './RegisterForm';
 export default class StudentAdaptation extends React.Component {
   static propTypes = {
     students: PropTypes.array,
+    editAdaptation: PropTypes.func,
+    deleteAdaptation: PropTypes.func,
+    insertAdaptation: PropTypes.func,
     params: PropTypes.shape({
       id: PropTypes.string,
       modo: PropTypes.string
@@ -68,7 +71,7 @@ export default class StudentAdaptation extends React.Component {
 
   componentDidMount() {
     //   const { getStudent, students } = this.props
-    const { getFiles, getJudgements, routeParams } = this.props;
+    //const { getFiles, getJudgements, routeParams } = this.props;
 
     // getFiles(routeParams.id);
     // getJudgements(routeParams.id);

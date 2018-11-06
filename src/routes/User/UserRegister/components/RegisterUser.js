@@ -53,6 +53,8 @@ class RegisterUser extends React.Component {
     }
 
     handleChange = (key, value) => {
+        console.log(value);
+        
         this.setState({
             user: {
                 ...this.state.user,

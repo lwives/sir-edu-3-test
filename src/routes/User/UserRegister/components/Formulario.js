@@ -1,5 +1,26 @@
 import React, { PropTypes } from 'react'
-import { RaisedButton, TextField } from 'material-ui'
+import { TextField } from 'material-ui'
+import { setDefaultValue } from '../../../../helpers/register-helper'
+
+const defaultValue = [
+    { city: 'Porto Alegre' },
+    { state: 'Rio Grande do Sul' },
+    { country: 'Brasil' }
+];
+
+const handleChangeHelper = (event, id, valueParam) => {
+    let name = '';
+    let value = null;
+
+    if (event) {
+        name = event.target.name;
+        value = event.target.value;
+    } else {
+        name = id;
+        value = valueParam;
+    }
+    return { [name]: value }
+}
 
 export default class RegisterForm extends React.Component {
     static PropTypes = {
@@ -10,65 +31,75 @@ export default class RegisterForm extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleSubmit = props.handleSubmit
-        this.handleCancel = props.handleCancel
-        this.handleChange = props.handleChange
+        // this.handleSubmit = props.handleSubmit
+        // this.handleCancel = props.handleCancel
+        // this.handleChange = props.handleChange
         this.repetPassword = ''
         this.register = {}
-        this.defalutValue()
+        setDefaultValue(defaultValue, this.addRegister, this.getRegister)
     }
 
-    handleChange = (evt, key, value) => {
-        if (key === 'repet') {
+    handleChange = (event, id, valueParam) => {
+        this.addRegister(handleChangeHelper(event, id, valueParam))
+        this.forceUpdate();
+        // //this.setState(...this.register)
+    }
 
-        } else {
-            this.props.handleChange()
+    handleSubmit = (evt) => {
+        evt.preventDefault()
+        //this.setState(...this.register)
+        this.props.handleSubmit(this.register);
+    }
+
+    addRegister = (entry, key = '', content = '') => {
+        if (entry.length <= 0) {
+            entry = { [key]: content }
+        }
+        this.register = {
+            ...this.register,
+            ...entry
         }
     }
 
-    defalutValue = () => {
-        this.register.city = 'Porto Alegre'
-        this.register.state = 'Rio Grande do Sul'
+    getRegister = (key) => {
+        return (key) ? this.register[key] : this.register
     }
 
     render() {
-        if (!this.register.name) {
-            this.register = { ...this.props.student }
-        }
         return (
             <div className="row">
                 {/*             cep, bairro, concorda
                 */}
                 <div className="col-md-6">
-                    <TextField fullWidth value={this.register.name || ''} type="text" floatingLabelText="Nome" onChange={(evt, val) => { this.handleChange('name', val) }} />
+                    <TextField fullWidth value={this.register.name || ''} name="name" type="text" floatingLabelText="Nome" onChange={(evt, val) => { this.handleChange(evt, 'name', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.lastName || ''} type="text" floatingLabelText="Sobrenome" onChange={(evt, val) => { this.handleChange('lastName', val) }} />
+                    <TextField fullWidth value={this.register.lastName || ''} name="lastName" type="text" floatingLabelText="Sobrenome" onChange={(evt, val) => { this.handleChange(evt, 'lastName', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.cpf || ''} type="cpf" floatingLabelText="CPF" onChange={(evt, val) => { this.handleChange('cpf', val) }} />
+                    <TextField fullWidth value={this.register.cpf || ''} name="cpf" type="cpf" floatingLabelText="CPF" onChange={(evt, val) => { this.handleChange(evt, 'cpf', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.email || ''} type="email" floatingLabelText="E-mail" onChange={(evt, val) => { this.handleChange('email', val) }} />
+                    <TextField fullWidth value={this.register.email || ''} name="email" type="email" floatingLabelText="E-mail" onChange={(evt, val) => { this.handleChange(evt, 'email', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.password || ''} type="password" floatingLabelText="Senha" onChange={(evt, val) => { this.handleChange('password', val) }} />
+                    <TextField fullWidth value={this.register.password || ''} name="password" type="password" floatingLabelText="Senha" onChange={(evt, val) => { this.handleChange(evt, 'password', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.repetPassword || ''} type="password" floatingLabelText="Repetir Senha" onChange={(evt, val) => { this.handleChange('repet', val) }} />
+                    <TextField fullWidth value={this.repetPassword || ''} name="repetPassword" type="password" floatingLabelText="Repetir Senha" onChange={(evt, val) => { this.handleChange(evt, 'repet', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.mobile || ''} type="mobile" floatingLabelText="Celular" onChange={(evt, val) => { this.handleChange('mobile', val) }} />
+                    <TextField fullWidth value={this.register.mobile || ''} name="mobile" type="phone" floatingLabelText="Celular" onChange={(evt, val) => { this.handleChange(evt, 'mobile', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.phone || ''} type="phone" floatingLabelText="Telefone" onChange={(evt, val) => { this.handleChange('phone', val) }} />
+                    <TextField fullWidth value={this.register.phone || ''} name="phone" type="phone" floatingLabelText="Telefone" onChange={(evt, val) => { this.handleChange(evt, 'phone', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.address || ''} type="text" floatingLabelText="Endereço" onChange={(evt, val) => { this.handleChange('address', val) }} />
+                    <TextField fullWidth value={this.register.address || ''} name="address" type="text" floatingLabelText="Endereço" onChange={(evt, val) => { this.handleChange(evt, 'address', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.addressNumber || ''} type="text" floatingLabelText="Número" onChange={(evt, val) => { this.handleChange('addressNumber', val) }} />
+                    <TextField fullWidth value={this.register.addressNumber || ''} name="addressNumber" type="text" floatingLabelText="Número" onChange={(evt, val) => { this.handleChange(evt, 'addressNumber', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.addressComplemento || ''} type="text" floatingLabelText="Complemento" onChange={(evt, val) => { this.handleChange('addressComplemento', val) }} />
+                    <TextField fullWidth value={this.register.addressComplemento || ''} name="addressComplemento" type="text" floatingLabelText="Complemento" onChange={(evt, val) => { this.handleChange(evt, 'addressComplemento', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.city || ''} type="text" floatingLabelText="Cidade" onChange={(evt, val) => { this.handleChange('city', val) }} />
+                    <TextField fullWidth value={this.register.city || ''} name="city" type="text" floatingLabelText="Cidade" onChange={(evt, val) => { this.handleChange(evt, 'city', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.state || ''} type="text" floatingLabelText="Estado" onChange={(evt, val) => { this.handleChange('state', val) }} />
+                    <TextField fullWidth value={this.register.state || ''} name="state" type="text" floatingLabelText="Estado" onChange={(evt, val) => { this.handleChange(evt, 'state', val) }} />
                 </div>
                 <div className="col-md-12">
-                    <RaisedButton className="btn-action" label="Cancelar" onClick={this.handleCancel} />
-                    <RaisedButton className="btn-action" label="Cadastrar" primary onClick={this.handleSubmit} />
+                    <button className="btn btn-secudary" onClick={this.handleCancel}>Cancelar</button>
+                    <button className="btn btn-primary">Cadastrar</button>
                 </div>
             </div>
         )
