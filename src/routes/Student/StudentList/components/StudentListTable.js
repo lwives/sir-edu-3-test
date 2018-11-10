@@ -7,7 +7,7 @@ import { Avatar } from 'material-ui' // TextField
 import defaultAvatar from '../../../../constants/configConstants'
 
 import './List.scss'
-// import { Alert } from 'react-bootstrap'
+import { Alert } from 'react-bootstrap'
 import StudentRegister from '../../StudentRegister'
 import StudentMenu from '../../StudentMenu'
 import ListLayout from '../../../../layouts/ListLayout'
@@ -36,7 +36,7 @@ export default class StudentListTable extends React.Component {
       },
       {
         name: 'Nome',
-        style: {width: 500},
+        style: {width: 450},
         content: returnParameter,
         link: returnParameter
       },
@@ -52,14 +52,12 @@ export default class StudentListTable extends React.Component {
       },
       {
         name: 'Editar',
-        style: {width: 120},
         className: 'register-edit',
         content: () => { return <span><i className="fa fa-pencil-square-o fa-lg" /> Editar</span> },
         link: (_id) => { return StudentRegister.pathWithoutParam + _id + '/editar' }
       },
       {
         name: 'Excluir',
-        style: {width: 120},
         className: 'register-remove',
         content: () => { return <span><i className="fa fa-user-times fa-lg" /> Excluir</span> },
         link: (_id) => { return StudentRegister.pathWithoutParam + _id + '/excluir' }
@@ -107,6 +105,7 @@ export default class StudentListTable extends React.Component {
     filteredRegister = getFiltered(students.list, ''); //filterText || 
 
     return (
+      <div>
       <ListLayout className="list" layout={this.layoutData} register={this.register}>
          <TableBody
                             showRowHover
@@ -151,15 +150,16 @@ export default class StudentListTable extends React.Component {
                   </TableRow>
                 ))}
             {/* </TableBody>
-          </Table>
-          {
-            !filteredRegister &&
-            <Alert bsStyle="warning">
-              <strong>Aviso:</strong> Nenhum aluno selecionado.
-            </Alert>
-          }*/}
+          </Table>*/}
         </TableBody>
       </ListLayout>
+              {
+                !filteredRegister &&
+                <Alert bsStyle="warning">
+                  <strong>Aviso:</strong> Nenhum aluno selecionado.
+                </Alert>
+              }
+              </div>
     )
   }
 }

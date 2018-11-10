@@ -4,10 +4,9 @@ import { StudentMenu } from '../routes/Student/StudentMenu'
 
 export default class RouterHelper {
     static goToStudentsPage() {
-        browserHistory.push(StudentList.pathWithoutParam);
+        browserHistory.push('/alunos');
     }
     static goToStudentMenuPage(studentId) {
-        console.log('/alunos/' + studentId);
-        browserHistory.push('/alunos/' + studentId);
+        browserHistory.push('/aluno/' + studentId);
     }
 }

@@ -36,7 +36,8 @@ export default class StudentRegister extends React.Component {
       handleSubmit: this.handleSubmit,
       handleNext: this.handleNext,
       handlePrev: this.handlePrev,
-      step: this.state.stepIndex
+      step: this.state.stepIndex,
+      modo: this.props.params.modo
     }
   }
 
@@ -79,7 +80,7 @@ export default class StudentRegister extends React.Component {
     
     if (!students.student.name && ( 
       this.props.params.modo === 'editar' || this.props.params.modo === 'excluir')) { 
-      getStudent(this.props.params.id)
+      //getStudent(this.props.params.id)
     }
   }
 

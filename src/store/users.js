@@ -56,7 +56,9 @@ function closemodal() {
     }
 }
 
-export function registerUser(user) {
+// TODO Controlar duplicação de emails.
+// TODO Controlar Campos obrigatórios
+export function insertUser(user) {
     return dispatch => {
         dispatch(request(REGISTER_USER_REQUEST));
         return userService.register(user)

@@ -1,10 +1,13 @@
 import { connect } from 'react-redux'
 import RegisterUser from '../components/RegisterUser'
-import { registerUser, closeModal } from 'store/users'
+import { insertUser, closeModal } from 'store/users'
 import { login } from 'store/login'
 
 const mapDispatchToProps = {
-    registerUser,
+    //registerUser,
+    insertUser,
+    //editUser,
+    //deleteUser,
     login,
     closeModal
 }

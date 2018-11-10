@@ -67,6 +67,8 @@ export default class RegisterForm extends React.Component {
 
     render() {
         return (
+            <form onSubmit={this.handleSubmit}>
+            {this.props.step === 0 &&
             <div className="row">
                 {/*             cep, bairro, concorda
                 */}
@@ -102,6 +104,8 @@ export default class RegisterForm extends React.Component {
                     <button className="btn btn-primary">Cadastrar</button>
                 </div>
             </div>
+            }
+            </form>
         )
     }
 } 

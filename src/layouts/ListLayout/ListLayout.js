@@ -6,10 +6,16 @@ import FilterSearch from '../../components/FilterSearch'
 import HeaderDefault from '../../components/HeaderDefault'
 import './ListLayout.scss'
 import '../../styles/core.scss'
-import AlertNothingFound from '../../components/AlertNothingFound'
+//import AlertNothingFound from '../../components/AlertNothingFound'
 
 export const ListLayout = ({ children, layout, register, className }) => {
-    const { handleFilter, searchValue, descriptionRegister = 'aluno', pathRegister = '/aluno/register/', lenght, textNothingFound } = register
+    const { handleFilter, 
+        searchValue, 
+        descriptionRegister = 'aluno', 
+        pathRegister = '/aluno/register/' 
+        //lenght, 
+        //textNothingFound 
+    } = register
     const { visibleColumn, titulo } = layout
     
     return (
@@ -42,12 +48,12 @@ export const ListLayout = ({ children, layout, register, className }) => {
                         { children }
 
                     </Table>
-                    <div>
+                    {/* <div>
                     {
                     lenght <= 0 && 
                         <AlertNothingFound textNothingFound={textNothingFound} />
                     }
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
