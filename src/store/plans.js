@@ -90,10 +90,10 @@ export function deletePlan(plan) {
   }
 }
 
-export function getPlansList() {
+export function getPlans(studentId) {
     return dispatch => {
         dispatch(request(GET_PLANS_LIST_REQUEST))
-        return planService.getPlans().then((res) => {
+        return planService.getPlans(studentId).then((res) => {
           dispatch(success(GET_PLANS_LIST_SUCCESS, 'list', res.data));
         })
         .catch((error) => {

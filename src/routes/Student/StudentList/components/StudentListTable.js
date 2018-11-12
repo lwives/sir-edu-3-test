@@ -31,23 +31,23 @@ export default class StudentListTable extends React.Component {
     this.visibleColumn = [
       {
         name: 'Foto',
-        style: {width: 100},
+//        style: {width: 100},
         content: (avatar) => { return <Avatar src={avatar} className="student-avatar pull-left" size={45} /> }
       },
       {
         name: 'Nome',
-        style: {width: 450},
+        style: {width: '30%'},
         content: returnParameter,
         link: returnParameter
       },
       {
         name: 'Escola',
-        style: {width: 200},
+        style: {width: '20%'},
         content: returnParameter
       },
       {
         name: 'Turma',
-        style: {width: 150},
+        style: {width: '15%'},
         content: returnParameter
       },
       {

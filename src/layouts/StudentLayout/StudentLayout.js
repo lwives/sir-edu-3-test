@@ -7,11 +7,7 @@ import Slider from '../../components/Slider'
 import SliderItem from '../../components/Slider/SliderItem'
 
 const filesCarousel = (items, actions) => {
-  return items.map((item, index) => (
-      <div key={index}>
-          <SliderItem item={item} editable={true} actions={actions} />
-      </div>)
-  )
+  return timeline(items, actions, true);
 }
 const timelineCarousel = (items) => {
   return items.map((item, index) => (
@@ -20,13 +16,37 @@ const timelineCarousel = (items) => {
       </div>)
   )
 }
+const timeline = (items, actions, isEditable) => {
+  return items.map((item, index) => (
+    <div key={index}>
+        <SliderItem item={item} editable={isEditable} actions={actions} />
+    </div>)
+  )
+}
 
 export default class StudentLayout extends React.Component {
   //children, titulo, ...data }) => {
+    
+    render() {
+        const { files, judgements, students, children } = this.props
+        //const { students, routeParams, judgements, files } = this.props;
+        const timelineList = [];//judgements.list.concat(files.list);
+    
+        timelineList.sort((item, nextItem) => {
+            let dateA = new Date(item.date);
+            let dateB = new Date(nextItem.date);
 
-  render() {
-    const { files, judgements, students, children } = this.props
-    //const student = students.selectedStudent;
+            if (dateA > dateB) {
+                return -1;
+            }
+            if (dateA < dateB) {
+                return 1;
+            }
+            return 0;
+        });
+    
+      //const student = students.selectedStudent;
+
     return (
       <div className="container container-student">
         {children}
@@ -54,5 +74,8 @@ export default class StudentLayout extends React.Component {
 }
 
 StudentLayout.propTypes = {
-  children: React.PropTypes.element.isRequired
+  children: React.PropTypes.element.isRequired,
+  files: React.PropTypes.func,
+  judgements: React.PropTypes.func,
+  students: React.PropTypes.func
 }

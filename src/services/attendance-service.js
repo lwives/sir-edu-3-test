@@ -2,8 +2,10 @@ import axios from './axios-config'
 import Route from '../../api/constants/api-routes'
 
 export default class attendanceService {
-    static getAttendances() {
-        return axios.get(Route.Attendance)
+    static getAttendances(studentId) {
+        return axios.get(Route.Attendance, {
+            params: { studentId }
+        })
     }
 
     static formatAttendance(attendance) {
@@ -20,6 +22,8 @@ export default class attendanceService {
     }
     static insertAttendance(attendance) {
         let newAttendance = this.formatAttendance(attendance)
+        console.log('client Attendance', newAttendance);
+        
         return axios.post(Route.Attendance, newAttendance)
     }
     

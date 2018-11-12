@@ -19,25 +19,24 @@ export default class TextFieldDefault extends React.Component {
         
         const type = (this.props.type !== undefined) ? this.props.type : 'text'
         const isMultiLine = this.props.multiLine  //(this.props.multiLine === undefined) ? true : false
-        const className = 'form-control ' + this.props.className // "col-md-6"
-        const fieldDescription = this.props.fieldDescription // "col-md-6"
+        const className = 'form-control ' + this.props.className 
+        const fieldDescription = this.props.fieldDescription 
         const LabelText = this.props.fieldDescription + ': ';
+        const placeholder = (this.props.placeholder) ? this.props.placeholder: fieldDescription;
         let component;
         
         if (!isMultiLine) {  
             component = <input className={className} 
                             value={this.props.value || ''} onChange={this.props.onChange}
                             type={type} name={name} 
-                            placeholder={fieldDescription}
+                            placeholder={placeholder}
                             />
         } else {
-            console.log(fieldDescription);
-            
             component = <textarea className={className} 
                             rows={this.props.rows}
                             value={this.props.value || ''} onChange={this.props.onChange}
                             type={type} name={name} 
-                            placeholder={fieldDescription}
+                            placeholder={placeholder}
                             />
         }
         

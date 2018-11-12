@@ -17,7 +17,7 @@ export function request(type) {
   return {
     type,
     payload: {
-        isFetching: true,
+        isFetching: true
     }
   }
 }
@@ -85,7 +85,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-export default function filesReducer (state ={ list: [], isFetching: false }, action) {
+export default function filesReducer (state = { list: [], isFetching: false }, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state

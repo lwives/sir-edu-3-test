@@ -1,4 +1,5 @@
 import judgementService from 'services/judgement-service'
+import router from '../helpers/router-helper';
 
 // ------------------------------------
 // Constants
@@ -18,7 +19,7 @@ export function request(type) {
   return {
     type,
     payload: {
-        isFetching: true,
+        isFetching: true
     }
   }
 }
@@ -65,7 +66,6 @@ export function getJudgements(studentId) {
     }).catch((error) => {
         dispatch(failure(GET_ALL_JUDGEMENTS_FAILURE, error));
         console.log('GET_ALL_JUDGEMENTS_FAILURE', error);
-
     })
   } 
 }
@@ -83,10 +83,10 @@ export function clearJudgementState() {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [UPLOAD_JUDGEMENT_REQUEST] : (state, action) => ({ ...state , ...action.payload }),
+  [UPLOAD_JUDGEMENT_REQUEST] : (state, action) => ({ ...state, ...action.payload }),
   [UPLOAD_JUDGEMENT_SUCCESS] : (state, action) => (
     { ...state,
-      list: [...state.list, action.payload.data ],
+      list: [ ...state.list, action.payload.data ],
       isFetching: action.payload.isFetching,
       success: action.payload.success
     }

@@ -3,12 +3,14 @@ import Slider from 'components/Slider'
 import TinyMCE from 'react-tinymce'
 import Paper from 'material-ui/Paper'
 import { browserHistory } from 'react-router'
-import { TextField, DatePicker, RaisedButton, FlatButton, MenuItem, Menu, Popover } from 'material-ui';
-import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
+import { DatePicker, RaisedButton } from 'material-ui'; // FlatButton, MenuItem, Menu, Popover 
+//import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
 import './Sight.scss'
 import SliderItem from 'components/Slider/SliderItem';
 import LoadingSpinner from 'components/LoadingSpinner';
 import { Alert } from 'react-bootstrap'
+import RegisterLayout from '../../../../layouts/RegisterLayout';
+import TextFieldDefault from '../../../../components/TextFieldDefault';
 
 const paperStyle = {
     marginBotton: 400
@@ -44,7 +46,50 @@ class Sight extends React.Component {
         this.handleCancel = this.handleCancel.bind(this);
         this.handleSave = this.handleSave.bind(this);
         this.handleInsertLink = this.handleInsertLink.bind(this);
+        this.tabs = []
+        this.data = {
+            tabs: this.tabs,
+            setStepIndex: this.handleSetStepindex,
+            handleSubmit: this.handleSubmit,
+            handleNext: this.handleNext,
+            handlePrev: this.handlePrev,
+            step: this.state.stepIndex,
+            modo: this.props.params.modo
+          }
     }
+
+    handleSetStepindex = (newState) => {
+        this.setState({ stepIndex: newState })
+      }
+    
+      handleSubmit = (form) => {
+        switch (this.props.params.modo) {
+          case 'editar':
+            this.props.editAdaptation(form)
+            break
+          case 'excluir':
+            this.props.deleteAdaptation(form)
+            break
+          case 'inserir':
+          default:
+            this.props.insertAdaptation(form)
+            break
+        }
+      }
+    
+      handleNext = () => {
+        const { stepIndex } = this.state
+        if (stepIndex < 3) {
+          this.setState({ stepIndex: stepIndex + 1 })
+        }
+      }
+    
+      handlePrev = () => {
+        const { stepIndex } = this.state
+        if (stepIndex > 0) {
+          this.setState({ stepIndex: stepIndex - 1 })
+        }
+      }
 
     componentDidMount() {
         const { getFiles, params, files, students } = this.props;
@@ -85,13 +130,13 @@ class Sight extends React.Component {
 
         this.setState({
             open: true,
-            anchorEl: event.currentTarget,
+            anchorEl: event.currentTarget
         });
     };
 
     handleRequestClose = () => {
         this.setState({
-            open: false,
+            open: false
         });
     };
 
@@ -121,25 +166,30 @@ class Sight extends React.Component {
         };
 
         return (
-            <div className="sight">
+            <RegisterLayout titulo="Parecer" {...this.data}>
+            <div className=" sight">
+            {/* <RegisterForm {this.data} {this.props.student} /> */}
                 <LoadingSpinner loading={files.isFetching || judgement.isFetching} />
-                <h1 className="text-center page-title">Parecer</h1>
 
                 <div className="row student-info">
-                    <div className="col-md-4">
-                        <TextField
-                            fullWidth={true}
-                            value={this.state.judgement.title || ''}
-                            floatingLabelText="Título"
-                            onChange={(evt, value) => { this.handleChange('title', value) }}
-                        />
-                        <DatePicker DateTimeFormat={Intl.DateTimeFormat}
-                            locale="pt-br"
-                            onChange={(evt, value) => { this.handleChange('date', value.toISOString()) }}
-                            floatingLabelText="Data"
-                        />
-                    </div>
-                    <div className="col-md-8 text-area">
+                    
+                        <div className="col-md-6">
+                            <TextFieldDefault
+                                value={this.state.judgement.title || ''}
+                                fieldDescription="Título"
+                                name="title"
+                                onChange={(evt, value) => { this.handleChange('title', value) }}
+                            />
+                        </div><div className="col-md-6">
+                            <DatePicker DateTimeFormat={Intl.DateTimeFormat}
+                                locale="pt-br"
+                                name="date"
+                                onChange={(evt, value) => { this.handleChange('date', value.toISOString()) }}
+                                floatingLabelText="Data"
+                            />
+                        </div>
+                    
+                    <div className="col-md-12 text-area">
                         <Paper style={paperStyle} zDepth={5}>
                             <TinyMCE
                                 content={this.state.judgement.text}
@@ -171,6 +221,7 @@ class Sight extends React.Component {
                     <RaisedButton label="Salvar" primary={true} onClick={this.handleSave} />
                 </div>
             </div>
+            </RegisterLayout>
         );
     }
 }

@@ -90,10 +90,10 @@ export function deleteAttendance(attendance) {
   }
 }
 
-export function getAttendancesList() {
+export function getAttendances(studentId) {
     return dispatch => {
         dispatch(request(GET_ATTENDANCES_LIST_REQUEST))
-        return attendanceService.getAttendances().then((res) => {
+        return attendanceService.getAttendances(studentId).then((res) => {
           dispatch(success(GET_ATTENDANCES_LIST_SUCCESS, 'list', res.data));
         })
         .catch((error) => {

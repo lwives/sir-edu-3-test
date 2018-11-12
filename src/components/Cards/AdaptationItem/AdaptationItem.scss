@@ -1,0 +1,33 @@
+.judgement-modal {
+    width: 65%;
+
+    .judgement-content {
+        width: 95%;
+        margin: 0 auto;
+        
+        .judgement-text {
+            padding: 16px;
+
+            .title {
+                padding-bottom: 35px;
+            }
+
+            .text-container {
+                padding-top: 50px;
+            }
+
+            .text {
+                padding-top: 10px;
+            }
+
+            .signature {
+                padding-top: 20px;
+                border-bottom: 1px dotted black;
+            }
+        }
+    }
+
+    .btn-generate-pdf {
+        padding: 35px 0 0;
+    }
+}

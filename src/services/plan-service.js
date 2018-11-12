@@ -2,8 +2,10 @@ import axios from './axios-config'
 import Route from '../../api/constants/api-routes'
 
 export default class planService {
-    static getPlans() {
-        return axios.get(Route.Plan)
+    static getPlans(studentId) {
+        return axios.get(Route.Plan, {
+            params: { studentId }
+        })
     }
 
     static formatPlan(plan) {

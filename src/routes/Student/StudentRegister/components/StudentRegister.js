@@ -8,7 +8,7 @@ export default class StudentRegister extends React.Component {
     insertStudent: PropTypes.func.isRequired,
     editStudent: PropTypes.func.isRequired,
     deleteStudent: PropTypes.func.isRequired,
-    getStudent: PropTypes.func.isRequired,
+    //getStudent: PropTypes.func.isRequired,
     students: PropTypes.object,
     params: PropTypes.shape({
       modo: React.string,
@@ -23,7 +23,6 @@ export default class StudentRegister extends React.Component {
     }
 
     this.openTermOfUse = false;
-    this.isInitialState = true;
 
     this.tabs = [
       { name: 'Dados do aluno' },
@@ -46,7 +45,6 @@ export default class StudentRegister extends React.Component {
   }
 
   handleSubmit = (form) => {
-    //this.setState(...form)
     switch (this.props.params.modo) {
       case 'editar':
         this.props.editStudent(form)
@@ -76,12 +74,12 @@ export default class StudentRegister extends React.Component {
   }
 
   componentDidMount() {
-    const { getStudent, students } = this.props
+    // const { getStudent, students } = this.props
     
-    if (!students.student.name && ( 
-      this.props.params.modo === 'editar' || this.props.params.modo === 'excluir')) { 
-      //getStudent(this.props.params.id)
-    }
+    // if (!students.student.name && ( 
+    //   this.props.params.modo === 'editar' || this.props.params.modo === 'excluir')) { 
+    //   //getStudent(this.props.params.id)
+    // }
   }
 
   render() {

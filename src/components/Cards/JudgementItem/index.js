@@ -1,3 +1,3 @@
 import JudgementItem from './JudgementItem'
 
-export default JudgementItem;
+export default JudgementItem

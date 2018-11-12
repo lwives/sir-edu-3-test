@@ -43,6 +43,7 @@ function failure(type, message) {
     type: type,
     payload: {
       isFetching: false,
+      success: false,
       message
     }
   }
@@ -52,9 +53,7 @@ export function insertAdaptation(adaptation) {
   return dispatch => {
     dispatch(request(SAVE_ADAPTATION_REQUEST));
     return adaptationService.insertAdaptation(adaptation).then((res) => {
-      //console.log('adaptation', adaptation);
       dispatch(success(SAVE_ADAPTATION_SUCCESS, 'adaptation', res.data));
-      //console.log('res.data', res.data);
       router.goToStudentMenuPage(res.data._createdBy);
     }).catch((error) => {
       dispatch(failure(SAVE_ADAPTATION_FAILURE))
@@ -91,10 +90,10 @@ export function deleteAdaptation(adaptation) {
   }
 }
 
-export function getAdaptationsList() {
+export function getAdaptations(studentId) {
     return dispatch => {
         dispatch(request(GET_ADAPTATIONS_LIST_REQUEST))
-        return adaptationService.getAdaptations().then((res) => {
+        return adaptationService.getAdaptations(studentId).then((res) => {
           dispatch(success(GET_ADAPTATIONS_LIST_SUCCESS, 'list', res.data));
         })
         .catch((error) => {

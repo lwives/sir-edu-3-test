@@ -2,8 +2,10 @@ import axios from './axios-config'
 import Route from '../../api/constants/api-routes'
 
 export default class adaptationService {
-    static getAdaptations() {
-        return axios.get(Route.Adaptation)
+    static getAdaptations(studentId) {
+        return axios.get(Route.Adaptation, {
+            params: { studentId }
+        })
     }
 
     static formatAdaptation(adaptation) {

@@ -1,6 +1,7 @@
 import React from 'react'
 import CardMediaItem  from 'components/Cards/MediaItem'
 import CardJudgementItem from 'components/Cards/JudgementItem'
+import CardAdaptationItem from 'components/Cards/AdaptationItem'
 import './Slider.scss'
 
 const cardTextStyle = {
@@ -17,12 +18,27 @@ class SliderItem extends React.Component {
     render() {
         const { item, editable, actions } = this.props;
         const type = item.hasOwnProperty('contentType') ? item.contentType.split('/')[0] : item.type;
+        let card;
         
-        if (type === 'image' || type === 'video') {
-            return (<CardMediaItem item={item} editable={editable} actions={actions}/>);
-        } else {
-            return (<CardJudgementItem item={item} editable={editable}/>);
+        switch (type) {
+            case 'image':
+            case 'video':
+                card = (<CardMediaItem item={item} editable={editable} actions={actions}/>);
+                break;
+            case 'judgement':
+                console.log(item);
+                card = (<CardJudgementItem item={item} editable={editable} />);
+                break;
+            case 'adaptation':
+            case 'attendance':
+            case 'plan':
+                console.log(item);
+                card = (<CardAdaptationItem item={item} editable={editable} />);
+                break;
+            default:
+                card = null;
         }
+        return card;
     }
 };
 

@@ -5,6 +5,9 @@ import studentsReducer from './students'
 import schoolsReducer from './schools'
 import filesReducer from './files'
 import judgementReducer from './judgement'
+import adaptationsReducer from './adaptations'
+import attendancesReducer from './attendances'
+import plansReducer from './plans'
 import usersReducer from './users' 
 
 const appReducer = (asyncReducers) => {
@@ -15,6 +18,9 @@ const appReducer = (asyncReducers) => {
     schools: schoolsReducer,
     files : filesReducer,
     judgements: judgementReducer,
+    adaptations: adaptationsReducer,
+    attendances: attendancesReducer,
+    plans: plansReducer,
     user: usersReducer,
     ...asyncReducers
   })

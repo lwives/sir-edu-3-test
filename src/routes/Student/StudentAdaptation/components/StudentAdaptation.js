@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import './StudentAdaptation.scss'
 import RegisterLayout from '../../../../layouts/RegisterLayout'
 import RegisterForm from './RegisterForm';
+import StudentLayout from '../../../../layouts/StudentLayout/StudentLayout';
 
 export default class StudentAdaptation extends React.Component {
   static propTypes = {
@@ -21,9 +22,6 @@ export default class StudentAdaptation extends React.Component {
       stepIndex: 0
     }
 
-    this.openTermOfUse = false;
-    this.isInitialState = true
-
     this.tabs = []
 
     this.data = {
@@ -32,7 +30,8 @@ export default class StudentAdaptation extends React.Component {
       handleSubmit: this.handleSubmit,
       handleNext: this.handleNext,
       handlePrev: this.handlePrev,
-      step: this.state.stepIndex
+      step: this.state.stepIndex,
+      modo: this.props.params.modo
     }
   }
 
@@ -82,18 +81,19 @@ export default class StudentAdaptation extends React.Component {
   }
 
   render() {
-    // this.data = {
-    //   ...this.data,
-    //   step: this.state.stepIndex
-    // }
-    console.log(this.props);
+    this.data = {
+      ...this.data,
+      step: this.state.stepIndex
+    }
     
     return (
+      <StudentLayout >
       <RegisterLayout titulo="Adequação Curricular" {...this.data}>
         <div className="row register-form">
           <RegisterForm  {...this.data} {...this.props.students} />
         </div>
       </RegisterLayout>
+      </StudentLayout>
     )
   }
 }

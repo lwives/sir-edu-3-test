@@ -5,6 +5,13 @@ import MultipleCheckboxes from './MultipleCheckboxes'
 import { specialNeeds } from '../../../../constants/necessidadesEspeciais'
 //import handleChangeHelper2 from '../../../../helpers/register-helper'
 import TextFieldDefault from '../../../../components/TextFieldDefault'
+import { setDefaultValue } from '../../../../helpers/register-helper'
+
+const defaultValue = [
+    { city: 'Porto Alegre' },
+    { state: 'Rio Grande do Sul' },
+    { country: 'Brasil' }
+];
 
 const handleChangeHelper = (event, id, valueParam) => {
     let name = '';
@@ -33,21 +40,13 @@ export default class RegisterForm extends React.Component {
         super(props);
         this.state = {}
         this.openTermOfUse = false;
-        this.isInitialState = true;
         this.register = {}
-        this.defaultValue()
+        setDefaultValue(defaultValue, this.addRegister, this.getRegister)
         this.registerInitialLength = this.register.lenth;
+        
         this.loadInitial = false;
     
-        this.classes = { textField: 'textField' }
-    }
-
-    defaultValue = () => {
-        if (!this.register.country && !this.register.city) {
-            this.register.city = 'Porto Alegre'
-            this.register.state = 'Rio Grande do Sul'
-            this.register.country = 'Brasil'
-        }
+        this.classes = {  }
     }
 
     onImageDrop = (field, file) => {
@@ -93,7 +92,11 @@ export default class RegisterForm extends React.Component {
             ...this.register,
             ...entry
         }
-        console.log(this.register);
+        console.log('addRegister', this.register);
+    }
+
+    getRegister = (key) => {
+        return (key) ? this.register[key] : this.register
     }
 
     showTermOfUse = () => {

@@ -14,7 +14,6 @@ export const setDefaultValue = (defaultValue, addRegister, getRegister) => {
 export const handleChangeHelper = (event, id, valueParam) => {
     let name = '';
     let value = null;
-    console.log(event.target);
     
     if (event) {
         name = event.target.name;
