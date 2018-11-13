@@ -28,25 +28,31 @@ class AdaptationItem extends React.Component {
         const date = new Date(item.date);
         const displayDate = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
         const student = students.selectedStudent;
+        const dados = {
+            'TypeDescription' : 'Adequação',
+            'date' : displayDate,
+            'title' : item.title,
+            'description' : item.text
+        };
 
         return (
             <div className="adaptation-item">
                 <Card style={{margin: 5}}>
                     <div style={{height: 125, padding: '16px', cursor: 'pointer'}} onClick={() => { this.setState({open: true}) }}>
                         <div className="pull-left" >
-                            <i  className="fa fa-pencil-square-o"
+                            <em  className="fa fa-pencil-square-o"
                                 aria-hidden="true"
                                 style={{margin:0, fontSize:'7em'}}>
-                            </i>
+                            </em>
                         </div>
                         <div style={{paddingTop: 46}}>
-                            <strong>Adequação</strong>
-                            <CardTitle style={{padding: '0'}} subtitle={item.title || ''}/>
+                            <strong>{dados.TypeDescription}</strong>
+                            <CardTitle style={{padding: '0'}} subtitle={dados.title || ''}/>
                         </div>
                     </div>
-                    <CardTitle subtitle={displayDate} style={{padding: '2px 16px 5px'}}/>
+                    <CardTitle subtitle={dados.displayDate} style={{padding: '2px 16px 5px'}}/>
                     <CardText style={cardTextStyle}>
-                        <div dangerouslySetInnerHTML={{__html: item.text}}/>
+                        <div dangerouslySetInnerHTML={{__html: dados.text}}/>
                     </CardText>
                     <CardActions>
                         <FlatButton label="Editar"/>

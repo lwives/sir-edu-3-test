@@ -27,6 +27,12 @@ class MediaItem extends React.Component {
         const url = '/api/files/' + item._id;
         const date = new Date(item.date);
         const displayDate = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+        const data = {
+            'TypeDescription' : '',
+            'date' : displayDate,
+            'title' : item.title,
+            'description' : item.metadata.comment
+        };
 
         return (
             <div>
@@ -37,16 +43,16 @@ class MediaItem extends React.Component {
                     <video height="125" preload="" src={url}></video>
                 }
                 </CardMedia>
-                <CardTitle subtitle={displayDate} style={{padding: '2px 16px 5px'}}/>
+                <CardTitle subtitle={data.date} style={{padding: '2px 16px 5px'}}/>
                 <CardText style={cardTextStyle}>
-                    {item.metadata.comment}
+                    {data.description}
                 </CardText>
                 <CardActions>
                     <FlatButton label="Editar"/>
                     { editable ? 
                         <FlatButton
                             label="Copiar" primary={true} 
-                            onTouchTap={() => { this.props.actions.insert(url, item.metadata.comment); }}
+                            onTouchTap={() => { this.props.actions.insert(url, data.description); }}
                         /> : <FlatButton label="Remover" secondary={true} />
                     }
                 </CardActions>
@@ -66,7 +72,7 @@ class MediaItem extends React.Component {
                             <TextField
                                 floatingLabelText="Data:"
                                 floatingLabelFixed={true}
-                                value={displayDate}
+                                value={data.date}
                             />
                             <div>
                                 <TextField
@@ -74,7 +80,7 @@ class MediaItem extends React.Component {
                                     floatingLabelFixed={true}
                                     multiLine={true}
                                     fullWidth={true}
-                                    value={item.metadata.comment}
+                                    value={data.description}
                                 />
                             </div>
                         </div>
