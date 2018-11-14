@@ -66,7 +66,9 @@ export default class StudentMenu extends React.Component {
 
         return (
             <div>
-                <LoadingSpinner loading={files.isFetching || judgements.isFetching || adaptations.isFetching} />
+                <LoadingSpinner loading={files.isFetching || 
+                    judgements.isFetching || adaptations.isFetching ||
+                    attendances.isFetching || plans.isFetching} />
                 {student ? <StudentHeader student={student} /> : null}
                 <div className="container">
                     {

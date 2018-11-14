@@ -3,7 +3,17 @@ import { TextField, DatePicker } from 'material-ui' //Checkbox, RaisedButton, Se
 import Paper from 'material-ui/Paper'
 import TinyMCE from 'react-tinymce'
 import { setDefaultValue } from '../../../../helpers/register-helper'
+import Slider from 'components/Slider'
+import SliderItem from 'components/Slider/SliderItem'
+import LoadingSpinner from 'components/LoadingSpinner'
 
+const timelineCarousel = (items) => {
+    return items.map((item, index) => (
+        <div key={index}>
+            <SliderItem item={item} editable={false} />
+        </div>)
+    )
+}
 const defaultValue = [
     { title: 'Teste tit' }
 ];
@@ -115,12 +125,17 @@ export default class RegisterForm extends React.Component {
     // }
 
     render() {
+        files
+        judgements
+        adaptations
         if (!this.register.title) {
             this.register = { ...this.register, ...this.props.student }
         }
 
         return (
             <form onSubmit={this.handleSubmit}>
+            <LoadingSpinner loading={files.isFetching || 
+                judgements.isFetching || adaptations.isFetching} />
                 {this.props.step === 0 &&
                     <div className="row">
                         <div className="col-md-8">
@@ -154,6 +169,13 @@ export default class RegisterForm extends React.Component {
                                     onChange={this.handleEditorChange}
                                 />
                             </Paper>
+                        </div>
+                        <div className="col-md-12 timeline">
+                            {timelineList.length > 0 &&
+                                <Slider className="col-md-12">
+                                    {timelineCarousel(timelineList)}
+                                </Slider>
+                            }
                         </div>
                         <div className="col-md-12">
                             <button className="btn btn-secundary btn-actions" label="Cancelar" onClick={this.handleCancel} />
