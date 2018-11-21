@@ -73,31 +73,31 @@ export default class RegisterForm extends React.Component {
                 {/*             cep, bairro, concorda
                 */}
                 <div className="col-md-6">
-                    <TextField fullWidth value={this.register.name || ''} name="name" type="text" floatingLabelText="Nome" onChange={(evt, val) => { this.handleChange(evt, 'name', val) }} />
+                    <TextFieldDefault  fullWidth value={this.register.name || ''} name="name" type="text" floatingLabelText="Nome" onChange={(evt, val) => { this.handleChange(evt, 'name', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.lastName || ''} name="lastName" type="text" floatingLabelText="Sobrenome" onChange={(evt, val) => { this.handleChange(evt, 'lastName', val) }} />
+                    <TextFieldDefault  fullWidth value={this.register.lastName || ''} name="lastName" type="text" floatingLabelText="Sobrenome" onChange={(evt, val) => { this.handleChange(evt, 'lastName', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.cpf || ''} name="cpf" type="cpf" floatingLabelText="CPF" onChange={(evt, val) => { this.handleChange(evt, 'cpf', val) }} />
+                    <TextFieldDefault  fullWidth value={this.register.cpf || ''} name="cpf" type="cpf" floatingLabelText="CPF" onChange={(evt, val) => { this.handleChange(evt, 'cpf', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.email || ''} name="email" type="email" floatingLabelText="E-mail" onChange={(evt, val) => { this.handleChange(evt, 'email', val) }} />
+                    <TextFieldDefault  fullWidth value={this.register.email || ''} name="email" type="email" floatingLabelText="E-mail" onChange={(evt, val) => { this.handleChange(evt, 'email', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.password || ''} name="password" type="password" floatingLabelText="Senha" onChange={(evt, val) => { this.handleChange(evt, 'password', val) }} />
+                    <TextFieldDefault  fullWidth value={this.register.password || ''} name="password" type="password" floatingLabelText="Senha" onChange={(evt, val) => { this.handleChange(evt, 'password', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.repetPassword || ''} name="repetPassword" type="password" floatingLabelText="Repetir Senha" onChange={(evt, val) => { this.handleChange(evt, 'repet', val) }} />
+                    <TextFieldDefault  fullWidth value={this.register.repetPassword || ''} name="repetPassword" type="password" floatingLabelText="Repetir Senha" onChange={(evt, val) => { this.handleChange(evt, 'repet', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.mobile || ''} name="mobile" type="phone" floatingLabelText="Celular" onChange={(evt, val) => { this.handleChange(evt, 'mobile', val) }} />
+                    <TextFieldDefault  fullWidth value={this.register.mobile || ''} name="mobile" type="phone" floatingLabelText="Celular" onChange={(evt, val) => { this.handleChange(evt, 'mobile', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.phone || ''} name="phone" type="phone" floatingLabelText="Telefone" onChange={(evt, val) => { this.handleChange(evt, 'phone', val) }} />
+                    <TextFieldDefault  fullWidth value={this.register.phone || ''} name="phone" type="phone" floatingLabelText="Telefone" onChange={(evt, val) => { this.handleChange(evt, 'phone', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.address || ''} name="address" type="text" floatingLabelText="Endereço" onChange={(evt, val) => { this.handleChange(evt, 'address', val) }} />
+                    <TextFieldDefault  fullWidth value={this.register.address || ''} name="address" type="text" floatingLabelText="Endereço" onChange={(evt, val) => { this.handleChange(evt, 'address', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.addressNumber || ''} name="addressNumber" type="text" floatingLabelText="Número" onChange={(evt, val) => { this.handleChange(evt, 'addressNumber', val) }} />
+                    <TextFieldDefault  fullWidth value={this.register.addressNumber || ''} name="addressNumber" type="text" floatingLabelText="Número" onChange={(evt, val) => { this.handleChange(evt, 'addressNumber', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.addressComplemento || ''} name="addressComplemento" type="text" floatingLabelText="Complemento" onChange={(evt, val) => { this.handleChange(evt, 'addressComplemento', val) }} />
+                    <TextFieldDefault  fullWidth value={this.register.addressComplemento || ''} name="addressComplemento" type="text" floatingLabelText="Complemento" onChange={(evt, val) => { this.handleChange(evt, 'addressComplemento', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.city || ''} name="city" type="text" floatingLabelText="Cidade" onChange={(evt, val) => { this.handleChange(evt, 'city', val) }} />
+                    <TextFieldDefault  fullWidth value={this.register.city || ''} name="city" type="text" floatingLabelText="Cidade" onChange={(evt, val) => { this.handleChange(evt, 'city', val) }} />
                 </div><div className="col-md-6">
-                    <TextField fullWidth value={this.register.state || ''} name="state" type="text" floatingLabelText="Estado" onChange={(evt, val) => { this.handleChange(evt, 'state', val) }} />
+                    <TextFieldDefault  fullWidth value={this.register.state || ''} name="state" type="text" floatingLabelText="Estado" onChange={(evt, val) => { this.handleChange(evt, 'state', val) }} />
                 </div>
                 <div className="col-md-12">
                     <button className="btn btn-secudary" onClick={this.handleCancel}>Cancelar</button>

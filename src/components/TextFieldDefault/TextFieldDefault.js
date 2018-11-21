@@ -20,8 +20,8 @@ export default class TextFieldDefault extends React.Component {
         const type = (this.props.type !== undefined) ? this.props.type : 'text'
         const isMultiLine = this.props.multiLine  //(this.props.multiLine === undefined) ? true : false
         const className = 'form-control ' + this.props.className 
-        const fieldDescription = this.props.fieldDescription 
-        const LabelText = this.props.fieldDescription + ': ';
+        const fieldDescription = (this.props.fieldDescription) ? this.props.fieldDescription : this.props.floatingLabelText;
+        const LabelText = fieldDescription + ': ';
         const placeholder = (this.props.placeholder) ? this.props.placeholder: fieldDescription;
         let component;
         

@@ -71,25 +71,25 @@ export default class RegisterForm extends React.Component {
         {this.props.step === 0 &&
           <div className="row">
             <div className="col-md-12">
-              <TextField fullWidth className={this.classes.textField} value={this.register.name || ''} type="text" name="name" onChange={this.handleChange} floatingLabelText="Nome:" required />
+              <TextFieldDefault  fullWidth className={this.classes.textField} value={this.register.name || ''} type="text" name="name" onChange={this.handleChange} floatingLabelText="Nome:" required />
             </div><div className="col-md-6">
-              <TextField fullWidth className={this.classes.textField} value={this.register.phone || ''} type="text" name="phone" onChange={this.handleChange} floatingLabelText="Telefone:" />
+              <TextFieldDefault  fullWidth className={this.classes.textField} value={this.register.phone || ''} type="text" name="phone" onChange={this.handleChange} floatingLabelText="Telefone:" />
             </div><div className="col-md-6">
-              <TextField fullWidth className={this.classes.textField} value={this.register.email || ''} type="text" name="email" onChange={this.handleChange} floatingLabelText="E-mail:" />
+              <TextFieldDefault  fullWidth className={this.classes.textField} value={this.register.email || ''} type="text" name="email" onChange={this.handleChange} floatingLabelText="E-mail:" />
             </div><div className="col-md-6">
-              {/* <TextField fullWidth className={this.classes.textField} value={this.register.name || ''} type="number" name="mapLocation" onChange={this.handleChange} floatingLabelText="Nome:" required />
+              {/* <TextFieldDefault  fullWidth className={this.classes.textField} value={this.register.name || ''} type="number" name="mapLocation" onChange={this.handleChange} floatingLabelText="Nome:" required />
             </div><div className="col-md-6"> */}
-              <TextField fullWidth className={this.classes.textField} value={this.register.adress || ''} type="text" name="adress" onChange={this.handleChange} floatingLabelText="Endereço:" />
+              <TextFieldDefault  fullWidth className={this.classes.textField} value={this.register.adress || ''} type="text" name="adress" onChange={this.handleChange} floatingLabelText="Endereço:" />
             </div><div className="col-md-6">
-              <TextField fullWidth className={this.classes.textField} value={this.register.adress2 || ''} type="text" name="adress2" onChange={this.handleChange} floatingLabelText="Número:" />
+              <TextFieldDefault  fullWidth className={this.classes.textField} value={this.register.adress2 || ''} type="text" name="adress2" onChange={this.handleChange} floatingLabelText="Número:" />
             </div><div className="col-md-6">
-              <TextField fullWidth className={this.classes.textField} value={this.register.district || ''} type="text" name="district" onChange={this.handleChange} floatingLabelText="Bairro:" />
+              <TextFieldDefault  fullWidth className={this.classes.textField} value={this.register.district || ''} type="text" name="district" onChange={this.handleChange} floatingLabelText="Bairro:" />
             </div><div className="col-md-6">
-              <TextField fullWidth className={this.classes.textField} value={this.register.city || ''} type="text" name="city" onChange={this.handleChange} floatingLabelText="Cidade:" />
+              <TextFieldDefault  fullWidth className={this.classes.textField} value={this.register.city || ''} type="text" name="city" onChange={this.handleChange} floatingLabelText="Cidade:" />
             </div><div className="col-md-6">
-              <TextField fullWidth className={this.classes.textField} value={this.register.state || ''} type="text" name="state" onChange={this.handleChange} floatingLabelText="Estado:" />
+              <TextFieldDefault  fullWidth className={this.classes.textField} value={this.register.state || ''} type="text" name="state" onChange={this.handleChange} floatingLabelText="Estado:" />
             {/* </div><div className="col-md-6">
-              <TextField fullWidth className={this.classes.textField} value={this.register.country || ''} type="text" name="country" onChange={this.handleChange} floatingLabelText="País:" /> */}
+              <TextFieldDefault  fullWidth className={this.classes.textField} value={this.register.country || ''} type="text" name="country" onChange={this.handleChange} floatingLabelText="País:" /> */}
             </div>
             <div className="col-md-12">
               <RaisedButton color="primary" type="submit" label="Cadastrar" />

@@ -92,7 +92,7 @@ export default class RegisterForm extends React.Component {
             ...this.register,
             ...entry
         }
-        console.log('addRegister', this.register);
+        console.log(entry, this.register);
     }
 
     getRegister = (key) => {
@@ -135,7 +135,7 @@ export default class RegisterForm extends React.Component {
                         </div><div className="col-md-4">
                             <DatePicker fullWidth DateTimeFormat={Intl.DateTimeFormat} locale="pt-br" value={this.register.birthdate || {}} name="birthdate" onChange={(evt, value) => { this.handleChange(evt, 'birthdate', value) }} floatingLabelText="Data Nascimento" />
                         </div><div className="form-group col-md-6">
-                            <TextFieldDefault fullWidth className={this.classes.textField} value={this.register.motherName || ''} type="text" name="motherName" onChange={this.handleChange} fieldDescription="Nome da Mãe" />
+                            <TextFieldDefault fullWidth className={this.classes.textField} value={this.register.motherName || ''} type="text" name="motherName" onChange={this.handleChange} fieldDescription="Nome da Mãe" required />
                         </div><div className="form-group col-md-2">
                             <TextFieldDefault fullWidth className={this.classes.textField} value={this.register.motherPhone || ''} type="phone" name="motherPhone" onChange={this.handleChange} fieldDescription="Telefone na Mãe" />
                         </div><div className="form-group col-md-4">
