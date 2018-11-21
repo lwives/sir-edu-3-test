@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { TextField } from 'material-ui'
 import { setDefaultValue } from '../../../../helpers/register-helper'
+import TextFieldDefault from '../../../../components/TextFieldDefault';
 
 const defaultValue = [
     { city: 'Porto Alegre' },
