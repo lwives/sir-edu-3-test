@@ -1,7 +1,7 @@
 // We only need to import the modules necessary for initial render
 import CoreLayout from '../layouts/CoreLayout'
 import Home from './Home'
-import PageRoute from './pages'
+//import PageRoute from './pages'
 import LoginRoute from './Login'
 import StudentList from './Student/StudentList'
 import StudentRegister from './Student/StudentRegister'
@@ -24,7 +24,7 @@ export const createRoutes = (store) => ({
     // PageRoute.servico, 
     // PageRoute.contato, 
     // PageRoute.termos, 
-    PageRoute.sobre, 
+    // PageRoute.sobre, 
     LoginRoute,
     StudentList,
     StudentRegister,
