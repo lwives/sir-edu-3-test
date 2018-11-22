@@ -40,7 +40,7 @@ class PlanItem extends React.Component {
                 <Card style={{margin: 5}}>
                     <div style={{height: 125, padding: '16px', cursor: 'pointer'}} onClick={() => { this.setState({open: true}) }}>
                         <div className="pull-left" >
-                            <em  className="fa fa-pencil-square-o"
+                            <em  className="far fa-list-alt"
                                 aria-hidden="true"
                                 style={{margin:0, fontSize:'7em'}}>
                             </em>

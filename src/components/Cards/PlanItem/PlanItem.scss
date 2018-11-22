@@ -1,11 +1,11 @@
-.judgement-modal {
+.plan-modal {
     width: 65%;
 
-    .judgement-content {
+    .plan-content {
         width: 95%;
         margin: 0 auto;
         
-        .judgement-text {
+        .plan-text {
             padding: 16px;
 
             .title {
@@ -30,4 +30,7 @@
     .btn-generate-pdf {
         padding: 35px 0 0;
     }
+}
+.plan-item{
+    background-color: #ed868b;
 }

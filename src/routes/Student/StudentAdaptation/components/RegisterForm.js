@@ -169,13 +169,14 @@ export default class RegisterForm extends React.Component {
                         </div> <div className="col-md-12">
                             <TextFieldDefault fullWidth multiLine rows={3} className={this.classes} value={this.register.suggestionEvaluation || ''} placeholder="Avaliações" name="suggestionEvaluation" fieldDescription="Avaliações" onChange={(evt, value) => { this.handleChange(evt, 'suggestionEvaluation', value) }} />
                         </div>
+                    
+                        <div className="col-md-12">
+                            <div className="col-md-12">
+                                <button className="btn btn-primary">Cadastrar</button>
+                            </div>
+                        </div>
                     </div>
                 }
-                <div className="col-md-6">
-                    <div className="col-md-12">
-                        <button className="btn btn-primary">Cadastrar</button>
-                    </div>
-                </div>
             </form>
         )
     }

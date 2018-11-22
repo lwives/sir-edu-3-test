@@ -34,13 +34,13 @@ class JudgementItem extends React.Component {
             'title' : item.title,
             'description' : item.text
         };
-
+//fa fa-pencil-square-o
         return (
             <div className="judgement-item">
                 <Card style={{margin: 5}}>
                     <div style={{height: 125, padding: '16px', cursor: 'pointer'}} onClick={() => { this.setState({open: true}) }}>
                         <div className="pull-left" >
-                            <i  className="fa fa-pencil-square-o"
+                            <i  className="fas fa-pen"
                                 aria-hidden="true"
                                 style={{margin:0, fontSize:'7em'}}>
                             </i>
