@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import { TextField, RaisedButton, withStyles } from 'material-ui'
 //import { withStyles } from '@material-ui/core/style';
 import { handleChangeHelper } from '../../../../helpers/register-helper'
+import TextFieldDefault from '../../../../components/TextFieldDefault';
 
 export default class RegisterForm extends React.Component {
   static propTypes = {
