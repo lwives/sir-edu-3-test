@@ -36,7 +36,7 @@ class MediaItem extends React.Component {
 
         return (
             <div>
-            <Card style={{margin: 5}}>
+            <Card className="judgement-card" style={{margin: 5}}>
                 <CardMedia style={{cursor: 'pointer'}} onClick={() => { this.setState({open: true}) }}>
                 { 
                     type === 'image' ? <img height="125" src={url}/> : 

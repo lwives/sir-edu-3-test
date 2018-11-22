@@ -37,7 +37,7 @@ class PlanItem extends React.Component {
 
         return (
             <div className="plan-item">
-                <Card style={{margin: 5}}>
+                <Card className="judgement-card" style={{margin: 5}}>
                     <div style={{height: 125, padding: '16px', cursor: 'pointer'}} onClick={() => { this.setState({open: true}) }}>
                         <div className="pull-left" >
                             <em  className="far fa-list-alt"
