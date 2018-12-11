@@ -2,6 +2,7 @@ import React from 'react'
 import { FlatButton, RaisedButton } from 'material-ui'
 
 const StepperPagination = (data) => {
+    console.log(data.tabs);
     return (
         <div className="stepper-pagination text-center">
             {data.tabs && data.tabs.length > 1 &&
