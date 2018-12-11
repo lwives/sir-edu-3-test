@@ -24,10 +24,10 @@ export default class StudentAdaptation extends React.Component {
 
     this.tabs = [
       { name: 'Dados gerais' },
-      { name: 'Matriz Hist�rica' },
+      { name: 'Matriz Histórica' },
       { name: 'Matriz Necessidade' },
       { name: 'Matriz Programação' },
-      { name: 'Matriz Sugestoes' }
+      { name: 'Matriz Sugestões' }
     ]
 
     this.data = {

@@ -22,9 +22,10 @@ export default class StudentPlan extends React.Component {
     this.isInitialState = true
 
     this.tabs = [
-      {name: 'Identificação'},
-      {name: 'Histórico'},
-      {name: 'Situação do desenvolvimento'},
+      {name: 'Geral'},
+      {name: 'Habil cognitivas'},
+      {name: 'Habil sociais'},
+      {name: 'Habil '},
       {name: 'Proposições'}
     ]
 
