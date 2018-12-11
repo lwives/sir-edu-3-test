@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { DatePicker, TextFieldDefault } from 'material-ui' //Checkbox, RaisedButton, SelectField, MenuItem, TextFieldDefault, Button, 
+import { DatePicker } from 'material-ui' //Checkbox, RaisedButton, SelectField, MenuItem, TextFieldDefault, Button, 
 import { setDefaultValue } from '../../../../helpers/register-helper'
 import HeaderDefault from '../../../../components/HeaderDefault';
 import TextFieldDefault from '../../../../components/TextFieldDefault'
