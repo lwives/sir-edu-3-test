@@ -189,9 +189,9 @@ export default class RegisterForm extends React.Component {
                             <TextFieldDefault fullWidth multiLine rows={2} value={this.register.otherInformation || ''} name="otherInformation" floatingLabelText="Outras informação" onChange={(evt, value) => { this.handleChange(evt, 'otherInformation', value) }} />
                         </div>
                     </div>
-                }
-                {this.props.step === 1 &&
+                
                     <div className="row">
+                        <HeaderDefault texto="Histórico" type="h3" />
                         <div className="col-md-4">
                             <TextFieldDefault fullWidth value={this.register.forwardingCode || ''} name="forwardingCode" floatingLabelText="Código no Encaminhamento AEE" onChange={(evt, value) => { this.handleChange(evt, 'forwardingCode', value) }} />
                         </div><div className="col-md-4">
@@ -209,27 +209,25 @@ export default class RegisterForm extends React.Component {
                         </div>
                     </div>
                 }
-                {this.props.step === 2 &&
-                    <div className="row">
+                {(this.props.step === 1 || this.props.step === 2 || this.props.step === 3) &&
+                    this.developeStatusTransposed.map(rowDiv => {
+                        return <div className="row">
                         <div className="col-md-12">
-                            <HeaderDefault texto={developeStatus.title} type="h3" />
-                            {
-                                this.developeStatusTransposed.map(rowDiv => {
-                                    return <div className="row">
-                                        {
-                                            rowDiv.map((columnDiv) => {
-                                                return <div className="col-sm-6 col-md-4">
-                                                    <TextFieldDefault fullWidth multiLine rows={2} rowsMax={4} value={this.register['caracter' + columnDiv.column + columnDiv.line] || ''} name={'caracter' + columnDiv.column + columnDiv.line} floatingLabelText={columnDiv.title} onChange={(evt, value) => { this.handleChange(evt, 'caracter' + columnDiv.column + columnDiv.line, value) }} />
-                                                </div>
-                                            })
-                                        }
-                                    </div>
-                                })
-                            }
+                        <HeaderDefault texto={developeStatus.title} type="h3" />
+                            <div className="row">
+                                {
+                                    rowDiv.map((columnDiv) => {
+                                        return <div className="col-sm-6 col-md-4">
+                                            <TextFieldDefault fullWidth multiLine rows={2} rowsMax={4} value={this.register['caracter' + columnDiv.column + columnDiv.line] || ''} name={'caracter' + columnDiv.column + columnDiv.line} floatingLabelText={columnDiv.title} onChange={(evt, value) => { this.handleChange(evt, 'caracter' + columnDiv.column + columnDiv.line, value) }} />
+                                        </div>
+                                    })
+                                }
+                            </div>
                         </div>
                     </div>
+                    })
                 }
-                {this.props.step === 3 &&
+                {this.props.step === 4 &&
                     <div className="row">
                         <HeaderDefault texto="Plano de Intervenção Pedagógica" type="h3" />
                         <div className="col-md-12">
